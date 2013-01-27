@@ -1,14 +1,47 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>OnlineGameDataBase</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+	  <title>OnlineGameDataBase</title>
+	  <%= stylesheet_link_tag    "application", :media => "all" %>
+	  <%= javascript_include_tag "application" %>
+	  <%= csrf_meta_tags %>
+	</head>
+	
+	<body>
+	
+	
+	    <div class="container-fluid" id="container">
+   			<div id="header">Welcome to the OGDB</div>
 
-<%= yield %>
+		    <div class="row-fluid">
+			    <div class="span2" id="sidebar_left">
+				<ul>
+					<li>adsf</li>
+					<li>adsf</li>
+					<li>adsf</li>
+					<li>adsf</li>
+					<li>adsf</li>
+				</ul>
+			    </div>
+			    
+			    <div class="span8" id="content">
+				<%= yield %>
 
-</body>
+			    </div>
+			    
+			    <div class="span2" id="sidebar_right">
+
+			    </div>
+			    
+		    </div>
+		    
+		<div id="footer">
+	    	&copy; 2013 | Sir Jay
+	    </div>
+		    
+	    </div>
+	    
+
+	
+	</body>
 </html>
