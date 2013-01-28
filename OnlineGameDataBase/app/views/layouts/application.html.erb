@@ -25,12 +25,36 @@
 			    </div>
 			    
 			    <div class="span8" id="content">
+			    	<p><%= flash[:notice]%>
+			    		
+			    		<% if user_signed_in? %>
+							<%= current_user.username %>
+			    		<% end %>
+			    		
+			    	</p>
+			    	
+			    	<% if flash[:alert] %>
+			    		<%= flash[:alert]%>
+			    	<% end %>
+			    	
 				<%= yield %>
 
 			    </div>
 			    
 			    <div class="span2" id="sidebar_right">
-
+					<p>
+						<%= link_to_register %>
+					</p>
+					
+					<% if user_signed_in? %>
+						<p>
+							<%= link_to_logout %>
+						</p>
+					<% else%>
+						<p>
+							<%= link_to_login %>
+						</p>
+					<% end %>
 			    </div>
 			    
 		    </div>
