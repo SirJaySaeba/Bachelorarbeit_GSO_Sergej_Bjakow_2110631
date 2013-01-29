@@ -2,7 +2,7 @@
 
 module PagesHelper
   
-  def back_to_startscreen
+  def link_to_startscreen
     link_to "Zurück", startscreen_path
   end
   

@@ -1,0 +1,10 @@
+<div class="test">
+	
+	<%= form_tag games_path, :method => 'get' do %>
+	  <p>
+	    <%= text_field_tag :search, params[:search] %>
+	    <%= submit_tag "Search", :title_german => nil %>
+	  </p>
+	<% end %>
+
+</div>

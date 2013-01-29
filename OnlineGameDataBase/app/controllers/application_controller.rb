@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
   
+
+  
   #def set_locale
    # I18n.locale = params[:locale]
   #end

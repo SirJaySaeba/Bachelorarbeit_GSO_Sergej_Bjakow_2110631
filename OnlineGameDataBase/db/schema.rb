@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130127112247) do
+ActiveRecord::Schema.define(:version => 20130129114448) do
+
+  create_table "games", :force => true do |t|
+    t.binary   "game_cover"
+    t.string   "title_german"
+    t.string   "title_original"
+    t.string   "title_alternative"
+    t.string   "developer"
+    t.string   "publisher"
+    t.string   "system"
+    t.date     "release"
+    t.boolean  "dlc"
+    t.boolean  "dlc_addon"
+    t.float    "rating"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "untertitel"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"
