@@ -55,6 +55,11 @@
   <%= @game.rating %>
 </p>
 
+<% if user_signed_in? %>
+	<div class="rating_area">
+		<%= render "rating"%>
+	</div>
+<% end %>
 
 <%= link_to_edit_game %> |
 <%= link_to_startscreen %>

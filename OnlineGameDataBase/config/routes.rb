@@ -9,9 +9,9 @@ OnlineGameDataBase::Application.routes.draw do
   
   get "games/new"
   get "games/:id" => "games#show"
-  #get "games" => "games#index"
   
-  
+  resources :ratings, only: [ :create, :update]
+
   
   get "login" => "sessions#new", as: "login"  
   post "sessions" => "sessions#create", as: "sessions"

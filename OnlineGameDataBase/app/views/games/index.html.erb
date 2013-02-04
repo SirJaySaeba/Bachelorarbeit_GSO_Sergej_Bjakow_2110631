@@ -1,6 +1,10 @@
 <h1>Listing games</h1>
 
-<%= render 'search_results'%>
+<% if(params[:search]) %>
+	<%= render 'search_results' %>
+<% else %>
+	<%= render 'no_search_yet' %>
+<% end %>
 
 <br />
 

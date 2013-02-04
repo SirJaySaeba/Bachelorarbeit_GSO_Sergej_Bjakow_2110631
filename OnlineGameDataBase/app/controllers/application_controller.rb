@@ -14,7 +14,13 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
   
-
+    
+  def require_login
+    unless user_signed_in?
+      redirect_to login_path,
+        alert: "Erst anmelden bitte!"
+    end
+  end
   
   #def set_locale
    # I18n.locale = params[:locale]

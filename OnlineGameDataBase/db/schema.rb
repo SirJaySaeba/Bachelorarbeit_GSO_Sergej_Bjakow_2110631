@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129114448) do
+ActiveRecord::Schema.define(:version => 20130201131358) do
 
   create_table "games", :force => true do |t|
     t.binary   "game_cover"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(:version => 20130129114448) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.string   "untertitel"
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "game_id"
+    t.integer  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

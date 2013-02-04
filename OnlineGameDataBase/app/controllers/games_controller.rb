@@ -2,11 +2,9 @@ class GamesController < ApplicationController
 
   before_filter :require_login, only: [:create, :new, :edit]
 
-   def index
+  def index
      @games = Game.search(params[:search])
-   end
-
-
+  end
 
   def show
     @game = Game.find(params[:id])
@@ -59,13 +57,6 @@ class GamesController < ApplicationController
 
   end
   
-  private
-  
-  def require_login
-    unless user_signed_in?
-      redirect_to login_path,
-        alert: "Erst anmelden bitte!"
-    end
-  end
+
   
 end
