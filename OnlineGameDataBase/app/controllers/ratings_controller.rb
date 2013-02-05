@@ -11,6 +11,7 @@ class RatingsController < ApplicationController
         if @rating.save
             respond_to do |format|
                 format.html { redirect_to game_path(@game), :notice => "Your rating has been saved" }
+                format.js
             end
         end
     end
@@ -22,10 +23,11 @@ class RatingsController < ApplicationController
         if @rating.update_attributes(params[:rating])
             respond_to do |format|
                 format.html { redirect_to game_path(@game), :notice => "Your rating has been updated" }
+                format.js
             end
         end
 
     end
-
+  
   
 end

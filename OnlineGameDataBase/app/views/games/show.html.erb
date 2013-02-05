@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<div id="notice"><%= notice %></div>
 
 <p>
   <b>Game cover:</b>
@@ -55,11 +55,9 @@
   <%= @game.rating %>
 </p>
 
-<% if user_signed_in? %>
-	<div class="rating_area">
-		<%= render "rating"%>
-	</div>
-<% end %>
+<div class= "rating_area">
+			<%= render "rating"%>
+</div>
 
 <%= link_to_edit_game %> |
 <%= link_to_startscreen %>

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :username,
     uniqueness: true
     
+  has_many :games
   has_many :ratings
   has_many :rated_games, :through => :ratings, :source => :games
 end
