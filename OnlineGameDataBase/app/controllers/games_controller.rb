@@ -55,10 +55,12 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @game.destroy
 
+
   end
   
-  def user_profile
-    
+  def add_to_profile
+    @profile = Game.find(params[:id])
+    @profile.save
   end
   
 

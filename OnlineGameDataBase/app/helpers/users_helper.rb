@@ -12,5 +12,9 @@ module UsersHelper
   def link_to_logout
     link_to "logout", logout_path, method: :delete
   end
+  
+  def link_to_userprofile
+    link_to "Userprofile", user_path
+  end
 
 end

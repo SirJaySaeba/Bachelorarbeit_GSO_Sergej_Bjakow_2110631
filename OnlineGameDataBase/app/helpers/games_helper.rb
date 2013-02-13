@@ -1,3 +1,4 @@
+#encoding: utf-8
 module GamesHelper
   
   def link_to_create_game
@@ -14,6 +15,10 @@ module GamesHelper
   
   def link_to_detail
     link_to 'Show', @game
+  end
+  
+  def link_to_add_game
+    link_to 'Spiel zum Profil hinzufügen', new_profile_path
   end
   
   
