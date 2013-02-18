@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     uniqueness: true
     
   has_one :profile
-  has_many :games
+  #has_many :games
   has_many :ratings
   has_many :rated_games, :through => :ratings, :source => :games
 end

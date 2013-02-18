@@ -1,12 +1,10 @@
 OnlineGameDataBase::Application.routes.draw do
 
+ resource :profile do
+   resources :games
+ end
   
-  
-  #resource :profile do
-  # resources :games
- # end
-  
-  #get "profile" => "profiles#show", as: "profile"
+  get "profile" => "profiles#show", as: "profile"
   
   #get "games/:id" => "games#add_to_profile"
   get "pages/startscreen", as: "startscreen"
@@ -14,7 +12,6 @@ OnlineGameDataBase::Application.routes.draw do
   resources :ratings, only: [ :create, :update]
   resources :users, only: [:new, :create]
   get "users/new", as: "register"
-  get "users/:id" => "users#show", as: "user"
 
   resources :games
   root to: 'pages#startscreen'

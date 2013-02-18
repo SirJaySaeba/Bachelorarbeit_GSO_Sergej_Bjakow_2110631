@@ -60,7 +60,7 @@ class GamesController < ApplicationController
   
   def add_to_profile
     @profile = Game.find(params[:id])
-    @profile.save
+    @profile.currrent_user.save
   end
   
 

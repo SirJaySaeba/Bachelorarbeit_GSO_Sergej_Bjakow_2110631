@@ -33,3 +33,35 @@
     margin: 10px 0px;
 
 }
+
+.new_games{
+  border: 1px solid red;
+  padding: 5px;
+  margin-top: 20px;
+  width: 200px;
+  color: blue;
+  
+  :hover{
+    cursor: pointer;
+    color: red;
+  }
+}
+
+.button_login{
+  color: red;
+  
+  :hover{
+    background: blue;
+    cursor: pointer;
+  }
+
+}
+
+.login{
+  display: none;
+  background: #a0a0a0;
+  position: fixed;
+  left:40%;
+  top: 30%;
+  
+}

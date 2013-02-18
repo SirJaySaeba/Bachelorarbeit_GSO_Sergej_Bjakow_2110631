@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  
+  
   private
   
   def current_user
@@ -17,19 +19,25 @@ class ApplicationController < ActionController::Base
     
   def require_login
     unless user_signed_in?
+      #store_location
       redirect_to login_path,
         alert: "Erst anmelden bitte!"
     end
   end
+ ########## 
+  def store_location
+    session[:return_to] = request.fullpath
+  end
+
+  def clear_stored_location
+    session[:return_to] = nil
+  end
   
-  #def set_locale
-   # I18n.locale = params[:locale]
-  #end
-  
-  #def default_url_options(options={})
-  #  { locale: I18.locale}
-  #end
-  
+  def redirect_to_target_or_default(default)
+    redirect_to(session[:return_to] || default)
+    session[:return_to] = nil
+  end
+ ############ 
   helper_method :user_signed_in?
   helper_method :current_user
   

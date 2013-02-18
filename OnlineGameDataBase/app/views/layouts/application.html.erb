@@ -16,7 +16,7 @@
 		    <div class="row-fluid">
 			    <div class="span2" id="sidebar_left">
 				<ul>
-				<li><%= link_to_userprofile %></li>
+				<li><%= link_to_profile %></li>
 					<li>adsf</li>
 					<li>adsf</li>
 					<li>adsf</li>
@@ -33,8 +33,14 @@
 			    	
 				<%= yield %>
 
-
-
+				</br>
+					<div class="new_games">
+						<% if content_for?(:new_entry) %>
+							<%= yield(:new_entry) %>
+						<% else %>
+							Da is nix!
+						<% end %>
+					</div>
 			    </div>
 			    
 			    <div class="span2" id="sidebar_right">
@@ -48,7 +54,12 @@
 						</p>
 					<% else%>
 						<p>
-							<%= link_to_login %>
+							<%= link_to_login %><br/>
+							<div class="button_login">
+								
+								<div>Login</div>
+
+							</div>
 						</p>
 					<% end %>
 			    </div>
@@ -72,7 +83,9 @@
 		    
 	    </div>
 	    
-
+		<div class="login">
+			<div><%= render "sessions/login"%></div>
+		</div>
 	
 	</body>
 </html>

@@ -3,7 +3,7 @@ class Game < ActiveRecord::Base
   validates :title_german, presence: true
   validates :developer, presence: true  
   
-  belongs_to :user 
+  #belongs_to :user 
   
   has_and_belongs_to_many :profiles
   has_many :ratings
