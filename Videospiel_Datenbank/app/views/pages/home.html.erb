@@ -1,2 +1,10 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<% provide(:title, 'Home') %>
+<div class="center hero-unit">
+	<h1>Willkommen bei GameHawks</h1>
+	
+	<h2>Hier findest du alle jeden Titel aus 50 Jahre Gaming Kultur</h2>
+
+
+  	<%= link_to "Registrieren", signup_path, class: "btn btn-large btn-primary" %>
+</div>
+
