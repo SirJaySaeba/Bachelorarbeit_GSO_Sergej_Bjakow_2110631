@@ -1,0 +1,23 @@
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Developer</th>
+    <th>Release</th>
+    <th>System</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @games.each do |game| %>
+  <tr>
+    <td><%= game.title %></td>
+    <td><%= game.developer %></td>
+    <td><%= game.release %></td>
+    <td><%= game.system %></td>
+    <td><%= link_to 'Show', game %></td>
+    <td><%= link_to 'Edit', edit_game_path(game) %></td>
+    <td><%= link_to 'Destroy', game, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
