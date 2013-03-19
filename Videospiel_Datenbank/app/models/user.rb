@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 3 }
   validates :password_confirmation, presence: true
   
+  #-----------Relations---------------#
+  has_many :ratings
+  has_many :rated_games, :through => :ratings, :source => :games
+  
   private
 
   def create_remember_token

@@ -3,6 +3,7 @@ VideospielDatenbank::Application.routes.draw do
     
   resources :games
   resources :users
+  resources :ratings, only: [ :create, :update]
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/newgame', to: 'games#new'
