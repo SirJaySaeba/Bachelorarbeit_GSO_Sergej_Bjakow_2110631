@@ -20,9 +20,17 @@
   <%= @game.system %>
 </p>
 
-<div class= "rating_area">
+<% if user_signed_in? %>
+	<div class= "rating_area">
 			<%= render "ratings/rating_form"%>
-</div>
+	</div>
+	
+	<div class="review_area">
 
+
+
+  	<%= link_to "Kritik verfassen", newreview_path, class: "btn btn-large btn-primary" %>
+	</div>
+<% end %>
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

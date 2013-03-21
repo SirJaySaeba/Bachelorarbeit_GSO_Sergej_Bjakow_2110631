@@ -14,8 +14,9 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
   
   #-----------Relations---------------#
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
   has_many :rated_games, :through => :ratings, :source => :games
+  has_many :reviews, dependent: :destroy
   
   private
 

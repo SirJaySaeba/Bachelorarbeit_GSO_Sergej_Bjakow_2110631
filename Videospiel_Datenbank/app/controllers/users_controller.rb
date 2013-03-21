@@ -6,6 +6,13 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @reviews = @user.reviews.paginate(page: params[:page])
+    
+    #if user_signed_in?
+      #@review = current_user.reviews.build
+      #@feed_items = current_user.feed.paginate(page: params[:page])
+    #end
+    
   end
 
   def new
@@ -49,9 +56,7 @@ class UsersController < ApplicationController
   end
   
   private
-
-
-    
+ 
     def correct_user
       @user = User.find(params[:id])
       if !(current_user?(@user))
@@ -60,5 +65,4 @@ class UsersController < ApplicationController
       end
     end
     
-
 end

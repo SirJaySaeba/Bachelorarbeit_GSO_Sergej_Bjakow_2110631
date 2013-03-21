@@ -5,6 +5,7 @@ class Game < ActiveRecord::Base
   #--------------Relations--------------#
     has_many :ratings
     has_many :raters, :through => :ratings, :source => :users
+    has_many :reviews
  
   def self.search(search)
     if search

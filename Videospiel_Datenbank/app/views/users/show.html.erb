@@ -9,5 +9,20 @@
       <h2><%= @user.email %></h2>
     </section>
   </aside>
+  
+	<span>
+		<%= pluralize(current_user.reviews.count, "review") %>
+	</span>
+  
+  <div class="span8">
+    <% if @user.reviews.any? %>
+      <h3>Reviews (<%= @user.reviews.count %>)</h3>
+      <ol class="reviews">
+        <%= render @reviews %>
+      </ol>
+      <%= will_paginate @reviews %>
+    <% end %>
+  </div>
+  
 </div>
 

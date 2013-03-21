@@ -14,11 +14,13 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-
+    @review = current_user.reviews.build if user_signed_in?
+    #@reviews = @user.reviews.paginate(page: params[:page])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @game }
     end
+
   end
 
 
