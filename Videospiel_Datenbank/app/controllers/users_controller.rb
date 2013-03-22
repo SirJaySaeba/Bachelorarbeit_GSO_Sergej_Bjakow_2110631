@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews.paginate(page: params[:page])
-    
+    @game = Game.find(params[:id])    #not right -only displays id = 1
     #if user_signed_in?
       #@review = current_user.reviews.build
       #@feed_items = current_user.feed.paginate(page: params[:page])

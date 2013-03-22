@@ -1,6 +1,13 @@
+
+
 <li>
-  <span class="content"><%= review.content %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(review.created_at) %> ago.
+  <%= link_to @game.title, review %>
+    <span class="timestamp">
+    Posted <%= time_ago_in_words(review.created_at) %> ago you freak.
   </span>
+  <% if !current_user?(@user) %>
+    | <%= link_to "delete", review, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
 </li>
+
