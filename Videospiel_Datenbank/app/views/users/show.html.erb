@@ -11,12 +11,13 @@
   </aside>
   
 	<span>
-		<%= pluralize(current_user.reviews.count, "review") %>
+		Current User has <%= pluralize(current_user.reviews.count, "review") %>
 	</span>
   
   <div class="span8">
     <% if @user.reviews.any? %>
       <h3>Reviews (<%= @user.reviews.count %>)</h3>
+      
       <ol class="reviews">
         <%= render @reviews %>
       </ol>

@@ -32,5 +32,9 @@
   	<%= link_to "Kritik verfassen", newreview_path, class: "btn btn-large btn-primary" %>
 	</div>
 <% end %>
+
+      <h3>Reviews</h3>
+      <%= render 'misc/feed' %>
+
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

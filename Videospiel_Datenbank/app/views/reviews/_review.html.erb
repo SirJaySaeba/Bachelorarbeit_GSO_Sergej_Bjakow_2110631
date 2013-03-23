@@ -1,7 +1,7 @@
 
 
 <li>
-  <%= link_to @game.title, review %>
+  <%= link_to @game.id, review %>
     <span class="timestamp">
     Posted <%= time_ago_in_words(review.created_at) %> ago you freak.
   </span>

@@ -20,7 +20,11 @@ class Game < ActiveRecord::Base
   end
   
   def amount_ratings
-         @total = self.ratings.size
+    @total = self.ratings.size
+  end
+  
+  def feed
+    Review.where("user_id = ?", id)
   end
 
 end
