@@ -9,10 +9,6 @@ class UsersController < ApplicationController
     @reviews = @user.reviews.paginate(page: params[:page])
     @game = Review.find_by_game_id(params[:game_id]) #Review.where(game_id: params[:game_id], user_id: current_user.id)
    
-    #if user_signed_in?
-     # @review = current_user.reviews.build
-      #@feed_items = current_user.feed.paginate(page: params[:page])
-   # end
     
   end
 
@@ -33,6 +29,13 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+  end
+  
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.followed_games.paginate(page: params[:page])
+    render 'show_follow'
   end
   
   def edit

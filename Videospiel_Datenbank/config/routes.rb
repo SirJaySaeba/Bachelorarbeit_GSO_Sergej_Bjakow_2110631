@@ -1,17 +1,25 @@
 VideospielDatenbank::Application.routes.draw do
 
     
-  get "reviews/create"
+  get "gamerelations/create"
 
-  get "reviews/new"
+  get "gamerelations/destroy"
+
+  resources :users do    #needs to include games
+    member do
+      get :following, :followers
+    end
+  end
 
   resources :games
-  resources :users
   resources :ratings, only: [ :create, :update]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :reviews, only: [:create, :destroy, :show]
+  resources :reviews
+  resources :gamerelations, only: [:create, :destroy]
   
-  get "games/:id/reviews/:id" => "reviews#show", as: "review"
+  #get "games/:id/reviews/:id" => "reviews#show", as: "review"
+  #delete "games/:id/reviews/:id" => "reviews#destroy", as: "delrev"
+  
   match '/newreview', to: 'reviews#new'
   match '/newgame', to: 'games#new'
   match '/signup',  to: 'users#new'                         #get "signup" => "users#new", as: "signup"

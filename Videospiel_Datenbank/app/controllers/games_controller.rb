@@ -11,6 +11,12 @@ class GamesController < ApplicationController
     end
   end
 
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
 
   def show
     @game = Game.find(params[:id])
@@ -56,7 +62,6 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
-
     respond_to do |format|
       if @game.update_attributes(params[:game])
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }

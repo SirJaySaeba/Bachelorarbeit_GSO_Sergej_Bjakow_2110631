@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+
+
 <p>
   <b>Title:</b>
   <%= @game.title %>
@@ -35,6 +37,6 @@
 
       <h3>Reviews</h3>
       <%= render 'misc/feed' %>
-
+    <%= render 'misc/follow_form' if user_signed_in? %>
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

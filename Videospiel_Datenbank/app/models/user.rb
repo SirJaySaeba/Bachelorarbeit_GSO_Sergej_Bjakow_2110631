@@ -13,14 +13,43 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 3 }
   validates :password_confirmation, presence: true
   
+  
+  
+  
   #-----------Relations---------------#
   has_many :ratings, dependent: :destroy
   has_many :rated_games, :through => :ratings, :source => :games
   has_many :reviews, dependent: :destroy
+  
+  has_many :gamerelations, foreign_key: "followed_id", dependent: :destroy
+  has_many :followed_games, through: :gamerelations, source: :followed
+  
+  has_many :reverse_gamerelations, foreign_key: "followed_id",
+                                   class_name:  "Gamerelation",
+                                   dependent:   :destroy
+  has_many :followers, through: :reverse_gamerelations, source: :follower
+
+
+
+
+  #---------------Methods-----------------#
+  def following?(some_game)
+    gamerelations.find_by_followed_id(some_game.id)
+  end
+
+  def follow!(some_game)
+    gamerelations.create!(followed_id: some_game.id)
+  end
+
+  def unfollow!(some_game)
+    gamerelations.find_by_followed_id(some_game.id).destroy
+  end
   
   private
 
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
   end
+  
+
 end
