@@ -8,7 +8,7 @@ class GamerelationsController < ApplicationController
   end
 
   def destroy
-    @game = Relationship.find(params[:id]).followed
+    @game = Gamerelation.find(params[:id]).followed
     current_user.unfollow!(@game)
     redirect_to @game
   end

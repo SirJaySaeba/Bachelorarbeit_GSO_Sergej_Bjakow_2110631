@@ -18,6 +18,8 @@ class GamesController < ApplicationController
     render 'show_follow'
   end
 
+
+
   def show
     @game = Game.find(params[:id])
     @review = @game.reviews.build

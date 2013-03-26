@@ -1,1 +1,15 @@
-test test
+<% provide(:title, @title) %>
+<div class="row">
+
+  <div class="span8">
+    <h3><%= @title %></h3>
+    <% if @games.any? %>
+      <ul class="users">
+        <%= render @games %>
+      </ul>
+     
+     <!-- will_paginate -->
+     
+    <% end %>
+  </div>
+</div>

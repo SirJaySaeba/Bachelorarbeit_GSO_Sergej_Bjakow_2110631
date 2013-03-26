@@ -8,8 +8,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @reviews = @user.reviews.paginate(page: params[:page])
     @game = Review.find_by_game_id(params[:game_id]) #Review.where(game_id: params[:game_id], user_id: current_user.id)
-   
-    
   end
 
   def new
@@ -30,11 +28,11 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-  
+    
   def following
     @title = "Following"
     @user = User.find(params[:id])
-    @users = @user.followed_games.paginate(page: params[:page])
+    @games = @user.followed_games.paginate(page: params[:page], :per_page => 10)
     render 'show_follow'
   end
   

@@ -6,7 +6,13 @@ class Game < ActiveRecord::Base
     has_many :ratings
     has_many :raters, :through => :ratings, :source => :users
     has_many :reviews
- 
+
+    has_many :reverse_gamerelations, foreign_key: "followed_id",
+                                     class_name:  "Gamerelation",
+                                     dependent:   :destroy
+    has_many :followers, through: :reverse_gamerelations, source: :follower   
+   
+
   def self.search(search)
     if search
       find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
@@ -25,6 +31,7 @@ class Game < ActiveRecord::Base
   
   def feed
     Review.where("user_id = ?", id)
+    #Review.from_games_followed_by(self)
   end
 
 end

@@ -1,17 +1,17 @@
 VideospielDatenbank::Application.routes.draw do
 
-    
-  get "gamerelations/create"
 
-  get "gamerelations/destroy"
-
-  resources :users do    #needs to include games
+  resources :users do
     member do
-      get :following, :followers
+      get :following
     end
   end
 
-  resources :games
+  resources :games do
+    member do
+      get :followers
+    end
+  end
   resources :ratings, only: [ :create, :update]
   resources :sessions, only: [:new, :create, :destroy]
   resources :reviews
