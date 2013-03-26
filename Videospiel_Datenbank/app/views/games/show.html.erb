@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<% if false %>
-  <a href="<%= followers_user_path(@user) %>">
+
+
+  <a href="<%= followers_game_path(@user) %>">
     <strong id="followers" class="stat">
-      <%= @user.followers.count %>
+      <%= @game.followers.count %>
     </strong>
     followers
   </a>
-<% end %>
+
 
 <p>
   <b>Title:</b>

@@ -13,12 +13,10 @@ class GamesController < ApplicationController
 
   def followers
     @title = "Followers"
-    @user = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
-    render 'show_follow'
+    @game = Game.find(params[:id])
+    @users = @game.followers.paginate(page: params[:page])
+    render 'users/show_followers'
   end
-
-
 
   def show
     @game = Game.find(params[:id])

@@ -12,6 +12,7 @@ VideospielDatenbank::Application.routes.draw do
       get :followers
     end
   end
+  
   resources :ratings, only: [ :create, :update]
   resources :sessions, only: [:new, :create, :destroy]
   resources :reviews

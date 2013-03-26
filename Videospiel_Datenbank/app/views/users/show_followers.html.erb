@@ -3,13 +3,14 @@
 
   <div class="span8">
     <h3><%= @title %></h3>
-    <% if @games.any? %>
+    <% if @users.any? %>
       <ul class="users">
-        <%= render @games %>
+        <%= render @users %>
       </ul>
      
      <!-- will_paginate -->
-     
+    
     <% end %>
+   
   </div>
 </div>
