@@ -3,60 +3,93 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap";
 @import "variables";
-/*-----------------Main Layout---------------------*/
+/*-----------------Main container---------------------*/
 html {
   overflow-y: scroll;
 }
 
-body {
-  padding-top: 60px;
+body{
+    /*background-image: image-url("bg-cube.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    border-style: none;*/
 }
 
-.center {
-  text-align: center;
+#bg{
+
+  background-image: image-url("bg-cube.png");
+  background-repeat: no-repeat;
+  background-position: top center;
+  @include backgroundGradient;
+  padding: 20px;
+}
+
+.container{
+  background: $backgroundContainer;
+
+/*transperency*/
+  margin: 20px 0px;
+  padding: 20px;
+  border-radius: 5px;
+  min-height: 770px;
+
+  .main-container{
+      border-right: 1px solid $borderDark;
+   
+  }
   
-  h1{
-    margin-bottom: 10px;
+  .sidebar{
+    padding-left: 10px;
+    margin-left: 0px !important;
+    border-left: 1px solid $borderLight;
+    
   }
 }
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1.7em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #999;
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
-
 /*------------- Header ------------------*/
+
+.navbar{
+  margin-bottom: 0px !important;
+  height: 100px;
+  @include headerGradient;
+  .navbar-inner{
+    position: relative;
+    top: 60px;
+    min-height: 0px !important;
+    .nav li a{padding: 0px 10px !important;}
+    .input-append{
+      margin-bottom: 0px !important;
+
+      height: 21px !important;
+      .search_field{ 
+        height: $formHeight;
+      }
+      .btn{
+        padding-top: 0px; 
+        height: $formHeight;
+      }
+    }
+  }
+
+}
+
+/*----------------------Sidebar----------------*/
 .login_state{
-  color: #e6e6e6;
-  padding: 10px 15px;
+  color: #777777;
+  padding: 10px 0px;
+  text-shadow: 0 1px 0 white;
+}
+.user_name{
+  color: #1155ff;
+  font-weight: bold;
+  text-shadow: 0 2px 2px white;
 }
 /*-------------------- Footer --------------------*/
 
 footer {
-  margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: #999;
+  
 }
 
 footer a {

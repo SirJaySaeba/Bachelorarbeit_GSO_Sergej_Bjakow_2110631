@@ -1,6 +1,6 @@
+<div class="input-append">
 	<%= form_tag games_path, :method => 'get' do %>
-	  <p>
-	    <%= text_field_tag :search, params[:search] %>
-	    <%= submit_tag "Suchen", :title => nil %>
-	  </p>
+	    <%= text_field_tag :search, params[:search], class: "span3 search_field" %>
+	    <%= submit_tag "Search", :title => nil , class: "btn"%>
 	<% end %>
+</div>

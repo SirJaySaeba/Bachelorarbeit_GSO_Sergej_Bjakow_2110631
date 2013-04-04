@@ -19,6 +19,7 @@ class GamesController < ApplicationController
   end
 
   def show
+    #store_location
     @game = Game.find(params[:id])
     @review = @game.reviews.build
     @feed_items = @game.feed.paginate(page: params[:page])

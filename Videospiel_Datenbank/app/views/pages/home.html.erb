@@ -1,13 +1,15 @@
 <% provide(:title, 'Home') %>
-<div class="center hero-unit">
+
+<div class="home-container">
 	<h1>Willkommen bei GameHawks</h1>
 	
 	<h2>Hier findest du alle jeden Titel aus 50 Jahre Gaming Kultur</h2>
 	
 
-	<%= render 'search_form'%>
-  	<%= link_to "Registrieren", signup_path, class: "btn btn-large btn-primary" %>
-  	<%= link_to "Neues Spiel", newgame_path, class: "btn btn-large btn-primary" %>
+	
+  	
+  	<%= link_to "Neues Spiel", newgame_path, class: "btn" %>
+
+
 
 </div>
-

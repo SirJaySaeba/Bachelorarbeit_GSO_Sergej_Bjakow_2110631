@@ -18,7 +18,7 @@ VideospielDatenbank::Application.routes.draw do
   resources :reviews
   resources :gamerelations, only: [:create, :destroy]
   
-  #get "games/:id/reviews/:id" => "reviews#show", as: "review"
+  get "games/:game_id/reviews/:id" => "reviews#show", as: "review"
   #delete "games/:id/reviews/:id" => "reviews#destroy", as: "delrev"
   
   match '/newreview', to: 'reviews#new'
