@@ -9,8 +9,8 @@
       <h2><%= @user.email %></h2>
     </section>
   
-        <section>
-        <%= render 'misc/user_stats' %>
+      <section>
+        <%= render 'misc/user_games' %>
       </section>
 	<span>
 		Current User has <%= pluralize(current_user.reviews.count, "review") %>

@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @title = "Following"
     @user = User.find(params[:id])
     @games = @user.followed_games.paginate(page: params[:page], :per_page => 10)
-    render 'games/show_followed_games'
+    render 'games/show_owned_games'
   end
   
   def edit

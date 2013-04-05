@@ -1,12 +1,15 @@
 <% provide(:title, @title) %>
 
-    <h3><%= @title %></h3>
-    <% if @users.any? %>
+
+    <h3>Spiele im Besitz von <%= @user.name %></h3>
+    
+    <% if @games.any? %>
       <ul class="users">
-        <%= render @users %>
+        <%= render @games %>
       </ul>
      
      <!-- will_paginate -->
     
     <% end %>
    
+

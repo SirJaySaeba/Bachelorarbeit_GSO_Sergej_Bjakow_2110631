@@ -4,18 +4,13 @@ class GamesController < ApplicationController
   def index
     #@games = Game.all
     @games = Game.search(params[:search])
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @games }
-    end
   end
 
   def followers
     @title = "Followers"
     @game = Game.find(params[:id])
     @users = @game.followers.paginate(page: params[:page])
-    render 'users/show_followers'
+    render 'users/show_owners'
   end
 
   def show
@@ -24,6 +19,7 @@ class GamesController < ApplicationController
     @review = @game.reviews.build
     @feed_items = @game.feed.paginate(page: params[:page])
     #@reviews = @user.reviews.paginate(page: params[:page])
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @game }
@@ -76,11 +72,10 @@ class GamesController < ApplicationController
 
 
   def destroy
-    @game = Game.find(params[:id])
-    @game.destroy
-
+    Game.find(params[:id]).destroy
+    flash[:success] = "Spiel entfernt"
     respond_to do |format|
-      format.html { redirect_to games_url }
+      format.html { redirect_to root_path}
       format.json { head :no_content }
     end
   end

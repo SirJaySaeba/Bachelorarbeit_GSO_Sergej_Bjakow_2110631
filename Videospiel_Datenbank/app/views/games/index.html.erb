@@ -1,5 +1,4 @@
-<h1>Listing games</h1>
-
+<h1>Suchergebnisse</h1>
 <% if(params[:search]) %>
 	<%= render 'pages/search_results' %>
 <% else %>
@@ -8,4 +7,6 @@
 
 <br />
 
-<%= link_to 'New Game', new_game_path %>
+Gesuchtes Spiel nicht aufgelistet? <br />
+
+<%= link_to 'Tragen Sie einen neuen Titel ein', new_game_path %>
