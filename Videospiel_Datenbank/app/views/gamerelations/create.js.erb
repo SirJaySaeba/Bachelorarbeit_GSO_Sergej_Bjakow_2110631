@@ -1,0 +1,5 @@
+
+
+$("#own_game_form").html("<%= escape_javascript(render('games/discard_game')) %>")
+
+$(".own_stats").html('<%= @game.followers.count %> User')

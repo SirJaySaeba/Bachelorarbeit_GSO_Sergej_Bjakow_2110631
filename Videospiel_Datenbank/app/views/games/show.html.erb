@@ -1,5 +1,3 @@
-  <%= render "misc/game_users"%>
-
 <p>
   <b>Title:</b>
   <%= @game.title %>
@@ -12,7 +10,7 @@
 
 <p>
   <b>Release:</b>
-  <%= @game.release %>
+  <%= @game.release.strftime("%d %b %Y") %>
 </p>
 
 <p>
@@ -20,23 +18,43 @@
   <%= @game.system %>
 </p>
 
-<% if user_signed_in? %>
-	<div class= "rating_area">
-			<%= render "ratings/rating_form"%>
+<section class="rating_area">
+	<div>
+		Durchschnittswert: 
+		<%= @game.average_rating %>
 	</div>
 	
-	<div class="review_area">
-
-
-
-  	<%= link_to "Kritik verfassen", newreview_path, class: "btn btn-large btn-primary" %>
+	<div>
+		Anzahl Wertungen: 
+		<%= @game.amount_ratings %>
 	</div>
-<% end %>
 
-    <%= render 'misc/own_game_form' if user_signed_in? %>
-    
-      <h3>Reviews</h3>
-      <%= render 'misc/feed' %>
+
+	<% if user_signed_in? %>
+		<div class= "user_rating">
+				<%= render "ratings/rating_form"%>
+		</div>
+	<% end %>
+</section>
+
+<section class="review_area">
+	<h3>Reviews</h3>
+
+	<% if user_signed_in? %>
+    	
+		<div class="user_review">
+	  		<%= link_to "Kritik verfassen", newreview_path, class: "btn btn-large btn-primary" %>
+		</div>
+	<% end %>
+	<%= render 'misc/feed' %>
+</section>
+
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
+
+
+<% content_for :sidebar do %>
+  	<%= render "misc/game_users"%>
+	<%= render 'misc/own_game_form' if user_signed_in? %>
+<% end %>

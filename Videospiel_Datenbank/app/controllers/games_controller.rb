@@ -3,13 +3,15 @@ class GamesController < ApplicationController
 
   def index
     #@games = Game.all
-    @games = Game.search(params[:search])
+    #@games = Game.search(params[:search])
+    @games = Game.paginate(page: params[:page], :per_page => 10)
+
   end
 
   def followers
     @title = "Followers"
     @game = Game.find(params[:id])
-    @users = @game.followers.paginate(page: params[:page])
+    @users = @game.followers.paginate(page: params[:page], :per_page => 10)
     render 'users/show_owners'
   end
 

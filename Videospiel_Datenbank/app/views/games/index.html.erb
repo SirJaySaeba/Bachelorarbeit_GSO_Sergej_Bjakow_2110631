@@ -1,9 +1,24 @@
 <h1>Suchergebnisse</h1>
+
 <% if(params[:search]) %>
-	<%= render 'pages/search_results' %>
+	<table>
+	<% @games.each do |game| %>
+	  <tr>
+	    <td><%= link_to game.title, game %> 
+	    	<span>(<%= game.release.strftime("%Y") %>)</span>
+	    </td>
+	    <!--
+	    <td><%= link_to 'Edit', edit_game_path(game) %></td>
+	    <td><%= link_to 'Löschen', game, method: :delete, data: { confirm: "Sicher?"} %></td>
+	    -->
+	  </tr>
+	<% end %>
+	</table>
 <% else %>
 	Nothing Found
 <% end %>
+
+<%= will_paginate %>
 
 <br />
 

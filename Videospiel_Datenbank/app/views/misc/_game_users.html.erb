@@ -1,7 +1,7 @@
   Im Besitz von </br>
  <a href="<%= followers_game_path(@user) %>">
-    <strong id="followers" class="stat">
-       <%= @game.followers.count %> Usern
+    <strong class="own_stats">
+       <%= @game.followers.count %> User
     </strong>
     <!--
     <%= pluralize(@game.followers.count, "User") %>

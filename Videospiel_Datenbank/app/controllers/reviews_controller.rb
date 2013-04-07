@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController  
   before_filter :require_login, only: [:create, :destroy]
-
+  before_filter :correct_user,   only: :destroy
   def index
   end
   
@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.build(params[:review])
         @game = Game.find_by_id(params[:game_id])
         @review = Review.new(params[:review])
-        @review.game_id = @game.id
+       # @review.game_id = @game.id
         @review.user_id = current_user.id
     #@review = @game.reviews.build(params[:review])
 
@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
     
     if @review.save
       flash[:success] = "review created!"
-      redirect_to root_url
+      redirect_to @review
     else
       render 'new'
     end
@@ -32,8 +32,9 @@ class ReviewsController < ApplicationController
   end
   
   def destroy
-    Review.find(params[:id]).destroy
-    redirect_to current_user
+    @review.destroy
+    #Review.find(params[:id]).destroy
+    redirect_to game_path(@game)
   end
   
   private

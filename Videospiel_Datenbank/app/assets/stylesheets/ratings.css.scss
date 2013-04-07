@@ -7,3 +7,14 @@
 label{
   display: inline !important;
 }
+
+.rating_area{
+  background: #9a9a9a;
+  width: 500px;
+  padding: 5px;
+  .rating_form{
+    background: white;
+    padding: 10px;
+  }
+}
+

@@ -1,12 +1,13 @@
 <% provide(:title, @title) %>
 
-    <h3>Spiel im Besitz von folgenden Usern</h3>
+    <h3><%= link_to @game.title, @game %></h3>
+    <h4>im Besitz von folgenden Usern</h4>
     <% if @users.any? %>
       <ul class="users">
         <%= render @users %>
       </ul>
      
-     <!-- will_paginate -->
+     <%= will_paginate @users %>
     
     <% end %>
    

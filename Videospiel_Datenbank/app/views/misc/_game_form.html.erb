@@ -1,4 +1,4 @@
-<%= form_for(@game) do |f| %>
+<%= form_for(@game, :html => { :class => 'form-horizontal'}) do |f| %>
   <% if @game.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
@@ -11,24 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+  <div class="control-group">
+    <%= f.label :title, class: "control-label"%>
+    <div class="controls"><%= f.text_field :title %></div>
   </div>
-  <div class="field">
-    <%= f.label :developer %><br />
-    <%= f.text_field :developer %>
+  <div class="control-group">
+    <%= f.label :developer, class: "control-label" %>
+    <div class="controls"><%= f.text_field :developer %></div>
   </div>
-  <div class="field">
-    <%= f.label :release %><br />
-    <%= f.date_select :release, start_year: Time.now.year - 100,
+  <div class="control-group">
+    <%= f.label :release, class: "control-label" %>
+    <div class="controls date_field"><%= f.date_select :release, start_year: Time.now.year - 100,
     							end_year: Time.now.year  %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :system %><br />
-    <%= f.text_field :system %>
+  <div class="control-group">
+    <%= f.label :system, class: "control-label" %>
+    <div class="controls"><%= f.text_field :system %> </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  
+    <%= f.submit "Spiel anlegen", class: "btn btn-large btn-primary controls"%>
+  
 <% end %>

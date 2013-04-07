@@ -4,12 +4,18 @@ class GamerelationsController < ApplicationController
   def create
     @game = Game.find(params[:gamerelation][:followed_id])
     current_user.follow!(@game)
-    redirect_to @game
+    respond_to do |format|
+      format.html { redirect_to @game }
+      format.js
+    end
   end
 
   def destroy
     @game = Gamerelation.find(params[:id]).followed
-    current_user.unfollow!(@game)
-    redirect_to @game
+    current_user.unfollow!(@game)    
+    respond_to do |format|
+      format.html { redirect_to @game }
+      format.js
+    end
   end
 end
