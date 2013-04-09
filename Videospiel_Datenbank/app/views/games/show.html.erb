@@ -1,11 +1,33 @@
+<p class="game_title">
+  <%= @game.title %> 
+  	<% if @game.subtitle.present?%>
+  		<span class="game_subtitle">: <%= @game.subtitle%> </span>
+  	<% end %>
+</p>
+
 <p>
-  <b>Title:</b>
-  <%= @game.title %>
+  <b>Originaltitel:</b></br>
+  <%= @game.title_org %>
+    <% if @game.subtitle_org.present?%>
+  		<span>- <%= @game.subtitle_org %> </span>
+  	<% end %>
+</p>
+
+<%= image_tag @game.cover(:small), class: "game_cover"%>
+
+<p>
+  <b>Genre:</b>
+  <%= @game.genre %>
 </p>
 
 <p>
   <b>Developer:</b>
   <%= @game.developer %>
+</p>
+
+<p>
+  <b>Publisher:</b>
+  <%= @game.publisher %>
 </p>
 
 <p>
@@ -15,25 +37,56 @@
 
 <p>
   <b>System:</b>
-  <%= @game.system %>
+  <%= @game.system %>  
 </p>
+
+<p>
+  <b>USK</b>
+  <%= @game.usk %>
+  <% if @game.usk == 18 %>
+	  <% if @game.indizierung == true %>
+	  	<span class="index_true">indiziert!</span>
+	  <% else %>
+	   <span class="index_false">nicht indiziert</span>
+	  <% end %>
+  <% end %>
+</p>
+
+<p>
+  <b>Medium</b>
+  <%= @game.medium %>
+</p>
+
 
 <section class="rating_area">
 	<div>
-		Durchschnittswert: 
-		<%= @game.average_rating %>
+		Durchschnittswert:
+		<span class="rating_avg">
+		<% if !@game.average_rating.present? %>
+			unbewertet
+		<% else %>
+			<%= @game.ratings.average(:value) %>
+		<% end %>
+		</span>
 	</div>
 	
 	<div>
 		Anzahl Wertungen: 
-		<%= @game.amount_ratings %>
+		<span class="rating_amount"><%= @game.ratings.count %></span>
 	</div>
 
 
 	<% if user_signed_in? %>
 		<div class= "user_rating">
-				<%= render "ratings/rating_form"%>
+			<%= render "ratings/rating_form"%>
 		</div>
+		
+		<p>
+			Ihre Wertung :
+			<span class="current_user_rating">
+				<%= current_user_rating %>
+			</span>
+		</p>
 	<% end %>
 </section>
 

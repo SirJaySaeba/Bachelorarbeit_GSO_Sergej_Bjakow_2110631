@@ -26,7 +26,6 @@ body{
 
 .container{
   background: $backgroundContainer;
-
 /*transperency*/
   margin: 20px 0px;
   padding: 20px;
@@ -35,7 +34,7 @@ body{
 
   .main-container{
       border-right: 1px solid $borderDark;
-   
+      
   }
   
   .sidebar{

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :require_login, only: [:edit, :update, :destroy]
+  before_filter :require_login, only: [:edit, :update, :destroy, :index]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: [:destroy]
   

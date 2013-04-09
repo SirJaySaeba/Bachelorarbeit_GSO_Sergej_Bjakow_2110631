@@ -31,6 +31,9 @@ VideospielDatenbank::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+  
+  # Paperclip and ImageMagick
+  Paperclip.options[:command_path] = "c:\Program Files (x86)\ImageMagick-6.8.4-Q16"
 
   # Expands the lines which load the assets
   config.assets.debug = true

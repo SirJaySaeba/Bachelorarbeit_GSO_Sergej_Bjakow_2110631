@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130324142905) do
+ActiveRecord::Schema.define(:version => 20130409140804) do
 
   create_table "gamerelations", :force => true do |t|
     t.integer  "followed_id"
@@ -29,8 +29,20 @@ ActiveRecord::Schema.define(:version => 20130324142905) do
     t.string   "developer"
     t.date     "release"
     t.string   "system"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "title_org"
+    t.string   "subtitle"
+    t.string   "subtitle_org"
+    t.integer  "usk"
+    t.string   "medium"
+    t.boolean  "indizierung"
+    t.string   "publisher"
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
+    t.string   "genre"
   end
 
   create_table "ratings", :force => true do |t|

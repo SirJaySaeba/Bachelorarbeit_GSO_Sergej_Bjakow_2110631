@@ -2,6 +2,13 @@ class Game < ActiveRecord::Base
   
   #--------------Validations-----------#
   validates :title, presence: true
+  
+  has_attached_file :cover, :styles => { :small => "220x220" }#,
+                  #:url  => "/assets/games/:id/:style/:basename.:extension",
+                  #:path => ":rails_root/public/assets/games/:id/:style/:basename.:extension"
+  #validates_attachment_presence :game
+  #validates_attachment_size :game, :less_than => 500.kilobytes
+  #validates_attachment_content_type :game, :content_type => ['image/jpeg', 'image/png']
  
   #--------------Relations--------------#
   has_many :ratings
@@ -20,16 +27,18 @@ class Game < ActiveRecord::Base
   def self.search(search)
     if search
       find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
-      
     else
         flash[:error] = "nothing found"
     end    
-  
+  end
+
+  def indiziert?
+    attribute ? 'Ja' : 'Nein'
   end
 
   def average_rating
-    ratings.sum('value').to_f / ratings.count.to_f
-    # ratings.average('value')   
+    #ratings.sum('value').to_f / ratings.count.to_f
+    ratings.average('value')  
   end
   
   def amount_ratings

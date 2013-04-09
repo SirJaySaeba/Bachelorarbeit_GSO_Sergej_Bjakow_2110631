@@ -1,9 +1,9 @@
- <!--form_for(create_rating, :remote => true, :html => { :class => 'create_rating' }) do |f| -->
- <!-- form_for(create_rating, remote: true) do |f| -->
+<!--form_for(create_rating, :remote => true, :html => { :class => 'create_rating' }) do |f| -->
+<!-- form_for(create_rating, remote: true) do |f| -->
 <!--form_for(create_rating, :html => { :class => 'create_rating' }) do |f| -->
 <div class="rating_form">
 	<% if user_signed_in? %>
-		<%= form_for(create_rating, :html => { :class => 'create_rating' }) do |f| %>
+		<%= form_for(create_rating, :remote => true, :html => { :class => 'create_rating' }) do |f| %>
 		    <%= f.label("value_1", content_tag(:span, '1'), {:class=>"rating", :id=>"1"}) %>
 		    <%= radio_button_tag("rating[value]", 1, current_user_rating == 1, :class => 'rating_button') %>
 		    
@@ -20,13 +20,8 @@
 		    <%= radio_button_tag("rating[value]", 5, current_user_rating == 5, :class => 'rating_button') %>
 		    
 		    <%= hidden_field_tag("game_id", @game.id) %>
-		    <%= f.submit :Submit %>
+		    <%= f.submit :Submit, class: "btn" %>
 		<% end %>
-		
-		<p>
-			Ihre Wertung :
-			<%= current_user_rating %>
-		</p>
 	
 	<% end %>
 </div>

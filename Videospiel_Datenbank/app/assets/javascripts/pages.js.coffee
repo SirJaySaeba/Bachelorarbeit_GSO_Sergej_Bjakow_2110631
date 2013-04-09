@@ -4,11 +4,6 @@
 
 $(document).ready ->
 
-
-  y = $(".container").height()
-  $(".main-container ").height (index, height) ->
-    y
-
   x = $(".main-container").height()
   $(".sidebar").height (index, height) ->
     x
