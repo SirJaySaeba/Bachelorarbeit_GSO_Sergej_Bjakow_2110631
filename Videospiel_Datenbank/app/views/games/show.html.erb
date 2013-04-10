@@ -13,8 +13,14 @@
   	<% end %>
 </p>
 
-<%= image_tag @game.cover(:small), class: "game_cover"%>
-
+<div>
+	
+	<% if !@game.cover.present?%>
+		<div class="game_cover">Kein Bild</div>
+	<% else %>
+		<%= image_tag @game.cover(:small) %>
+	<% end %>
+</div>
 <p>
   <b>Genre:</b>
   <%= @game.genre %>
@@ -59,34 +65,15 @@
 
 
 <section class="rating_area">
-	<div>
-		Durchschnittswert:
-		<span class="rating_avg">
-		<% if !@game.average_rating.present? %>
-			unbewertet
-		<% else %>
-			<%= @game.ratings.average(:value) %>
-		<% end %>
-		</span>
-	</div>
 	
-	<div>
-		Anzahl Wertungen: 
-		<span class="rating_amount"><%= @game.ratings.count %></span>
-	</div>
+
+		<%= render "ratings/rating_stats"%>
 
 
 	<% if user_signed_in? %>
 		<div class= "user_rating">
 			<%= render "ratings/rating_form"%>
 		</div>
-		
-		<p>
-			Ihre Wertung :
-			<span class="current_user_rating">
-				<%= current_user_rating %>
-			</span>
-		</p>
 	<% end %>
 </section>
 

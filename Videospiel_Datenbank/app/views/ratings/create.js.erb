@@ -1,5 +1,2 @@
 
-
-$('.rating_amount').html('<%= @game.ratings.count %>')
-$('.rating_avg').html('<%= @game.ratings.average(:value) %>')
-$('.current_user_rating').html('<%= current_user_rating %>')
+$('.rating_stats').replaceWith("<%= escape_javascript(render :partial => 'ratings/rating_stats') %>");

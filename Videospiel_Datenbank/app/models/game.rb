@@ -3,7 +3,7 @@ class Game < ActiveRecord::Base
   #--------------Validations-----------#
   validates :title, presence: true
   
-  has_attached_file :cover, :styles => { :small => "220x220" }#,
+  has_attached_file :cover, :styles => { :small => "220x220>" }#,
                   #:url  => "/assets/games/:id/:style/:basename.:extension",
                   #:path => ":rails_root/public/assets/games/:id/:style/:basename.:extension"
   #validates_attachment_presence :game
@@ -11,7 +11,7 @@ class Game < ActiveRecord::Base
   #validates_attachment_content_type :game, :content_type => ['image/jpeg', 'image/png']
  
   #--------------Relations--------------#
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
   has_many :raters, :through => :ratings, :source => :users
   
   has_many :reviews
