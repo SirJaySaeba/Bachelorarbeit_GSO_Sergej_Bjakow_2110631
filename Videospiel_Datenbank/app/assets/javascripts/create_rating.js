@@ -1,9 +1,12 @@
+
+
 $(function () {
     var checkedId = $('.create_rating > input:checked').attr('id');
     $('.create_rating > label[for=' + checkedId + ']').prevAll().andSelf().addClass('bright');
 });
 
 $(document).ready(function() {
+	
     // Submits the form (saves data) after user makes a change.
     $('form.create_rating').change(function() {
         $('form.create_rating').submit();
@@ -23,10 +26,11 @@ $(document).ready(function() {
         $(this).prevAll().andSelf().addClass("bright");
     });
 
+	//Auskommentiert, wegen Zusatz ausruf für Create
     // Submits the form (saves data) after user makes a change.
-    $('.create_rating').change(function() {
-        $('.create_rating').submit();
-    });
+    //$('.create_rating').change(function() {
+    //    $('.create_rating').submit();
+    //});
     
     
 });

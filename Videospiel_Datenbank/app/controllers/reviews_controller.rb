@@ -5,10 +5,10 @@ class ReviewsController < ApplicationController
   end
   
   def create
-    @review = current_user.reviews.build(params[:review])
         @game = Game.find_by_id(params[:game_id])
+    @review = current_user.reviews.build(params[:review])
         @review = Review.new(params[:review])
-       # @review.game_id = @game.id
+        #@review.game_id = @game.id
         @review.user_id = current_user.id
     #@review = @game.reviews.build(params[:review])
 

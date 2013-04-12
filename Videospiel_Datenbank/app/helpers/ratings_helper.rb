@@ -9,11 +9,14 @@ module RatingsHelper
   end
   
   def current_user_rating
-    if @rating = current_user.ratings.find_by_game_id(params[:id])
-        @rating.value
-    else
-        "no rating given yet"
-    end
+    @rating = current_user.ratings.find_by_game_id(params[:id])
+    
+   # if (current_user.ratings.find_by_game_id(params[:id]).present? )
+   #     @rating.value
+   # else
+   #     "no rating given yet"
+   # end
+   @rating.value
   end
   
 end

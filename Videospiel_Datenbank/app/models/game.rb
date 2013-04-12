@@ -15,7 +15,8 @@ class Game < ActiveRecord::Base
   has_many :raters, :through => :ratings, :source => :users
   
   has_many :reviews
-  has_many :users, through: :reviews
+  #has_many :users, :through => :reviews
+  has_many :authors, :through => :reviews, :source => :users
   
   has_many :reverse_gamerelations, foreign_key: "followed_id",
                                    class_name:  "Gamerelation",

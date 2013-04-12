@@ -13,7 +13,10 @@ VideospielDatenbank::Application.routes.draw do
     end
   end
   
-  resources :ratings, only: [ :create, :update]
+  #resources :ratings, only: [:create_and_update]
+  post "ratings" => "ratings#create_and_update"
+  put "ratings/:id" => "ratings#create_and_update"
+  
   resources :sessions, only: [:new, :create, :destroy]
   resources :reviews
   resources :gamerelations, only: [:create, :destroy]
