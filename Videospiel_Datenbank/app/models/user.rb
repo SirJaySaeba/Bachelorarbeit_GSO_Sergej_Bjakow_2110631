@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
   has_many :rated_games, :through => :ratings, :source => :games
   
   has_many :reviews, dependent: :destroy
-  has_many :games, through: :reviews
+  #has_many :games, through: :reviews
+  has_many :reviewed_games, :through => :reviews, :source => :games
   
   has_many :gamerelations, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_games, through: :gamerelations, source: :followed

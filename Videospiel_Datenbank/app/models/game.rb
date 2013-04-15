@@ -1,5 +1,5 @@
 class Game < ActiveRecord::Base
-  
+
   #--------------Validations-----------#
   validates :title, presence: true
   

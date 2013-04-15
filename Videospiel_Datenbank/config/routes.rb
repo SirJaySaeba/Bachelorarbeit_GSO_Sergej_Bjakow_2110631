@@ -13,19 +13,21 @@ VideospielDatenbank::Application.routes.draw do
     end
   end
   
-  #resources :ratings, only: [:create_and_update]
+  resources :ratings, only: [:show, :edit]
   post "ratings" => "ratings#create_and_update"
   put "ratings/:id" => "ratings#create_and_update"
-  
+
+  #match "ratings" => "ratings#create_and_update", :via => :post
+  #match "ratings/:id" => "ratings#create_and_update", :via => :put
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :reviews
+
   resources :gamerelations, only: [:create, :destroy]
   
-  #get "games/:game_id/reviews/:id" => "reviews#show", as: "review"
+  get "games/:game_id/reviews/:id" => "reviews#show", as: "review"
   #delete "games/:game_id/reviews/:id" => "reviews#destroy", as: "delrev"
   
-  match '/newreview', to: 'reviews#new'
-  match '/newgame', to: 'games#new'
   match '/signup',  to: 'users#new'                         #get "signup" => "users#new", as: "signup"
   match '/signin',  to: 'sessions#new'                      #get "signin" => "sessions#new", as: "signin"
   match '/signout', to: 'sessions#destroy', via: :delete    #delete "signout" => "sessions#destroy", as: "signout"

@@ -2,6 +2,8 @@ class RatingsController < ApplicationController
   
   before_filter :require_login
   
+
+  
   def create_and_update
     @game = Game.find_by_id(params[:game_id])
 

@@ -5,12 +5,11 @@
 		<% if !@game.average_rating.present? %>
 			unbewertet
 		<% else %>
-			<%= @game.ratings.average(:value) %>
-			
+			<%= @game.ratings.average(:value).round(2) %>
 		<% end %>
 		</span>
 		<div class="rating_bar">
-			<div class="rating_filled"></div>
+			<div class="rating_filled" data-average="<%= @game.ratings.average(:value) %>"></div>
 		</div>
 	</div>
 	
@@ -19,15 +18,15 @@
 		<span class="rating_amount"><%= @game.ratings.count %></span>
 	</div>
 	
+	<% if user_signed_in? %>
 	<p>
 		Ihre Wertung :
 		<span class="current_user_rating">
-			<% if user_signed_in? && current_user.ratings.find_by_game_id(params[:id]).present? %>
 			
 			<%= current_user_rating %>
-			<% else %>
-			Nix
-			<% end %>
+
 		</span>
 	</p>
+	<% end %>
 </div>
+

@@ -26,7 +26,7 @@ label{
   background: black;
   height: 10px;
   .rating_filled{
-    width: 100px;
+    
     height: 10px;
     position: absolute;
     background: blue;
@@ -39,3 +39,4 @@ label{
 .create_rating label.rating { background-image: image-url("r_dim.png"); }
 .create_rating label.rating.bright { background-image: image-url("r_bright.png"); }
 .create_rating label.rating.glow { background-image: image-url("r_glow.png"); }
+
