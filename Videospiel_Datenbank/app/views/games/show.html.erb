@@ -83,7 +83,7 @@
 	<% if user_signed_in? %>
     	
 		<div class="user_review">
-	  		<%= link_to "Kritik verfassen", new_review_path, class: "btn btn-large btn-primary" %>
+	  		<%= link_to "Kritik verfassen", new_game_review_path, class: "btn btn-large btn-primary" %>
 		</div>
 	<% end %>
 	<%= render 'misc/feed' %>
@@ -93,8 +93,7 @@
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
 
-
-
+<%= debug @game %>
 
 <% content_for :sidebar do %>
   	<%= render "misc/game_users"%>

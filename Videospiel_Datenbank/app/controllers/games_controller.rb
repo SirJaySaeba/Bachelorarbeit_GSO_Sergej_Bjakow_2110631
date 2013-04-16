@@ -3,7 +3,11 @@ class GamesController < ApplicationController
 
   def index
     #@games = Game.all
+    
+    #hiermit erhält die indexseite einen error, wenn ich ohne suchkondition die url /games aufrufe
     @games = Game.search(params[:search])
+    
+    #damit funktioniert die Suchkondition nicht mehr...es wird einfach immer alles gefunden, egal was man eingibt
     #@games = Game.paginate(page: params[:page], :per_page => 10)
 
   end

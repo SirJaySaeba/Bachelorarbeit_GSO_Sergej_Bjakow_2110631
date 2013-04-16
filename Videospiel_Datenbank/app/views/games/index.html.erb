@@ -1,6 +1,11 @@
 <h1>Suchergebnisse</h1>
 
-<%= render "misc/search_results"%>
+
+<% if(params[:search]) %>
+	<%= render "misc/search_results"%>
+<% else %>
+	Nothing
+<% end %>
 
 <!--%= will_paginate @games %-->
 

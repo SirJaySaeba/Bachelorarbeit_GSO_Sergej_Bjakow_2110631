@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   end
   
   def create
-    @game = Game.find_by_id(params[:game_id])
+    @game = Game.find_by_id(params[:id])
     @review = current_user.reviews.build(params[:review])
     #@review.game_id = @game.id
     @review.user_id = current_user.id
@@ -23,6 +23,7 @@ class ReviewsController < ApplicationController
 
   def new
     @review = Review.new(params[:review])
+
   end
   
   def show
