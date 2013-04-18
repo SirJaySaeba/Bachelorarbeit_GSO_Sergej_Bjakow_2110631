@@ -1,12 +1,17 @@
-<%= form_for(@review) do |f| %>
-
+<%= form_for(@review, :url => game_reviews_path) do |f| %>
+<!--%= form_for(@review) do |f| %-->
+<!--%= form_for [@game ,@review], :url => game_reviews_path(@game, @review) do |f| %-->
   <%= render 'misc/error_messages', object: f.object %>
   
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new review..." %>
   </div>
   
-  <%= hidden_field_tag("game_id", @game.id) %>
+		    <%= hidden_field_tag("game_id", @game.id) %>
+
 
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+
 <% end %>
+
+<%= debug @review %>

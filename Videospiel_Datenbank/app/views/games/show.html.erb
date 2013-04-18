@@ -82,18 +82,21 @@
 
 	<% if user_signed_in? %>
     	
-		<div class="user_review">
-	  		<%= link_to "Kritik verfassen", new_review_path, class: "btn btn-large btn-primary" %>
+		<!div class="user_review">
+	  		<%= link_to "Kritik verfassen", new_game_review_path(@game), class: "btn btn-large btn-primary" %>
 		</div>
+		<!--new_game_review_path(@game) -->
+		<!--%= render 'misc/review_form' %-->
+		rev<%= @review.game_id%>
+		rev<%= @game.id%>
 	<% end %>
 	<%= render 'misc/feed' %>
 </section>
 
 
+
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
-
-
 
 
 <% content_for :sidebar do %>
