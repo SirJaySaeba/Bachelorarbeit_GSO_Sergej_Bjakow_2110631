@@ -1,3 +1,6 @@
+<% provide(:title, @game.title) %>
+
+
 <p class="game_title">
   <%= @game.title %> 
   	<% if @game.subtitle.present?%>
@@ -83,7 +86,7 @@
 	<% if user_signed_in? %>
     	
 		<div class="user_review">
-	  		<%= link_to "Kritik verfassen", new_review_path, class: "btn btn-large btn-primary" %>
+	  		<%= link_to "Kritik verfassen", new_game_review_path(@game), class: "btn btn-large btn-primary" %>
 		</div>
 	<% end %>
 	<%= render 'misc/feed' %>

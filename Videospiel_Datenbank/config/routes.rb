@@ -5,12 +5,14 @@ VideospielDatenbank::Application.routes.draw do
     member do
       get :following
     end
+    resources :reviews
   end
 
   resources :games do
     member do
       get :followers
     end
+    resources :reviews
   end
   
   resources :ratings, only: [:show, :edit]
@@ -21,17 +23,19 @@ VideospielDatenbank::Application.routes.draw do
   #match "ratings/:id" => "ratings#create_and_update", :via => :put
 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :reviews
+  #resources :reviews
 
   resources :gamerelations, only: [:create, :destroy]
   
   get "games/:game_id/reviews/:id" => "reviews#show", as: "review"
-  #delete "games/:game_id/reviews/:id" => "reviews#destroy", as: "delrev"
+  #delete "games/:game_id/reviews/:id" => "reviews#destroy"
   
   match '/signup',  to: 'users#new'                         #get "signup" => "users#new", as: "signup"
   match '/signin',  to: 'sessions#new'                      #get "signin" => "sessions#new", as: "signin"
   match '/signout', to: 'sessions#destroy', via: :delete    #delete "signout" => "sessions#destroy", as: "signout"
   
   root to: 'pages#home'
+  get "help" => "pages#help"
+  get "about", to: "pages#about", as: "about"
  
 end

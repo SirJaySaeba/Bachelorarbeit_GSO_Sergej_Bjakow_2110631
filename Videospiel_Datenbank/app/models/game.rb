@@ -14,7 +14,7 @@ class Game < ActiveRecord::Base
   has_many :ratings, dependent: :destroy
   has_many :raters, :through => :ratings, :source => :users
   
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   #has_many :users, :through => :reviews
   has_many :authors, :through => :reviews, :source => :users
   
@@ -47,7 +47,7 @@ class Game < ActiveRecord::Base
   end
   
   def feed
-    Review.where("user_id = ?", id)
+    Review.where("game_id = ?", id)
     #Review.from_games_followed_by(self)
   end
 

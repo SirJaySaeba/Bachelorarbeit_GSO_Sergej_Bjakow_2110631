@@ -1,5 +1,4 @@
-<%= form_for(@review) do |f| %>
-
+<%= form_for(@review, :url => game_reviews_path) do |f| %>
   <%= render 'misc/error_messages', object: f.object %>
   
   <div class="field">
