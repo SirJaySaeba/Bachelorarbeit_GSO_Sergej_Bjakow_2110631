@@ -89,14 +89,12 @@
 	  		<%= link_to "Kritik verfassen", new_game_review_path(@game), class: "btn btn-large btn-primary" %>
 		</div>
 	<% end %>
-	<%= render 'misc/feed' %>
+	<%= render 'reviews/review_area' %>
 </section>
 
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
-
-
 
 
 <% content_for :sidebar do %>

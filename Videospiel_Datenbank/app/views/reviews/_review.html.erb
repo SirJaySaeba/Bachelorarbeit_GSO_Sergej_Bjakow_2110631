@@ -1,14 +1,17 @@
-
-
-<li>
-  <%= link_to @game.id, review %>
-    <span class="timestamp">
-    Posted <%= time_ago_in_words(review.created_at) %> ago you freak.
+<li id="<%= review.id %>">
+	
+  <%= link_to gravatar_for(review.user), review.user %>
+  <span class="user">
+    <%= link_to review.user.name, review.user %>
   </span>
-  <% if current_user?(review.user) %>
+  <span class="content"><%= review.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(review.created_at) %> ago.
+  </span>
+    <% if current_user?(review.user) %>
     <%= link_to "delete", review, method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: review.content %>
   <% end %>
+  
 </li>
-

@@ -46,9 +46,8 @@ class Game < ActiveRecord::Base
     @total = self.ratings.size
   end
   
-  def feed
+  def review_area
     Review.where("game_id = ?", id)
-    #Review.from_games_followed_by(self)
   end
 
 end

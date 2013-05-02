@@ -16,11 +16,8 @@ class GamesController < ApplicationController
   end
 
   def show
-    #store_location
     @game = Game.find(params[:id])
-    #@review = @game.reviews.build
-    @feed_items = @game.feed.paginate(page: params[:page])
-    #@reviews = @user.reviews.paginate(page: params[:page])
+    @reviews = @game.review_area.paginate(page: params[:page])
     
     respond_to do |format|
       format.html # show.html.erb

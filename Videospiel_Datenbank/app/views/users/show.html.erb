@@ -12,16 +12,13 @@
       <section>
         <%= render 'misc/user_games' %>
       </section>
-	<span>
-		Current User has <%= pluralize(current_user.reviews.count, "review") %>
-	</span>
   
 
     <% if @user.reviews.any? %>
-      <h3>Reviews (<%= @user.reviews.count %>)</h3>
+      <h3>Current User has <%= pluralize(current_user.reviews.count, "review") %> </h3>
       
       <ol class="reviews">
-        <!--%= render @reviews %-->
+         <%= render partial: 'reviews/review', collection: @reviews %>
       </ol>
       <%= will_paginate @reviews %>
     <% end %>

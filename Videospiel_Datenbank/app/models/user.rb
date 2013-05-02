@@ -45,7 +45,9 @@ class User < ActiveRecord::Base
     gamerelations.find_by_followed_id(some_game.id).destroy
   end
   
-
+  def user_reviews
+    Review.where("user_id = ?", id)
+  end
   
   private
 
