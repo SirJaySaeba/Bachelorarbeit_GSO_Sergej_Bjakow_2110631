@@ -7,9 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reviews = @user.user_reviews.paginate(page: params[:page])
-
-    #@reviews = @user.reviews.paginate(page: params[:page])
-    @game = Review.find_by_game_id(params[:game_id]) #Review.where(game_id: params[:game_id], user_id: current_user.id)
+    @game = Review.find_by_game_id(params[:game_id])
   end
 
   def new
