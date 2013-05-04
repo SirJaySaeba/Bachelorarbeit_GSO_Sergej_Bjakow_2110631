@@ -23,11 +23,10 @@ VideospielDatenbank::Application.routes.draw do
   #match "ratings/:id" => "ratings#create_and_update", :via => :put
 
   resources :sessions, only: [:new, :create, :destroy]
-  #resources :reviews
 
   resources :gamerelations, only: [:create, :destroy]
   
-  get "games/:game_id/reviews/:id" => "reviews#show", as: "review"
+  #get "games/:game_id/reviews/:id" => "reviews#show", as: "review"
   #delete "games/:game_id/reviews/:id" => "reviews#destroy"
   
   match '/signup',  to: 'users#new'                         #get "signup" => "users#new", as: "signup"

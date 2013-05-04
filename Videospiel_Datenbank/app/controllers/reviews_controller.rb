@@ -31,9 +31,13 @@ class ReviewsController < ApplicationController
   end
   
   def destroy
-    @review.destroy
-    #Review.find(params[:id]).destroy
-    redirect_to game_path(@game)
+    Review.find(params[:id]).destroy
+    flash[:success] = "Review entfernt"
+    respond_to do |format|
+      format.html { redirect_to root_path}
+      format.json { head :no_content }
+    end
+
   end
   
   private
