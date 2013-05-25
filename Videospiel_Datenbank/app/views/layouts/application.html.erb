@@ -12,8 +12,9 @@
 	
 		<%= render "layouts/header"%>
 		<div id="bg">
-		    <div class="container">
-		    	
+			<div class="dingdong"></div>
+				
+		    <div class="containerT">
 			    <div class="row-fluid">
 					  <% flash.each do |key, value| %>
 				        <div class="alert alert-<%= key %>"><%= value %></div>
@@ -29,8 +30,9 @@
 				      	<%= yield(:sidebar)%>
 				      </div>
 			      </div>
-			      
 		    </div>
+		    
+		    
 	  </div>
 	<%= render 'layouts/footer' %>
 	</body>

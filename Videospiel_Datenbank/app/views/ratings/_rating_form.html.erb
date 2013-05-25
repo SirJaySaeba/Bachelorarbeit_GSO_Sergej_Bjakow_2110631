@@ -3,7 +3,7 @@
 <!--form_for(create_rating, :html => { :class => 'create_rating' }) do |f| -->
 <div class="rating_form">
 	<% if user_signed_in? %>
-		<%= form_for(create_rating, :remote => true, :html => { :class => 'create_rating' }) do |f| %>
+		<%= form_for(prep_user_rating, :remote => true, :html => { :class => 'create_rating' }) do |f| %>
 		    <%= f.label("value_1", content_tag(:span, '1'), {:class=>"rating", :id=>"1"}) %>
 		    <%= radio_button_tag("rating[value]", 1, current_user_rating == 1, :class => 'rating_button') %>
 		    
@@ -27,5 +27,5 @@
 </div>
 
 <% content_for :script do %>
-  <%= javascript_include_tag :create_rating %>
+  <%= javascript_include_tag %> <!-- no include tag?-->
 <% end %>

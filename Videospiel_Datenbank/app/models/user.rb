@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
   
-  validates :name, presence: true, length: { maximum: 50 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
+  VALID_EMAIL_REGEX = /.+@.+/ 
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
@@ -14,23 +14,16 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
   
   
-  
-  
   #-----------Relations---------------#
   has_many :ratings, dependent: :destroy
   has_many :rated_games, :through => :ratings, :source => :games
   
   has_many :reviews, dependent: :destroy
-  #has_many :games, through: :reviews
   has_many :reviewed_games, :through => :reviews, :source => :games
   
   has_many :gamerelations, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_games, through: :gamerelations, source: :followed
   
-
-
-
-
 
   #---------------Methods-----------------#
   def following?(some_game)

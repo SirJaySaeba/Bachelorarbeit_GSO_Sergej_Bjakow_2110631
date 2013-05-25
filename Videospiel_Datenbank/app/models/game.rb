@@ -15,7 +15,6 @@ class Game < ActiveRecord::Base
   has_many :raters, :through => :ratings, :source => :users
   
   has_many :reviews, dependent: :destroy
-  #has_many :users, :through => :reviews
   has_many :authors, :through => :reviews, :source => :users
   
   has_many :reverse_gamerelations, foreign_key: "followed_id",
@@ -25,13 +24,23 @@ class Game < ActiveRecord::Base
    
 
   #-------------Methods----------#
+=begin
   def self.search(search)
     if search
       find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
-    else
-        flash[:error] = "nothing found"
+
     end    
   end
+=end
+
+
+  def self.search(search, page)
+    paginate :per_page => 1, :page => page,
+             :conditions => ['title like ?', "%#{search}%"],
+             :order => 'title'
+  end
+
+
 
   def indiziert?
     attribute ? 'Ja' : 'Nein'

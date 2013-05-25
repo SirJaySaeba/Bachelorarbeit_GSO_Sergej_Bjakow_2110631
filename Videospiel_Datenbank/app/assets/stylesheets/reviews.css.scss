@@ -19,7 +19,7 @@
   display: block;
 }
 .timestamp {
-  color: $grayLight;
+  color: #a0a0a0;
 }
 .gravatar {
   float: left;
@@ -30,6 +30,10 @@ aside {
     height: 100px;
     margin-bottom: 5px;
   }
+}
+
+.review_delete{
+  font-size: 10px;
 }
 
 .user_review{

@@ -13,7 +13,7 @@ $borderLight: #f1f1f1;
 $fontSizeNormal: 14px;
 $formHeight: 20px !important;
 /*--------------gradients & backgrounds-----------*/
-$backgroundContainer: $grayLight; 
+$backgroundContainer: white;//$grayLight; 
 
 @mixin backgroundGradient {
   background: #8fc6ea; /* Old browsers */

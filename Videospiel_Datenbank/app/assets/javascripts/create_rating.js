@@ -1,6 +1,6 @@
 
 
-$(function () {
+$(function () {	
     var checkedId = $('.create_rating > input:checked').attr('id');
     
     $('.create_rating > label[for=' + checkedId + ']').prevAll().andSelf().addClass('bright');
@@ -27,6 +27,8 @@ $(document).ready(function() {
         $('.create_rating').submit();
     });
     
+
+
     
 });
 

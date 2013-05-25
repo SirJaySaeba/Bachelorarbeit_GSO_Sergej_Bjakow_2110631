@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
     
     if @review.save
       flash[:success] = "review created!"
-      redirect_to root_url
+      redirect_to game_path(@game)
     else
       render 'new'
     end
@@ -31,8 +31,9 @@ class ReviewsController < ApplicationController
   end
   
   def destroy
-    @review.destroy
-    #Review.find(params[:id]).destroy
+    Review.find(params[:id]).destroy
+    @game = Game.find_by_id(params[:game_id])
+    flash[:success] = "Review erased"
     redirect_to game_path(@game)
   end
   

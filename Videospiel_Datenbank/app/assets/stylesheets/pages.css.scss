@@ -13,37 +13,54 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     border-style: none;*/
+   background: url("../assets/bg_vintage.jpg") repeat fixed 10% top #000000;
 }
 
 #bg{
-
-  background-image: image-url("bg-cube.png");
-  background-repeat: no-repeat;
-  background-position: top center;
-  @include backgroundGradient;
-  padding: 20px;
+  
+  background: url("../assets/bghead.jpg") no-repeat fixed center top transparent;
+  //background-image: image-url("bg_vintage.jpg");
+  //background-repeat: repeat;
+  //background-position: top;
+  //background-color: rgba(230, 230, 230, 0.1);
+  //@include backgroundGradient;
 }
 
-.container{
+.dingdong{
+  background: url("../assets/head_Filme.png") no-repeat scroll center top transparent;
+    margin: 0 auto;
+    min-width: 1000px;
+    position: relative;
+    width: 100%;
+    height: 600px;
+  }
+
+.containerT{
   background: $backgroundContainer;
-/*transperency*/
-  margin: 20px 0px;
+  margin: 0px auto;
   padding: 20px;
+  width: 1000px;
   border-radius: 5px;
+  top: -350px;
+  width: 920px;
+  position: relative;
+  
   
 
   .main-container{
       border-right: 1px solid $borderDark;
-      
+
   }
   
   .sidebar{
     padding-left: 10px;
+
     margin-left: 0px !important;
     border-left: 1px solid $borderLight;
     
   }
 }
+
 /*------------- Header ------------------*/
 
 .navbar{
@@ -91,7 +108,9 @@ footer {
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: #999;
-  
+  .ding1{background: #a0a0a0;}
+  .ding2{background: #a0a04c;}
+
 }
 
 footer a {
@@ -118,6 +137,7 @@ footer ul {
 /*----------------- Error Messages --------------*/
 #error_explanation {
   color: #f00;
+  font-size: 14px;
   ul {
     list-style: none;
     margin: 0 0 18px 0;

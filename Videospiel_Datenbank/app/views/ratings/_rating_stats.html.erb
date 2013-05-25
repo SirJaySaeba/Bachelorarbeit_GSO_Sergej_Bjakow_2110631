@@ -11,6 +11,13 @@
 		<div class="rating_bar">
 			<div class="rating_filled" data-average="<%= @game.ratings.average(:value) %>"></div>
 		</div>
+		
+		<script>
+			var average = parseFloat( $(".rating_filled").attr("data-average") );
+			var avg_width = (average/5)*200;
+			$(".rating_filled").css("width", avg_width);
+		</script>
+		
 	</div>
 	
 	<div>

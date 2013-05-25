@@ -4,6 +4,7 @@
   <span class="user">
     <%= link_to review.user.name, review.user %>
   </span>
+  <span> <%= link_to "zum Review", game_review_path(@game, review) %> </span>
   <span class="content"><%= review.content %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(review.created_at) %> ago.
