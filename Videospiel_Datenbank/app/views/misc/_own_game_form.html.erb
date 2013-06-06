@@ -1,8 +1,0 @@
-
-  <div id="own_game_form">
-  <% if current_user.following?(@game) %>
-    <%= render 'discard_game' %>
-  <% else %>
-    <%= render 'own_game' %>
-  <% end %>
-  </div>
