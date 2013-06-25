@@ -4,6 +4,7 @@ class GamesController < ApplicationController
   
   def index
     #@games = Game.all
+    
     #@games = Game.search(params[:search])
     #@games = Game.search.paginate(page: params[:page][:search], :per_page => 10)
     @games = Game.search(params[:search], params[:page])
