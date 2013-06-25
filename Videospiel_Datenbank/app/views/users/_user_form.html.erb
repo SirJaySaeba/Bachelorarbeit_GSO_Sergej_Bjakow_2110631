@@ -1,0 +1,24 @@
+    <%= form_for(@user, :html => { :class => 'form-horizontal'}) do |f| %>
+      <%= render 'misc/error_messages', object: f.object %>      
+    <div class="control-group">
+      <%= f.label :name, class: "control-label" %>
+      <div class="controls"><%= f.text_field :name %></div>
+	</div>
+	
+	<div class="control-group">
+      <%= f.label :email, class: "control-label" %>
+      <div class="controls"><%= f.text_field :email%></div>
+	</div>
+	
+	<div class="control-group">
+      <%= f.label :password, class: "control-label" %>
+      <div class="controls"><%= f.password_field :password %></div>
+	</div>
+	
+	<div class="control-group">
+      <%= f.label :password_confirmation, "Passwort Bestätigen", class: "control-label" %>
+      <div class="controls"><%= f.password_field :password_confirmation %></div>
+	</div>
+	
+      <%= f.submit "Speichern", class: "btn btn-large btn-primary controls" %>
+    <% end %>

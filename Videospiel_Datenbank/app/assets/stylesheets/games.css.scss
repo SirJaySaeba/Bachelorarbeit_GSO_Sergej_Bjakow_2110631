@@ -1,0 +1,64 @@
+// Place all the styles related to the Games controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+@import "variables";
+
+table td{
+  text-align: left;
+  padding: 2px 10px;
+  
+  span{
+    font-size: 10px;
+    color: #0088cc; 
+  }
+}
+
+/*----------------Game Form--------------*/
+.controls input{
+  width: 243px;
+}
+
+#game_release_3i{
+  width: 55px;
+}
+
+#game_release_1i
+{
+  width: 70px;
+}
+#game_release_2i{
+  width: 110px;
+}
+
+/*-------------------Game Show-------------------*/
+.game_title{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.game_cover{
+  padding: 10px;
+  border-radius: 10px;
+  background: #fcdea5;
+  width: 100px;
+}
+
+.game_subtitle{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.index_true{
+  color: red;
+}
+.index_false{
+  color: blue;
+}
+
+
+
+.game_details{
+  padding-bottom: 10px;
+  height: 300px;
+}

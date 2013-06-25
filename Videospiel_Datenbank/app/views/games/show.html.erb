@@ -1,0 +1,92 @@
+<% provide(:title, @game.title) %>
+
+
+	
+		<p class="game_title">
+		  <%= @game.title %> 
+		  	<% if @game.subtitle.present?%>
+		  		<span class="game_subtitle">: <%= @game.subtitle%> </span>
+		  	<% end %>
+		</p>
+		
+		<p>
+		  <b>Originaltitel:</b></br>
+		  <%= @game.title_org %>
+		    <% if @game.subtitle_org.present?%>
+		  		<span>- <%= @game.subtitle_org %> </span>
+		  	<% end %>
+		</p>
+	<div class="row-fluid game_details">
+	<div class="span4">
+		<div>
+			
+			<% if !@game.cover.present?%>
+				<div class="game_cover">Kein Bild</div>
+			<% else %>
+				<%= image_tag @game.cover(:resize) %>
+			<% end %>
+		</div>
+		<p>
+		  <b>Genre:</b>
+		  <%= @game.genre %>
+		</p>
+	</div>
+	<div class="span6 game_infos">
+		
+		<p>
+		  <b>Developer:</b>
+		  <%= @game.developer %>
+		</p>
+		
+		<p>
+		  <b>Publisher:</b>
+		  <%= @game.publisher %>
+		</p>
+		
+		<p>
+		  <b>Release:</b>
+		  <%= @game.release.strftime("%d %b %Y") %>
+		</p>
+		
+		<p>
+		  <b>System:</b>
+		  <%= @game.system %>  
+		</p>
+		
+		<p>
+		  <b>USK</b>
+		  <%= @game.usk %>
+		  <% if @game.usk == 18 %>
+			  <% if @game.indizierung == true %>
+			  	<span class="index_true">indiziert!</span>
+			  <% else %>
+			   <span class="index_false">nicht indiziert</span>
+			  <% end %>
+		  <% end %>
+		</p>
+		
+		<p>
+		  <b>Medium</b>
+		  <%= @game.medium %>
+		</p>
+	</div>
+</div>
+<section class="rating_area">
+	
+	<%= render "ratings/rating_stats"%>
+	<%= render "ratings/rating_form"%>
+</section>
+
+<section class="review_area">
+	<%= render 'reviews/review_area' %>
+</section>
+
+
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Back', games_path %>
+
+
+<% content_for :sidebar do %>
+  	<%= render "misc/game_users"%>
+	<%= render 'misc/own_game_form' if user_signed_in? %>
+<% end %>

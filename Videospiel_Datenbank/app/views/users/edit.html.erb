@@ -1,0 +1,8 @@
+<% provide(:title, "User Update") %> 
+<h1>Bearbeite dein Profil</h1>
+
+
+	<%= render "user_form" %>
+
+    <%= gravatar_for @user %>
+    <a href="http://gravatar.com/emails">change</a>

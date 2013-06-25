@@ -1,0 +1,13 @@
+<% provide(:title, "Suchergebnisse") %>
+
+
+<h1>Suchergebnisse</h1>
+
+<%= render "misc/search_results"%>
+
+<%= will_paginate %>
+
+<br />
+
+
+<%= link_to "Neues Spiel", new_game_path, class: "btn" %>

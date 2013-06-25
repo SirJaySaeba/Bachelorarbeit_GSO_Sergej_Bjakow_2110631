@@ -1,0 +1,26 @@
+<ul class="nav">
+  <% if user_signed_in? %>
+    <li class="login_state">Eingeloggt als 
+    </li>
+    <li id="fat-menu" class="dropdown">
+      <a href="#" class="dropdown-toggle login_state" data-toggle="dropdown">
+        <span class="user_name"><%= current_user.name%></span> <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li><%= link_to "Profil", user_path(current_user) %></li>
+        <li><%= link_to "Bearbeiten", edit_user_path(current_user) %></li>
+        <li class="divider"></li>
+        <li>
+          <%= link_to "Logout", signout_path, method: "delete" %>
+        </li>
+      </ul>
+    </li>
+    
+  <% else %>
+  	<p class="login_state">Du bist noch nicht angemeldet</p>
+  	<li><%= link_to "Login", signin_path, class: "btn_login btn" %></li>
+  	<li><%= link_to "Registrieren", signup_path, class: "btn" %></li>
+  <% end %>
+  
+
+</ul>

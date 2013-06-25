@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        
+    <title>Case-insensitive unique index in Rails/ActiveRecord? - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    
+    <script src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/ga.js" async="" type="text/javascript"></script><script src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/quant.js" async="" type="text/javascript"></script><script type="text/javascript" src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/jquery.js"></script>
+    <script type="text/javascript" src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/all.css">
+    
+    <link rel="canonical" href="http://stackoverflow.com/questions/7948501/case-insensitive-unique-index-in-rails-activerecord">
+    <link rel="alternate" type="application/atom+xml" title="Feed for question 'Case-insensitive unique index in Rails/ActiveRecord?'" href="http://stackoverflow.com/feeds/question/7948501">
+    <script type="text/javascript">
+        
+        StackExchange.ready(function () {
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({votesCast:[],autoShowCommentHelp:true,showAnswerHelp:true,totalCommentCount:1,shownCommentCount:1,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:7948501});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('1', '7948501');
+            
+                
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        StackExchange.init({"stackAuthUrl":"https://stackauth.com","serverTime":1372017029,"styleCode":true,"enableUserHovercards":true,"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","enableSocialMediaInSharePopup":true},"user":{"fkey":"b7b1adb9c67ef6aa5deb1a348be5f5fd","isRegistered":true,"userId":2170722,"accountId":2493768,"gravatar":"<div class=\"\"><img src=\"https://www.gravatar.com/avatar/b5eb6592035e650e23186df40d9f3cab?s=32&d=identicon&r=PG\" alt=\"\" width=\"32\" height=\"32\"></div>","profileUrl":"http://stackoverflow.com/users/2170722/sir-jay","notificationsUnviewedCount":1,"inboxUnviewedCount":10}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.js":"6c261bebf56a","js/moderator.js":"f96f7e4ee5dc","js/full-anon.js":"1eb568badf37","js/full.js":"aa97a412d4d1","js/wmd.js":"2f79c03846d5","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/mobile.js":"6eb68240242f","js/help.js":"6e6623243cf6","js/tageditor.js":"450c9e8426fc","js/tageditornew.js":"b6c68ad4c7dd","js/inline-tag-editing.js":"8e84e8a137f7","js/revisions.js":"7273bb714bba","js/review.js":"56c3941a5bfc","js/tagsuggestions.js":"aa48ef6154df","js/post-validation.js":"bb996020492a","js/explore-qlist.js":"1c5bbd79b562"});
+        
+    </script>
+    <script type="text/javascript">
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+<script src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/full.js" type="text/javascript" async=""></script><script src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/post-validation.js" type="text/javascript" async=""></script><script src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/prettify-full.js" type="text/javascript" async=""></script><script src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/wmd.js" type="text/javascript" async=""></script><link rel="stylesheet" type="text/css" href="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/company.css"><link rel="stylesheet" type="text/css" href="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/sidebar.css"><style type="text/css" id="wrcMiddleCss">.wrc_whole_window {
+	display: none; 
+	position: fixed; 
+	z-index: 2147483647;
+	background-color: rgba(40, 40, 40, 0.9);
+	word-spacing: normal !important;
+	margin: 0px !important;
+	padding: 0px !important;
+	border: 0px !important;
+	line-height: normal !important;
+	letter-spacing: normal !important;
+	overflow: hidden;
+}
+.wrc_bar_window {
+	display: none;
+	position: fixed; 
+	z-index: 2147483647;
+	background-color: rgba(60, 60, 60, 1.0);
+	word-spacing: normal !important;
+	font-family: Segoe UI, Arial Unicode MS, Arial, Sans-Serif;
+	margin: 0px !important;
+	padding: 0px !important;
+	border: 0px !important;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 40px;
+	line-height: normal !important;
+	letter-spacing: normal !important;
+	color: white !important;
+	font-size: 13px !important;
+}
+.wrc_middle {
+	display: table-cell;
+	vertical-align: middle;
+	width: 100%;
+}
+.wrc_middle_main {
+	font-family: Segoe UI, Arial Unicode MS, Arial, Sans-Serif;
+	font-size: 14px;
+	width: 600px;
+	height: auto;
+    background: url("chrome://wrc/skin/png/background-body.png") repeat-x left top;
+	background-color: rgb(39, 53, 62);
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+}
+.wrc_middle_tq_main {
+	font-family: Segoe UI, Arial Unicode MS, Arial, Sans-Serif;
+	font-size: 16px;
+	width: 615px;
+	height: 460px;
+    background: url("chrome://wrc/skin/background-sitecorrect.png");
+	background-color: white;
+	color: black !important;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+.wrc_middle_logo {
+    background: url("chrome://wrc/skin/logo.jpg") no-repeat left bottom;
+    width: 140px;
+    height: 42px;
+    color: orange;
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+}
+.wrc_icon_warning {
+	margin: 20px 10px 20px 15px;
+	float: left;
+	background-color: transparent;
+}
+.wrc_middle_title {
+    color: #b6bec7;
+	height: auto;
+    margin: 0px auto;
+	font-size: 2.2em;
+	white-space: nowrap;
+	text-align: center;
+}
+.wrc_middle_hline {
+    height: 2px;
+	width: 100%;
+    display: block;
+}
+.wrc_middle_description {
+	text-align: center;
+	margin: 15px;
+	font-size: 1.4em;
+	padding: 20px;
+	height: auto;
+	color: white;
+	min-height: 3.5em;
+}
+.wrc_middle_actions_main_div {
+	text-align: center;
+	margin-bottom: 15px;
+}
+.wrc_middle_actions_blue_button div {
+	display: inline-block;
+	width: auto;
+	cursor: Pointer;
+	margin: 3px 10px 3px 10px;
+	color: white !important;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+.wrc_middle_actions_blue_button {
+	-moz-appearance: none;
+	border-radius: 7px;
+	-moz-border-radius: 7px/7px;
+	border-radius: 7px/7px;
+	background-color: rgb(0, 173, 223) !important;
+	display: inline-block;
+	width: auto;
+	cursor: Pointer;
+	border: 2px solid #00dddd;
+	text-decoration: none;
+	padding: 0px 20px 0px 20px;
+}
+.wrc_middle_actions_blue_button:hover {
+	background-color: rgb(0, 159, 212) !important;
+}
+.wrc_middle_actions_blue_button:active {
+	background-color: rgb(0, 146, 200) !important;
+	border: 2px solid #00aaaa;
+}
+.wrc_middle_actions_grey_button div {
+	display: inline-block;
+	width: auto;
+	cursor: Pointer;
+	margin: 3px 10px 3px 10px;
+	color: white !important;
+	font-size: 15px;
+	font-weight: bold;
+}
+.wrc_middle_actions_grey_button {
+	-moz-appearance: none;
+	border-radius: 7px;
+	-moz-border-radius: 7px/7px;
+	border-radius: 7px/7px;
+	background-color: rgb(100, 100, 100) !important;
+	display: inline-block;
+	width: auto;
+	cursor: Pointer;
+	border: 2px solid #aaaaaa;
+	text-decoration: none;
+	padding: 0px 20px 0px 20px;
+}
+.wrc_middle_actions_grey_button:hover {
+	background-color: rgb(120, 120, 120) !important;
+}
+.wrc_middle_actions_grey_button:active {
+	background-color: rgb(130, 130, 130) !important;
+	border: 2px solid #00aaaa;
+}
+.wrc_middle_action_low {
+	font-size: 0.9em;
+	white-space: nowrap;
+	cursor: Pointer;
+	color: grey !important;
+	margin: 10px 10px 0px 10px;
+	text-decoration: none;
+}
+.wrc_middle_action_low:hover {
+	color: #aa4400 !important;
+}
+.wrc_middle_actions_rest_div {
+	padding-top: 5px;
+	white-space: nowrap;
+	text-align: center;
+}
+.wrc_middle_action {
+	white-space: nowrap;
+	cursor: Pointer;
+	color: red !important;
+	font-size: 1.2em;
+	margin: 10px 10px 0px 10px;
+	text-decoration: none;
+}
+.wrc_middle_action:hover {
+	color: #aa4400 !important;
+}</style><style style="display: none;" type="text/css" id="wrcCss">.wrcx {display:none} .post-text .wrcx {display:inline !important; background: url("chrome://wrc/skin/png/grey0-16.png") right no-repeat}"}
+.wrc0 {display:none} .post-text .wrc0 {display:inline !important; background: url("chrome://wrc/skin/png/grey0-16.png") right no-repeat}"}
+.wrc11 {display:none} .post-text .wrc11 {display:inline !important; background: url("chrome://wrc/skin/png/green1-16.png") right no-repeat}"}
+.wrc12 {display:none} .post-text .wrc12 {display:inline !important; background: url("chrome://wrc/skin/png/green2-16.png") right no-repeat}"}
+.wrc13 {display:none} .post-text .wrc13 {display:inline !important; background: url("chrome://wrc/skin/png/green3-16.png") right no-repeat}"}
+.wrc21 {display:none} .post-text .wrc21 {display:inline !important; background: url("chrome://wrc/skin/png/yellow1-16.png") right no-repeat}"}
+.wrc22 {display:none} .post-text .wrc22 {display:inline !important; background: url("chrome://wrc/skin/png/yellow2-16.png") right no-repeat}"}
+.wrc23 {display:none} .post-text .wrc23 {display:inline !important; background: url("chrome://wrc/skin/png/yellow3-16.png") right no-repeat}"}
+.wrc31 {display:none} .post-text .wrc31 {display:inline !important; background: url("chrome://wrc/skin/png/red1-16.png") right no-repeat}"}
+.wrc32 {display:none} .post-text .wrc32 {display:inline !important; background: url("chrome://wrc/skin/png/red2-16.png") right no-repeat}"}
+.wrc33 {display:none} .post-text .wrc33 {display:inline !important; background: url("chrome://wrc/skin/png/red3-16.png") right no-repeat}"}</style><style type="text/css" id="wrcHoverCss">#wrcHoverDiv {
+	font-family: Segoe UI, Arial Unicode MS, Arial, Sans-Serif;
+	font-size: 14px;
+    display: none;
+    position:absolute;
+    /*background-color: #3c4c59;*/
+    background: url('chrome://wrc/skin/png/background-body.png');
+    z-index: 2147483647;
+}
+#wrcHoverDiv .wrc_logo {
+    background: url('chrome://wrc/skin/logo.jpg') no-repeat left bottom;
+    width: 140px;
+    height: 42px;
+    color: orange;
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+}
+#wrcHoverDiv .wrc_title {
+    color: #b6bec7;
+    width: 150px;
+    margin: auto;
+    text-align: center;
+    text-transform: uppercase;
+}
+#wrcHoverDiv .wrc_txtrating {
+    text-align: center;
+    margin: auto;
+    color: white;
+    width: 150px;
+}
+#wrcHoverDiv .wrc_container {
+    margin: auto;
+    width: 170px;
+}
+#wrc_bigscore {
+    display: block;
+    margin: auto;
+    width: 69px;
+    height: 55px;
+    padding: 10px;
+    background: no-repeat center center;
+}
+.hline {
+    height: 2px;
+    display: block;
+}
+#wrc_bigscore.wrc11 {
+    background-image: url('chrome://wrc/skin/png/green-1.png');
+}
+#wrc_bigscore.wrc12 {
+    background-image: url('chrome://wrc/skin/png/green-2.png');
+}
+#wrc_bigscore.wrc13 {
+    background-image: url('chrome://wrc/skin/png/green-3.png');
+}
+#wrc_bigscore.wrc21 {
+    background-image: url('chrome://wrc/skin/png/yellow-1.png');
+}
+#wrc_bigscore.wrc22 {
+    background-image: url('chrome://wrc/skin/png/yellow-2.png');
+}
+#wrc_bigscore.wrc23 {
+    background-image: url('chrome://wrc/skin/png/yellow-3.png');
+}
+#wrc_bigscore.wrc31 {
+    background-image: url('chrome://wrc/skin/png/red-1.png');
+}
+#wrc_bigscore.wrc32 {
+    background-image: url('chrome://wrc/skin/png/red-2.png');
+}
+#wrc_bigscore.wrc33 {
+    background-image: url('chrome://wrc/skin/png/red-3.png');
+}
+#wrc_bigscore.wrc0, #wrc_bigscore.wrcx {
+    background-image: url('chrome://wrc/skin/png/grey-0.png');
+}</style></head>
+<body class="question-page">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+    <div class="container">
+        <div id="header">
+            <div id="portalLink">
+                <a class="genu" onclick="StackExchange.ready(function(){genuwine.click();});return false;">Stack Exchange</a>
+                    <a class="unreadCount" style="margin-top: 3px; opacity: 1;" title="unread messages in your inbox">10</a>
+                        <script type="text/javascript">
+                            StackExchange.ready(function () {
+                                genuwine.animateInbox();
+                            });
+                        </script>
+            </div>
+            <div id="topbar">
+                <div id="hlinks">
+                    
+<span id="hlinks-user">        <span class="profile-triangle">▼</span><a href="http://stackoverflow.com/users/2170722/sir-jay" class="profile-link">Sir Jay</a>&nbsp;<a href="http://stackoverflow.com/users/2170722/sir-jay?tab=reputation"><span class="reputation-score" title="your reputation; view reputation changes" dir="ltr">1</span></a>
+ <span class="lsep">|</span>
+
+</span>
+<span id="hlinks-nav"></span>
+<span id="hlinks-custom">            <a href="http://chat.stackoverflow.com/">chat</a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+
+ <span class="lsep">|</span>
+                <a href="http://meta.stackoverflow.com/">meta</a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+
+ <span class="lsep">|</span>
+            <a href="http://stackoverflow.com/about">about</a>
+
+ <span class="lsep">|</span>
+        <a href="http://stackoverflow.com/help">help</a>
+</span>
+                </div>
+                <div id="hsearch">
+                    <form id="search" action="/search" method="get" autocomplete="off">
+                        <div>
+                            <input autocomplete="off" name="q" class="textbox" placeholder="search" tabindex="1" maxlength="240" size="28" type="text">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs ">
+                    <ul>
+                            <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                            <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                            <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                            <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                            <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content">
+            
+
+<div itemscope="" itemtype="http://schema.org/Article">
+<link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+<div id="question-header">
+    <h1 itemprop="name"><a href="http://stackoverflow.com/questions/7948501/case-insensitive-unique-index-in-rails-activerecord" class="question-hyperlink">Case-insensitive unique index in Rails/ActiveRecord?</a></h1>
+</div>
+<div id="mainbar">
+
+
+
+<div class="question" data-questionid="7948501" id="question">
+    
+            <div class="everyonelovesstackoverflow" id="careers1"><img src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/366ec8614d054ab4b8e79a7e0ab2f6e1.png"></div>
+
+
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="7948501" type="hidden">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear (click again to undo)">up vote</a>
+    <span class="vote-count-post ">4</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful (click again to undo)">down vote</a>
+    
+    <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b></b></div>   
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="description">
+        <p>I need to create a case-insensitive index on a column in rails. I did this via SQL:</p>
+
+<pre style="" class="default prettyprint prettyprinted"><code><span class="pln">execute</span><span class="pun">(</span><span class="pln">
+   </span><span class="str">"CREATE UNIQUE INDEX index_users_on_lower_email_index 
+    ON users (lower(email))"</span><span class="pln">
+ </span><span class="pun">)</span></code></pre>
+
+<p>This works great, but in my schema.rb file I have:</p>
+
+<pre style="" class="default prettyprint prettyprinted"><code><span class="pln">add_index </span><span class="str">"users"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[</span><span class="kwd">nil</span><span class="pun">],</span><span class="pln"> 
+  </span><span class="pun">:</span><span class="pln">name </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">"index_users_on_lower_email_index"</span><span class="pun">,</span><span class="pln"> 
+  </span><span class="pun">:</span><span class="pln">unique </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="kwd">true</span></code></pre>
+
+<p>Notice the "nil". So when I try to clone the database to run a test, I
+ get an obvious error. Am I doing something wrong here? Is there some 
+other convention that I should be using inside rails?</p>
+
+<p>Thanks for the help.</p>
+
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/ruby-on-rails" class="post-tag" title="show questions tagged 'ruby-on-rails'" rel="tag">ruby-on-rails</a> <a href="http://stackoverflow.com/questions/tagged/activerecord" class="post-tag" title="show questions tagged 'activerecord'" rel="tag">activerecord</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/q/7948501/2170722" title="short permalink to this question" class="short-link" id="link-post-7948501">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/7948501/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>        
+    </td>
+    <td class="post-signature" align="right">
+
+
+    <div class="user-info user-hover">
+        <div class="user-action-time">
+                            <a href="http://stackoverflow.com/posts/7948501/revisions" title="show all edits to this post">edited <span title="2011-11-01 10:34:38Z" class="relativetime">Nov 1 '11 at 10:34</span></a>
+
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/1060/mike-woodhouse"><div class=""><img src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/5978e2ed3a31f1bd2361dbb919d92012.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/1060/mike-woodhouse">Mike Woodhouse</a><br>
+            <span class="reputation-score" title="reputation score 22194" dir="ltr">22.2k</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="42 silver badges"><span class="badge2"></span><span class="badgecount">42</span></span><span title="83 bronze badges"><span class="badge3"></span><span class="badgecount">83</span></span>
+        </div>
+    </div>
+    </td>
+    <td class="post-signature owner">
+        
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                                    asked <span title="2011-10-30 22:55:06Z" class="relativetime">Oct 30 '11 at 22:55</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/507718/binary-logic"><div class=""><img src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/70d4a95fb168a2a967176d1d2da89bee.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/507718/binary-logic">Binary Logic</a><br>
+            <span class="reputation-score" title="reputation score" dir="ltr">622</span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="24 bronze badges"><span class="badge3"></span><span class="badgecount">24</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-7948501" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-9738290" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">The 
+syntax shown looks fairly platform-specific, so the deficiency is likely
+ to be in the adapter. Some additional information would be helpful,: 
+what database? I'm guessing PostgreSQL? What version of ActiveRecord?</span> –&nbsp;<a href="http://stackoverflow.com/users/1060/mike-woodhouse" title="22194 reputation" class="comment-user">Mike Woodhouse</a> <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment9738290_7948501"><span title="2011-11-01 10:31:54Z" class="relativetime-clean">Nov 1 '11 at 10:31</span></a></span><span class="edited-yes" title="this comment was edited"></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>            </tbody></table>    
+</div>
+
+
+<div id="answers">
+
+    <a name="tab-top"></a>
+    <div id="answers-header">
+        <div class="subheader answers-subheader">
+            <h2>
+                    5 Answers
+            </h2>
+            <div id="tabs">
+                <a href="http://stackoverflow.com/questions/7948501/case-insensitive-unique-index-in-rails-activerecord?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+<a href="http://stackoverflow.com/questions/7948501/case-insensitive-unique-index-in-rails-activerecord?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+<a class="youarehere" href="http://stackoverflow.com/questions/7948501/case-insensitive-unique-index-in-rails-activerecord?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+
+            </div>
+        </div>    
+    </div>    
+
+
+
+
+  
+<a name="10660412"></a>
+<div id="answer-10660412" class="answer" data-answerid="10660412">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="10660412" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">8</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p>Since MySQL indexes are already 
+case-insensitive, I'm guessing you're dealing with PostgreSQL, which 
+creates case-sensitive indexes by default.  I'm answering here based on 
+Rails 3.2.3 and PostgreSQL 8.4.</p>
+
+<p>It seems <a href="http://www.postgresql.org/docs/8.4/static/indexes-expressional.html">functional indexes</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+ are one more example of things that ActiveRecord can't generate. 
+Foreign keys and UUID columns are two more that come to mind. So there 
+is no choice (other than monkey-patching ActiveRecord) but to use <code>execute</code> statements.</p>
+
+<p>This means for an accurate dump of your database, you'll need to 
+abandon the DB-agnostic schema.rb in favor of DB-specific structure.sql.
+  See the Rails Guide on Migrations, section <a href="http://guides.rubyonrails.org/migrations.html#types-of-schema-dumps">6.2 Types of Schema Dumps</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>. This is set as follows:</p>
+
+<p><strong>config/application.rb</strong></p>
+
+<pre style="" class="default prettyprint prettyprinted"><code><span class="pln">config</span><span class="pun">.</span><span class="pln">active_record</span><span class="pun">.</span><span class="pln">schema_format </span><span class="pun">=</span><span class="pln"> </span><span class="pun">:</span><span class="pln">sql</span></code></pre>
+
+<p>db/structure.sql should be updated automatically when you run a migration. You can generate it manually with this command:</p>
+
+<pre style="" class="default prettyprint prettyprinted"><code><span class="pln">rake db</span><span class="pun">:</span><span class="pln">structure</span><span class="pun">:</span><span class="kwd">dump</span></code></pre>
+
+<p>The file is pure Postgres SQL.  Although not documented when you use <code>rake -T</code> to list rake tasks, it seems that you can use this command to load the database from the structure.sql dump:</p>
+
+<pre style="" class="default prettyprint prettyprinted"><code><span class="pln">rake db</span><span class="pun">:</span><span class="pln">structure</span><span class="pun">:</span><span class="pln">load</span></code></pre>
+
+<p>There's nothing magic here:  the <a href="https://github.com/rails/rails/blob/master/activerecord/lib/active_record/railties/databases.rake#L450">source code</a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span> just calls psql on structure.sql.</p>
+
+<p>Finally, here is my migration to drop an old, case-sensitive email constraint and add the case-sensitive functional index:</p>
+
+<pre style="" class="default prettyprint prettyprinted"><code><span class="kwd">class</span><span class="pln"> </span><span class="typ">FixEmailUniqueIndexOnUsers</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln"> </span><span class="typ">ActiveRecord</span><span class="pun">::</span><span class="typ">Migration</span><span class="pln">
+  </span><span class="kwd">def</span><span class="pln"> up
+    remove_index </span><span class="pun">:</span><span class="pln">users</span><span class="pun">,</span><span class="pln"> </span><span class="pun">:</span><span class="pln">email
+    execute </span><span class="str">"CREATE UNIQUE INDEX index_users_on_lowercase_email 
+             ON users USING btree (lower(email));"</span><span class="pln">
+  </span><span class="kwd">end</span><span class="pln">
+
+  </span><span class="kwd">def</span><span class="pln"> down
+    execute </span><span class="str">"DROP INDEX index_users_on_lowercase_email;"</span><span class="pln">
+    add_index </span><span class="pun">:</span><span class="pln">users</span><span class="pun">,</span><span class="pln"> </span><span class="pun">:</span><span class="pln">email</span><span class="pun">,</span><span class="pln"> </span><span class="pun">:</span><span class="pln">unique </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="kwd">true</span><span class="pln">
+  </span><span class="kwd">end</span><span class="pln">
+</span><span class="kwd">end</span></code></pre>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/10660412/2170722" title="short permalink to this answer" class="short-link" id="link-post-10660412">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/10660412/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                                        answered <span title="2012-05-18 22:16:47Z" class="relativetime">May 18 '12 at 22:16</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/550712/mark-berry"><div class=""><img src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/e67b3df213fa83c7424b97cb15363847.jpg" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/550712/mark-berry">Mark Berry</a><br>
+            <span class="reputation-score" title="reputation score" dir="ltr">1,760</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="10 silver badges"><span class="badge2"></span><span class="badgecount">10</span></span><span title="23 bronze badges"><span class="badge3"></span><span class="badgecount">23</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-10660412" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-18944604" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">Great answer, but wondering: in PostgreSQL (at least &gt;= 8.3), the default index method is <code>btree</code> - why did you specify it explicitly?</span> –&nbsp;<a href="http://stackoverflow.com/users/420947/richard-michael" title="384 reputation" class="comment-user">Richard Michael</a> <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment18944604_10660412"><span title="2012-12-08 14:11:10Z" class="relativetime-clean">Dec 8 '12 at 14:11</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-19070175" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">Don't remember. Either I was using old documentation or I snipped the script out of a GUI.</span> –&nbsp;<a href="http://stackoverflow.com/users/550712/mark-berry" title="1760 reputation" class="comment-user">Mark Berry</a> <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment19070175_10660412"><span title="2012-12-13 01:46:36Z" class="relativetime-clean">Dec 13 '12 at 1:46</span></a></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>
+    </tbody></table>
+</div>
+        <div class="everyonelovesstackoverflow" id="careers3"><img src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/3478c54721cd466fb6f7d3afe16e97d4.gif"></div>
+
+
+
+  
+<a name="7949140"></a>
+<div id="answer-7949140" class="answer" data-answerid="7949140">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="7949140" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">3</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p>I would simplify this...</p>
+
+<p>In your model:</p>
+
+<pre style="" class="default prettyprint prettyprinted"><code><span class="pln">before_validation </span><span class="pun">:</span><span class="pln">downcase_email
+
+</span><span class="kwd">def</span><span class="pln"> downcase_email
+  </span><span class="kwd">self</span><span class="pun">.</span><span class="pln">email </span><span class="pun">=</span><span class="pln"> email</span><span class="pun">.</span><span class="pln">downcase
+</span><span class="kwd">end</span></code></pre>
+
+<p>That way, the index is database agnostic, and your emails are all lowercase in the database.</p>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/7949140/2170722" title="short permalink to this answer" class="short-link" id="link-post-7949140">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/7949140/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info user-hover">
+        <div class="user-action-time">
+                                        answered <span title="2011-10-31 01:14:11Z" class="relativetime">Oct 31 '11 at 1:14</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/363881/jesse-wolgamott"><div class=""><img src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/46226dac167b4b4e2888096a998f92d8.jpg" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/363881/jesse-wolgamott">Jesse Wolgamott</a><br>
+            <span class="reputation-score" title="reputation score 24197" dir="ltr">24.2k</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="21 silver badges"><span class="badge2"></span><span class="badgecount">21</span></span><span title="47 bronze badges"><span class="badge3"></span><span class="badgecount">47</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-7949140" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-14644710" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="cool">3</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">Would 
+work, but might not be appreciated if you send email to people who want 
+to see case preserved in their email addresses (e.g.  
+BobSmith@example.com).</span> –&nbsp;<a href="http://stackoverflow.com/users/550712/mark-berry" title="1760 reputation" class="comment-user">Mark Berry</a> <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment14644710_7949140"><span title="2012-06-22 23:38:35Z" class="relativetime-clean">Jun 22 '12 at 23:38</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-14655177" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="cool">2</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">@MarkBerry Cannot tell if you're trolling.</span> –&nbsp;<a href="http://stackoverflow.com/users/363881/jesse-wolgamott" title="24197 reputation" class="comment-user">Jesse Wolgamott</a> <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment14655177_7949140"><span title="2012-06-23 17:40:48Z" class="relativetime-clean">Jun 23 '12 at 17:40</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-14671415" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'useful comment' votes received" class="cool">1</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">Sorry 
+if my phrasing was off. I'm trying to say yes, you can simplify your 
+indexes if you discard case information on emails, or anything else you 
+want to index, before saving it to the database. With email addresses, 
+you might get away with it--the email addresses would still work--but 
+some recipients wouldn't like it. In general, I think that preserving 
+user-supplied information (including case, accent marks, etc.) should 
+take priority over technical simplification.</span> –&nbsp;<a href="http://stackoverflow.com/users/550712/mark-berry" title="1760 reputation" class="comment-user">Mark Berry</a> <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment14671415_7949140"><span title="2012-06-24 20:42:11Z" class="relativetime-clean">Jun 24 '12 at 20:42</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-17478843" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy"><code>self.email = email.downcase if email</code> to trap nil otherwise Ruby will throw an exception <code>undefined method 'downcase' for nil:NilClass</code></span> –&nbsp;<a href="http://stackoverflow.com/users/307308/scarver2" title="869 reputation" class="comment-user">scarver2</a> <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment17478843_7949140"><span title="2012-10-15 20:38:15Z" class="relativetime-clean">Oct 15 '12 at 20:38</span></a></span><span class="edited-yes" title="this comment was edited"></span></div></td>
+    </tr>
+            
+    <tr id="comment-19850640" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">Depends
+ on the use case, database agnostic is one thing but enforcing 
+constraints on the database level has some advantages as well: different
+ apps/scripts/batch jobs using the same database, what if you move away 
+from Rails, etc. I mostly duplicate constraints, in Rails for 
+convenience, on the database for protecting my data.</span> –&nbsp;<a href="http://stackoverflow.com/users/59991/cimm" title="1265 reputation" class="comment-user">Cimm</a> <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment19850640_7949140"><span title="2013-01-12 12:20:14Z" class="relativetime-clean">Jan 12 at 12:20</span></a></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    <a id="comments-link-7949140" class="comments-link" data-comments-count="1" title="expand to show all comments on this post">show <b>1</b> more comment</a>
+</td>
+</tr>
+    </tbody></table>
+</div>
+
+  
+<a name="7948613"></a>
+<div id="answer-7948613" class="answer" data-answerid="7948613">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="7948613" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p>The <a href="http://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-add_index" rel="nofollow">documentation</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span> is unclear on how to do this but this source looks like this:</p>
+
+<pre style="" class="default prettyprint prettyprinted"><code><span class="kwd">def</span><span class="pln"> add_index</span><span class="pun">(</span><span class="pln">table_name</span><span class="pun">,</span><span class="pln"> column_name</span><span class="pun">,</span><span class="pln"> options </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{})</span><span class="pln">
+  index_name</span><span class="pun">,</span><span class="pln"> index_type</span><span class="pun">,</span><span class="pln"> index_columns </span><span class="pun">=</span><span class="pln"> add_index_options</span><span class="pun">(</span><span class="pln">table_name</span><span class="pun">,</span><span class="pln"> column_name</span><span class="pun">,</span><span class="pln"> options</span><span class="pun">)</span><span class="pln">
+  execute </span><span class="str">"CREATE #{index_type} INDEX #{quote_column_name(index_name)} ON #{quote_table_name(table_name)} (#{index_columns})"</span><span class="pln">
+</span><span class="kwd">end</span></code></pre>
+
+<p>So, if your database's <code>quote_column_name</code> is the default implementation (which does nothing at all), then this might work:</p>
+
+<pre style="" class="default prettyprint prettyprinted"><code><span class="pln">add_index </span><span class="str">"users"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[</span><span class="str">'lower(email)'</span><span class="pun">],</span><span class="pln"> </span><span class="pun">:</span><span class="pln">name </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">"index_users_on_lower_email_index"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">:</span><span class="pln">unique </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="kwd">true</span></code></pre>
+
+<hr>
+
+<p>You note that you tried that one but it didn't work (adding that to 
+your question might be a good idea). Looks like ActiveRecord simply 
+doesn't understand indexes on a computed value. I can think of an ugly 
+hack that will get it done but it is ugly:</p>
+
+<ol>
+<li>Add an <code>email_lc</code> column.</li>
+<li>Add a <code>before_validation</code> or <code>before_save</code> hook to put a lower case version of <code>email</code> into <code>email_lc</code>.</li>
+<li>Put your unique index on <code>email_lc</code>.</li>
+</ol>
+
+<p>That's pretty ugly and you might feel dirty for doing it but that's the best I can think of right now.</p>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/7948613/2170722" title="short permalink to this answer" class="short-link" id="link-post-7948613">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/7948613/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+    <td class="post-signature" align="right">
+
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                            <a href="http://stackoverflow.com/posts/7948613/revisions" title="show all edits to this post">edited <span title="2011-10-30 23:31:05Z" class="relativetime">Oct 30 '11 at 23:31</span></a>
+
+        </div>
+        <div class="user-gravatar32">
+            
+        </div>
+        <div class="user-details">
+            <br>
+            
+        </div>
+    </div>
+    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info user-hover">
+        <div class="user-action-time">
+                                        answered <span title="2011-10-30 23:16:50Z" class="relativetime">Oct 30 '11 at 23:16</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/479863/mu-is-too-short"><div class=""><img src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/7b3297b0f913d67a251ec08401aca583.jpg" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/479863/mu-is-too-short">mu is too short</a><br>
+            <span class="reputation-score" title="reputation score 144325" dir="ltr">144k</span><span title="15 gold badges"><span class="badge1"></span><span class="badgecount">15</span></span><span title="152 silver badges"><span class="badge2"></span><span class="badgecount">152</span></span><span title="214 bronze badges"><span class="badge3"></span><span class="badgecount">214</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-7948613" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-9715225" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">Already tried, doesn't work. It says the column does not exist.</span> –&nbsp;<a href="http://stackoverflow.com/users/507718/binary-logic" title="622 reputation" class="comment-user owner">Binary Logic</a> <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment9715225_7948613"><span title="2011-10-30 23:20:50Z" class="relativetime-clean">Oct 30 '11 at 23:20</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-9715318" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">@Binary: I have another (ugly kludge) option to work around AR's brain damage.</span> –&nbsp;<a href="http://stackoverflow.com/users/479863/mu-is-too-short" title="144325 reputation" class="comment-user">mu is too short</a> <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment9715318_7948613"><span title="2011-10-30 23:31:52Z" class="relativetime-clean">Oct 30 '11 at 23:31</span></a></span></div></td>
+    </tr>
+            
+    <tr id="comment-13826356" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">@BinaryLogic, <a href="http://stackoverflow.com/a/8472109/550712">This answer</a> explains why you get the "does not exist" message, and suggests how to modify source code to get around it.  Haven't tried it.</span> –&nbsp;<a href="http://stackoverflow.com/users/550712/mark-berry" title="1760 reputation" class="comment-user">Mark Berry</a> <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment13826356_7948613"><span title="2012-05-18 21:39:29Z" class="relativetime-clean">May 18 '12 at 21:39</span></a></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>
+    </tbody></table>
+</div>
+
+  
+<a name="14613652"></a>
+<div id="answer-14613652" class="answer" data-answerid="14613652">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="14613652" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p>Have you considered using <code>schema_plus</code> (<a href="https://github.com/lomba/schema_plus" rel="nofollow">https://github.com/lomba/schema_plus</a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>)?
+  Among other things (support for enforcing foreign keys in the database
+ and for views), it supports setting case-insensitive indexes for 
+PostgreSQL databases and handles dumping them in the schema.  From the 
+Readme, "If you’re using Postgresql, SchemaPlus provides support for 
+conditions, expressions, index methods, and case-insensitive indexes."</p>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/14613652/2170722" title="short permalink to this answer" class="short-link" id="link-post-14613652">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/14613652/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                                        answered <span title="2013-01-30 20:59:18Z" class="relativetime">Jan 30 at 20:59</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/1795300/tovodeverett"><div class=""><img src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/56f270b44be8b798730e44d080348035.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/1795300/tovodeverett">tovodeverett</a><br>
+            <span class="reputation-score" title="reputation score" dir="ltr">383</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="5 bronze badges"><span class="badge3"></span><span class="badgecount">5</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-14613652" class="comments dno">
+        <table>
+        <tbody>
+        
+            <tr><td></td><td></td></tr>
+        
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>
+    </tbody></table>
+</div>
+
+  
+<a name="7948527"></a>
+<div id="answer-7948527" class="answer" data-answerid="7948527">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input value="7948527" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post ">-1</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+    
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text"><p>I think you need column name(s) as below</p>
+
+<pre style="" class="default prettyprint prettyprinted"><code><span class="pln">   add_index </span><span class="str">"users"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[</span><span class="pln">email</span><span class="pun">],</span><span class="pln"> </span><span class="pun">{:</span><span class="pln">name </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">"index_users_on_lower_email_index"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">:</span><span class="pln">unique </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="kwd">true</span><span class="pln"> </span><span class="pun">}</span></code></pre>
+
+<p>And you have to make email field in database with proper Case 
+Insensitive collation, that way your index will be also case 
+insensitive.</p>
+
+<p>depending of db engine which you are using it syntax may be different but</p>
+
+<pre style="" class="default prettyprint prettyprinted"><code><span class="pln">alter table </span><span class="pun">[</span><span class="pln">users</span><span class="pun">]</span><span class="pln"> alter column </span><span class="pun">[</span><span class="pln">email</span><span class="pun">]</span><span class="pln"> varchar</span><span class="pun">(</span><span class="lit">250</span><span class="pun">)</span><span class="pln"> collate utf8_general_ci </span><span class="pun">...</span></code></pre>
+
+<p>and when you add index to this column it will be case insensitive.</p>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+
+
+
+
+
+
+
+
+
+<div class="post-menu"><a href="http://stackoverflow.com/a/7948527/2170722" title="short permalink to this answer" class="short-link" id="link-post-7948527">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/7948527/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+    <td class="post-signature" align="right">
+
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                            <a href="http://stackoverflow.com/posts/7948527/revisions" title="show all edits to this post">edited <span title="2011-11-01 10:13:42Z" class="relativetime">Nov 1 '11 at 10:13</span></a>
+
+        </div>
+        <div class="user-gravatar32">
+            
+        </div>
+        <div class="user-details">
+            <br>
+            
+        </div>
+    </div>
+    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    
+
+    <div class="user-info ">
+        <div class="user-action-time">
+                                        answered <span title="2011-10-30 22:59:30Z" class="relativetime">Oct 30 '11 at 22:59</span>
+        </div>
+        <div class="user-gravatar32">
+            <a href="http://stackoverflow.com/users/605808/milan-jaric"><div class=""><img src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/63fe421482bdd76cec187eb6abd6ffc1.png" alt="" height="32" width="32"></div></a>
+        </div>
+        <div class="user-details">
+            <a href="http://stackoverflow.com/users/605808/milan-jaric">Milan Jaric</a><br>
+            <span class="reputation-score" title="reputation score" dir="ltr">2,636</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="12 bronze badges"><span class="badge3"></span><span class="badgecount">12</span></span>
+        </div>
+    </div>
+
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-7948527" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-9715103" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">This is not what I asked. I need a case insensitive index. Which I know how to do, but rails is not recognizing my solution.</span> –&nbsp;<a href="http://stackoverflow.com/users/507718/binary-logic" title="622 reputation" class="comment-user owner">Binary Logic</a> <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment9715103_7948527"><span title="2011-10-30 23:05:29Z" class="relativetime-clean">Oct 30 '11 at 23:05</span></a></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    
+</td>
+</tr>
+    </tbody></table>
+</div>
+    <a name="new-answer"></a>
+    <form id="post-form" action="/questions/7948501/answer/submit" method="post" class="post-form">
+        <input id="post-id" value="7948501" type="hidden">
+        <h2 class="space">Your Answer</h2>
+
+
+
+    
+<script type="text/javascript">
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+         
+        prepareEditor({
+            heartbeatType: 'answer',
+            bindNavPrevention: true,
+            postfix: "",
+            onDemand: false,
+            discardSelector: ".discard-answer"
+            ,immediatelyShowMarkdownHelp:true
+        });
+        
+
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul class="wmd-button-row" id="wmd-button-row"><li title="Strong &lt;strong&gt; Ctrl+B" id="wmd-bold-button" style="left: 0px;" class="wmd-button"><span style="background-position: 0px 0px;"></span></li><li title="Emphasis &lt;em&gt; Ctrl+I" id="wmd-italic-button" style="left: 25px;" class="wmd-button"><span style="background-position: -20px 0px;"></span></li><li id="wmd-spacer1" class="wmd-spacer wmd-spacer1"></li><li title="Hyperlink &lt;a&gt; Ctrl+L" id="wmd-link-button" style="left: 75px;" class="wmd-button"><span style="background-position: -40px 0px;"></span></li><li title="Blockquote &lt;blockquote&gt; Ctrl+Q" id="wmd-quote-button" style="left: 100px;" class="wmd-button"><span style="background-position: -60px 0px;"></span></li><li title="Code Sample &lt;pre&gt;&lt;code&gt; Ctrl+K" id="wmd-code-button" style="left: 125px;" class="wmd-button"><span style="background-position: -80px 0px;"></span></li><li title="Image &lt;img&gt; Ctrl+G" id="wmd-image-button" style="left: 150px;" class="wmd-button"><span style="background-position: -100px 0px;"></span></li><li id="wmd-spacer2" class="wmd-spacer wmd-spacer2"></li><li title="Numbered List &lt;ol&gt; Ctrl+O" id="wmd-olist-button" style="left: 200px;" class="wmd-button"><span style="background-position: -120px 0px;"></span></li><li title="Bulleted List &lt;ul&gt; Ctrl+U" id="wmd-ulist-button" style="left: 225px;" class="wmd-button"><span style="background-position: -140px 0px;"></span></li><li title="Heading &lt;h1&gt;/&lt;h2&gt; Ctrl+H" id="wmd-heading-button" style="left: 250px;" class="wmd-button"><span style="background-position: -160px 0px;"></span></li><li title="Horizontal Rule &lt;hr&gt; Ctrl+R" id="wmd-hr-button" style="left: 275px;" class="wmd-button"><span style="background-position: -180px 0px;"></span></li><li id="wmd-spacer3" class="wmd-spacer wmd-spacer3"></li><li title="Undo - Ctrl+Z" id="wmd-undo-button" style="left: 325px;" class="wmd-button"><span style="background-position: -200px -20px;"></span></li><li title="Redo - Ctrl+Y" id="wmd-redo-button" style="left: 350px;" class="wmd-button"><span style="background-position: -220px -20px;"></span></li><li title="Markdown Editing Help" style="right: 0px;" id="wmd-help-button" class="wmd-button wmd-help-button active-help"><span style="background-position: -240px 0px;"></span></li><div style="right: -8px; width: 668px; top: 25px;" id="mdhelp" class="mdhelp">
+    <ul id="mdhelp-tabs" class="mdhelp-tabs">
+        <li data-tab="mdhelp-links" data-buttons="link">Links</li>
+        <li data-tab="mdhelp-images" data-buttons="image">Images</li>
+        <li data-tab="mdhelp-styles" data-buttons="bold,italic,heading">Styling/Headers</li>
+        <li data-tab="mdhelp-lists" data-buttons="olist,ulist">Lists</li>
+        <li data-tab="mdhelp-blockquotes" data-buttons="quote">Blockquotes</li>
+        <li data-tab="mdhelp-code" data-buttons="code">Code</li>
+        <li data-tab="mdhelp-html">HTML</li>
+        <li style="float:right"><a href="http://stackoverflow.com/editing-help" target="_blank">advanced help »</a></li>
+    </ul>
+    
+    <div class="mdhelp-tab" id="mdhelp-links">
+            <p>
+                In most cases, a plain URL will be recognized as such and automatically linked:
+            </p>
+            <pre>Visit http://area51.stackexchange.com/ regularly!
+Use angle brackets to force linking: Have you seen &lt;http://superuser.com&gt;?
+</pre>
+            <p>
+                To create fancier links, use Markdown:
+            </p>
+                <pre>Here's [a link](http://www.example.com/)! And a reference-style link to [a panda][1].
+References don't have to be [numbers][question].
+
+ [1]: http://notfound.stackexchange.com/
+ [question]: http://english.stackexchange.com/questions/11481
+</pre>
+                <p>You can add tooltips to links:</p>
+<pre>Click [here](http://diy.stackexchange.com<span class="spaces">&nbsp;</span>"this text appears when you mouse over")!
+This works with [reference links][blog] as well.
+
+ [blog]: http://blog.stackoverflow.com/<span class="spaces">&nbsp;</span>"click here for updates"
+</pre>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-images">
+        <p>Images are exactly like links, but they have an exclamation point in front of them:</p>
+        <pre>![a busy cat](http://sstatic.net/stackoverflow/img/error-lolcat-problemz.jpg)
+![two muppets][1]
+
+ [1]: http://i.imgur.com/I5DFV.jpg "tooltip"
+</pre>
+        <p>
+            The word in square brackets is the alt text, which gets displayed if the browser
+            can't show the image. Be sure to include meaningful alt text for screen-reading
+            software.
+        </p>
+   
+    </div>
+    <div class="mdhelp-tab" id="mdhelp-styles">
+        <div class="col1">
+            <p>Be sure to use text styling sparingly; only where it helps readability.</p>
+                <pre>*This is italicized*, and so
+is _this_.
+
+**This is bold**, just like __this__.
+
+You can ***combine*** them
+if you ___really have to___.
+</pre>
+        
+        </div>
+        <div class="col2">
+            <p>
+                To break your text into sections, you can use headers:
+            </p>
+                <pre>A Large Header
+==============
+
+Smaller Subheader
+-----------------
+</pre>
+            <p>
+                Use hash marks if you need several levels of headers:</p>
+    <pre># Header 1 #
+## Header 2 ##
+### Header 3 ###
+</pre>
+
+            
+        </div>
+
+    </div>
+    <div class="mdhelp-tab" id="mdhelp-lists">
+        <p>Both bulleted and numbered lists are possible:</p>
+        <div class="col1">
+<pre>-<span class="spaces">&nbsp;</span>Use a minus sign for a bullet
++<span class="spaces">&nbsp;</span>Or plus sign
+*<span class="spaces">&nbsp;</span>Or an asterisk
+
+1.<span class="spaces">&nbsp;</span>Numbered lists are easy
+2.<span class="spaces">&nbsp;</span>Markdown keeps track of
+   the numbers for you
+7.<span class="spaces">&nbsp;</span>So this will be item 3.
+</pre>
+        </div>
+        <div class="col2">
+<pre>1.<span class="spaces">&nbsp;</span>Lists in a list item:
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Indented four spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*<span class="spaces">&nbsp;</span>indented eight spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Four spaces again.
+2.<span class="spaces">&nbsp;&nbsp;</span>You can have multiple
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>paragraphs in a list items.
+<span class="spaces">&nbsp;</span>
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Just be sure to indent.
+</pre>        
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-blockquotes">
+        <div class="col1">
+            <pre>&gt; Create a blockquote by
+&gt; prepending “&gt;” to each line.
+&gt;
+&gt; Other formatting also works here, e.g.
+&gt;
+&gt; 1. Lists or
+&gt; 2. Headings:
+&gt;
+&gt; ## Quoted Heading ##
+            </pre>
+        </div>
+        <div class="col2">
+                <p>
+                    You can even put blockquotes in blockquotes:
+                </p>
+                <pre>&gt; A standard blockquote is indented
+&gt; &gt; A nested blockquote is indented more
+&gt; &gt; &gt; &gt; You can nest to any depth.
+</pre>
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-code">
+        <p>
+            To create code blocks or other preformatted text, indent by four spaces:
+        </p>
+        <pre><span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>This will be displayed in a monospaced font. The first four spaces
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>will be stripped off, but all other whitespace will be preserved.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Markdown and HTML are turned off in code blocks:
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;i&gt;This is not italic&lt;/i&gt;, and [this is not a link](http://example.com)
+</pre>
+        <p>
+            To create not a block, but an inline code span, use backticks:
+        </p>
+        <pre>The `$` character is just a shortcut for `window.jQuery`.
+</pre>
+        <p>
+            If you want to have a preformatted block within a list, indent by eight spaces:
+        </p>
+        <pre>1. This is normal text.
+2. So is this, but now follows a code block:
+<span class="spaces">&nbsp;</span>
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Skip a line and indent eight spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>That's four spaces for the list
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>and four to trigger the code block.
+</pre>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-html">
+        <p>
+            If you need to do something that Markdown can't handle, use HTML. Note that
+            <a href="http://meta.stackoverflow.com/questions/1777/what-html-tags-are-allowed" target="_blank">we only support a very strict subset of HTML!</a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+        </p>
+        <pre>Strikethrough humor is &lt;strike&gt;funny&lt;/strike&gt;.
+</pre>
+        <p>
+            Markdown is smart enough not to mangle your span-level HTML:
+        </p>
+        <pre>&lt;b&gt;Markdown works *fine* in here.&lt;/b&gt;
+</pre>
+        <p>
+            Block-level HTML elements have a few restrictions:
+        </p>
+        <ol>
+            <li>They must be separated from surrounding text by blank lines.</li>
+            <li>The begin and end tags of the outermost block element must not be indented.</li>
+            <li>Markdown can't be used within HTML blocks.</li>
+        </ol>
+        <br>
+        <pre>&lt;pre&gt;
+    You can &lt;em&gt;not&lt;/em&gt; use Markdown in here.
+&lt;/pre&gt;
+</pre>
+    </div>
+
+    <div class="cbt"></div>
+</div></ul></div>
+            <div style="clear: both; height: 23px;"></div><textarea id="wmd-input" class="wmd-input processed" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        <div style="margin-right: 0px;" class="grippie"></div></div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" value="b7b1adb9c67ef6aa5deb1a348be5f5fd" type="hidden">
+        <input id="author" name="author" type="text">
+    </div>
+</div>
+        <div style="position: relative;"> 
+        </div>
+           
+            <div class="form-submit cbt">
+            <input id="submit-button" value="Post Your Answer" tabindex="110" type="submit">
+            <a href="#" class="discard-answer dno">discard</a>
+        </div>
+    </form>
+
+
+
+        <h2 class="bottom-notice">
+                Not the answer you're looking for? 
+            Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/ruby-on-rails" class="post-tag" title="show questions tagged 'ruby-on-rails'" rel="tag">ruby-on-rails</a> <a href="http://stackoverflow.com/questions/tagged/activerecord" class="post-tag" title="show questions tagged 'activerecord'" rel="tag">activerecord</a> 
+                or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.
+        </h2>
+</div>
+</div>
+<div id="sidebar" class="show-votes">
+
+
+
+     <script type="text/javascript">
+         window.showNewUser = false;
+
+     </script>
+    <div class="module newuser newuser-greeting" id="newuser-box" style="display:none;">
+        <h4>Hello World!</h4>
+        <div>
+            <p>This is a collaboratively edited question and answer site for <b>professional and enthusiast programmers</b>. It's 100% free, no registration required.</p>
+            <p class="ar">
+                    <a href="http://stackoverflow.com/about?mnu=1">about »</a>&nbsp;&nbsp;&nbsp;
+                <a href="http://stackoverflow.com/help?mnu=1">help »</a>
+            </p>
+        </div>
+    </div>
+     <script type="text/javascript">
+        if (showNewUser) {
+            document.getElementById('newuser-box').style.display = '';
+        }
+     </script>
+        <div class="module question-stats">
+        <p class="label-key">tagged</p>
+        <div class="tagged"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails" class="post-tag" title="show questions tagged 'ruby-on-rails'" rel="tag">ruby-on-rails</a>&nbsp;<span class="item-multiplier"><span class="item-multiplier-x">×</span>&nbsp;<span class="item-multiplier-count">119668</span></span><br>
+<a href="http://stackoverflow.com/questions/tagged/activerecord" class="post-tag" title="show questions tagged 'activerecord'" rel="tag">activerecord</a>&nbsp;<span class="item-multiplier"><span class="item-multiplier-x">×</span>&nbsp;<span class="item-multiplier-count">10890</span></span><br>
+</div>
+        <table id="qinfo">
+            <tbody><tr>
+                <td><p class="label-key">asked</p></td>
+                <td style="padding-left:10px"><p class="label-key" title="2011-10-30 22:55:06Z"><b>1 year ago</b></p></td>
+            </tr>
+            <tr>
+                <td><p class="label-key">viewed</p></td>
+
+                <td style="padding-left:10px">
+                    <p class="label-key">
+                        <b>1815 times</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td><p class="label-key">active</p></td>
+                <td style="padding-left:10px"><p class="label-key"><b><a href="http://stackoverflow.com/questions/7948501/case-insensitive-unique-index-in-rails-activerecord?lastactivity" class="lastactivity-link" title="2013-01-30 20:59:18Z">4 months ago</a></b></p></td>
+            </tr>
+        </tbody></table>
+    </div>
+        
+            <div class="everyonelovesstackoverflow" id="careers2">
+        </div>
+    <div id="hireme"> <a href="http://careers.stackoverflow.com/jobs?a=24" class="top" target="_blank"></a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span> <ul class="jobs"> <li> <a href="http://careers.stackoverflow.com/jobs/35334/business-intelligence-ja-und-bbf?a=FKlTG36" target="_blank" title="Business Intelligence - ja und? at BBF GmbH. Click to learn more."> Business Intelligence - ja und?<br> <span class="company">BBF GmbH</span> <span class="location">Munich, Germany</span> </a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span> </li> <li> <a href="http://careers.stackoverflow.com/jobs/35122/mobile-backend-developer-m-f-insparx?a=FuMNvNK" target="_blank" title="Mobile Backend Developer (m/f) at insparx GmbH. Click to learn more."> Mobile Backend Developer (m/f)<br> <span class="company">insparx GmbH</span> <span class="location">Munich, Germany / relocation</span> </a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span> </li> <li> <a href="http://careers.stackoverflow.com/jobs/35327/asp-net-php-javascript-ajax-webentwickler-bolta-werke?a=FJNOBQQ" target="_blank" title="ASP.NET, PHP, JavaScript, AJAX Webentwickler / Anwendungsentwickler (m/w) at Bolta Werke GmbH. Click to learn more."> ASP.NET, PHP, JavaScript, AJAX Webentwickler /…<br> <span class="company">Bolta Werke GmbH</span> <span class="location">Diepersdorf, Deutschland</span> </a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span> </li> <li> <a href="http://careers.stackoverflow.com/jobs/36268/c-sharp-net-full-stack-entwickler-m-w-brainloop-ag?a=GQJwqOI" target="_blank" title="C# .NET (Full Stack) Entwickler (m/w) at Brainloop AG. Click to learn more."> C# .NET (Full Stack) Entwickler (m/w)<br> <span class="company">Brainloop AG</span> <span class="location">München, Deutschland</span> </a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span> </li> <li> <a href="http://careers.stackoverflow.com/jobs/35210/java-entwickler-m-w-in-innovativem-ifta-ingenieurb%C3%BCro-f%C3%BCr?a=FBesIWA" target="_blank" title="Java Entwickler (m/w) in innovativem Ingenieursumfeld at IfTA Ingenieurbüro für Thermoakustik GmbH. Click to learn more."> Java Entwickler (m/w) in innovativem Ingenieursumfeld<br> <span class="company">IfTA Ingenieurbüro für…</span> <span class="location">Grobenzell, Germany / relocation</span> </a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span> </li> <li> <a href="http://careers.stackoverflow.com/jobs/35895/node-js-senior-architect-lead-developer-lusini-de?a=GppumxG" target="_blank" title="Node.js Senior Architect &amp; Lead Developer at Lusini.de. Click to learn more."> Node.js Senior Architect &amp; Lead Developer<br> <span class="company">Lusini.de</span> <span class="location">München, Deutschland</span> </a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span> </li> </ul> <img alt="" class="impression" src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/FuMNvNK-FJNOBQQ-GQJwqOI-FBesIWA-FKlTG36-GppumxG-24.gif" style="display:none"></div>
+
+
+
+      
+    
+    <div class="module sidebar-linked">
+        <h4 id="h-linked">Linked</h4>
+        <div class="linked" data-tracker="lq=1">
+            <div class="spacer">
+<a href="http://stackoverflow.com/q/2220423?lq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">49</div>
+</a>
+<a href="http://stackoverflow.com/questions/2220423/case-insensitive-search-in-rails-model?lq=1" class="question-hyperlink">Case-insensitive search in Rails model</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/3265190?lq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">2</div>
+</a>
+<a href="http://stackoverflow.com/questions/3265190/rails-postgres-functional-indexes?lq=1" class="question-hyperlink">Rails Postgres functional indexes</a>
+</div>
+
+        </div>
+    </div>
+    <div class="module sidebar-related">
+        <h4 id="h-related">Related</h4>
+        <div class="related" data-tracker="rq=1">
+            <div class="spacer">
+<a href="http://stackoverflow.com/q/724431?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">6</div>
+</a>
+<a href="http://stackoverflow.com/questions/724431/how-can-i-determine-if-my-activerecord-object-violates-a-unique-database-key-ind?rq=1" class="question-hyperlink">How can I determine if my ActiveRecord object violates a unique database key/index?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/3398101?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes default">8</div>
+</a>
+<a href="http://stackoverflow.com/questions/3398101/is-it-possible-to-add-a-function-based-database-agnostic-index-via-a-rails-activ?rq=1" class="question-hyperlink">Is it possible to add a function-based database-agnostic index via a Rails/ActiveRecord migration?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/3658859?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">31</div>
+</a>
+<a href="http://stackoverflow.com/questions/3658859/when-to-add-what-indexes-in-a-table-in-rails?rq=1" class="question-hyperlink">When to add what indexes in a table in Rails</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/4674962?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">2</div>
+</a>
+<a href="http://stackoverflow.com/questions/4674962/activerecord-default-indexes?rq=1" class="question-hyperlink">ActiveRecord default indexes</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/5667075?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">4</div>
+</a>
+<a href="http://stackoverflow.com/questions/5667075/creating-rails-activerecord-model-from-params-hash?rq=1" class="question-hyperlink">Creating Rails ActiveRecord model from params hash</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/7364164?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">1</div>
+</a>
+<a href="http://stackoverflow.com/questions/7364164/silencing-rails-schema-load?rq=1" class="question-hyperlink">Silencing Rails schema load</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/7713752?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">5</div>
+</a>
+<a href="http://stackoverflow.com/questions/7713752/how-to-instruct-rails-to-generate-the-correct-sql-on-uniqueness-validation-when?rq=1" class="question-hyperlink">How to instruct Rails to generate the correct SQL on uniqueness validation when case insensitive</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/10285750?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">2</div>
+</a>
+<a href="http://stackoverflow.com/questions/10285750/rails-activerecord-uniqueness-and-lookup-on-array-attribute?rq=1" class="question-hyperlink">Rails ActiveRecord - Uniqueness and Lookup on Array Attribute</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/10862290?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes default">0</div>
+</a>
+<a href="http://stackoverflow.com/questions/10862290/renaming-add-index-name-in-activerecord?rq=1" class="question-hyperlink">renaming add_index :name in ActiveRecord</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/q/11806004?rq=1" title="Vote score (upvotes - downvotes)">
+        <div class="answer-votes answered-accepted default">2</div>
+</a>
+<a href="http://stackoverflow.com/questions/11806004/rails-activerecord-db-sort-operation-case-insensitive?rq=1" class="question-hyperlink">Rails: ActiveRecord db sort operation case insensitive</a>
+</div>
+
+        </div>
+    </div>
+</div>
+
+<div id="feed-link">
+    <div id="feed-link-text"><a href="http://stackoverflow.com/feeds/question/7948501" title="feed of this question and its answers"><span class="feed-icon"></span>question feed</a></div>
+</div>
+<script type="text/javascript">
+StackExchange.ready(function(){$.get('/posts/7948501/ivc/6a37');});
+</script>
+<noscript>
+    <div><img src="/posts/7948501/ivc/6a37" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">default</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/about">about</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackexchange.com/?blb=1">blog</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+                        <a href="http://chat.stackoverflow.com/">chat</a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+                    <a href="http://data.stackexchange.com/">data</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+                    <a href="http://stackexchange.com/legal">legal</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+                    <a href="http://stackexchange.com/about/hiring">jobs</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+                    <a href="http://engine.adzerk.net/redirect/0/2776/2751/0/4de3c60f719c4dfcb1a57531c7050090/0">advertising info</a><span class="wrc0 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+
+                    <a onclick='StackExchange.switchMobile("on", "/questions/7948501/case-insensitive-unique-index-in-rails-activerecord")'>mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></b>
+                </div>
+                <div id="footer-sites">
+                <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="professional system and network administrators">Server Fault</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a><span class="wrc0 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems.">Unix &amp; Linux</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Answers</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://security.stackexchange.com/" title="IT security professionals">IT Security</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (13)
+                            </a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://stats.stackexchange.com/" title="statisticians, data analysts, data miners and data visualization experts">Cross Validated (stats)</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (7)
+                            </a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://meta.stackoverflow.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Overflow</a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2013 stack exchange inc; 
+                user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc-wiki</a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a><span class="wrc13 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+            </div>
+            <div id="footer-flair">
+                <a href="http://creativecommons.org/licenses/by-sa/3.0/" class="cc-wiki-link"></a><span class="wrc11 wrc_injected" style="padding-right: 16px; width: 16px; height: 16px;"></span>
+            </div>
+            <div id="svnrev">
+                rev 2013.6.22.757
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+    <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-5620270-1']);
+        _gaq.push(['_setCustomVar', 1, 'tags', '|ruby-on-rails|activerecord|']); 
+        _gaq.push(['_setCustomVar', 2, 'accountid', '2493768',2]); 
+_gaq.push(['_trackPageview']);
+    var _qevents = _qevents || [];
+    (function(){
+        var s=document.getElementsByTagName('script')[0];
+        var ga=document.createElement('script');
+        ga.type='text/javascript';
+        ga.async=true;
+        ga.src='http://www.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(ga,s);
+        var sc=document.createElement('script');
+        sc.type='text/javascript';
+        sc.async=true;
+        sc.src='http://edge.quantserve.com/quant.js'; 
+        s.parentNode.insertBefore(sc,s);
+    })();
+    </script>
+    <script type="text/javascript">
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>        
+    
+
+<div id="wrcHoverDiv"><div class="wrc_container wrc_header">
+	<div class="wrc_logo">WebRep</div>
+</div>
+<img class="hline" src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/line-dark-horizontal.png">
+<div class="wrc_title">Gesamtbewertung</div>
+<img class="hline" src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/line-dark-horizontal.png">
+<div id="wrc_bigscore"></div>
+<div id="wrc_txtrating" class="wrc_txtrating"></div>
+<div class="wrc_container">
+	<img id="wrccat_shopping" height="30" width="30">
+	<img id="wrccat_social" height="30" width="30">
+	<img id="wrccat_news" height="30" width="30">
+	<img id="wrccat_it" height="30" width="30">
+	<img id="wrccat_corporate" height="30" width="30">
+</div>
+<div class="wrc_container">
+	<img id="wrccat_pornography" height="30" width="30">
+	<img id="wrccat_violence" height="30" width="30">
+	<img id="wrccat_gambling" height="30" width="30">
+	<img id="wrccat_drugs" height="30" width="30">
+	<img id="wrccat_illegal" height="30" width="30">
+</div>
+<img class="hline" src="Stackoverflow%20-%20Casesensitive%20Database%20systems-Dateien/line-dark-horizontal.png">
+<div>&nbsp;</div></div></body></html>

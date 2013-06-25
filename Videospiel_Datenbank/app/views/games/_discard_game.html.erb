@@ -1,0 +1,5 @@
+<%= form_for(current_user.relationships.find_by_owned_id(@game),
+             html: { method: :delete },
+             remote: true) do |f| %>
+  <%= f.submit "Entfernen", class: "btn btn-large" %>
+<% end %>

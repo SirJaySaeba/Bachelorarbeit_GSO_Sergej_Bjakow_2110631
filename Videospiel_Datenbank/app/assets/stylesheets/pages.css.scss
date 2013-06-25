@@ -1,0 +1,150 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+@import "variables";
+/*-----------------Main container---------------------*/
+html {
+  overflow-y: scroll;
+}
+
+body{
+    /*background-image: image-url("bg-cube.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    border-style: none;*/
+   background: url("../assets/bg_vintage.jpg") repeat fixed 10% top #000000;
+}
+
+#background_1{
+  
+  //background: url("../assets/bghead.jpg") no-repeat fixed center top transparent;
+  //background-image: image-url("bg_vintage.jpg");
+  //background-repeat: repeat;
+  //background-position: top;
+  //background-color: rgba(230, 230, 230, 0.1);
+  //@include backgroundGradient;
+}
+
+.background_2{
+  background: url("../assets/gamehawk2.png") no-repeat scroll center top transparent;
+    margin: 0 auto;
+    min-width: 1000px;
+    position: relative;
+    width: 100%;
+    height: 400px;
+    top: -25px;
+  }
+
+.content{
+  background: $backgroundContainer;
+  margin: 0px auto;
+  padding: 20px;
+  width: 1000px;
+  border-radius: 0px 0px 5px 5px;
+  width: 920px;
+  position: relative;
+  top: -25px;
+  min-height: 150px;
+
+  .main-container{
+      border-right: 1px solid $borderDark;
+      padding: 5px 10px;
+  }
+  
+  /*----------------------Sidebar----------------*/
+  .sidebar{
+    padding: 5px 10px;
+    margin-left: 0px !important;
+    border-left: 1px solid white;
+    
+    .login_state{
+      color: #777777;
+      text-shadow: 0 1px 0 white;
+    }
+    .user_name{
+      color: #1155ff;
+      font-weight: bold;
+      text-shadow: 0 2px 2px white;
+    }
+    
+  }
+}
+
+/*------------- Header ------------------*/
+
+.navbar{
+  margin-bottom: 0px !important;
+  height: 50px;
+  background: rgba(200,40,10, 0);
+  .navbar-inner{
+    margin-bottom: 0px !important;
+    height: 21px;
+    position: relative;
+    top: 10px;
+    min-height: 0px !important;
+    .nav li a{padding: 0px 10px !important;}
+    .input-append{
+      margin-bottom: 0px !important;
+     
+      height: 21px !important;
+      .search_field{ 
+        height: $formHeight;
+        border-radius: 10px 0 0 10px;
+        font-size: 10px;
+      }
+      .btn{
+        padding-top: 0px; 
+        height: $formHeight;
+        border-radius: 0 10px 10px 0;
+      }
+    }
+  }
+
+}
+
+
+/*-------------------- Footer --------------------*/
+
+footer {
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #999;
+   a {
+    color: #555;
+    &:hover{
+      color: #f0f0f0;
+    }
+  } 
+
+}
+ 
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+  
+  li{
+    float: left;
+    margin-left: 10px;
+  }
+}
+
+/*----------------- Error Messages --------------*/
+#error_explanation {
+  color: #f00;
+  font-size: 14px;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}

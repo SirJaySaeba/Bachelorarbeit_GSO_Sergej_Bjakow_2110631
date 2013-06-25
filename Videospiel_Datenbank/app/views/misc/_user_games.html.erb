@@ -1,0 +1,13 @@
+<% @user ||= current_user %>
+
+<div class="stats">
+  <a href="<%= owned_games_user_path(@game) %>">   <!-- following_user_path-->
+    <strong>
+      <%= pluralize(@user.owned_games.count, "Spiel", "Spiele") %> im Besitz
+      
+    </strong>
+    
+  </a>
+</div>
+
+

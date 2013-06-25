@@ -1,0 +1,15 @@
+	<h3>Reviews</h3>
+
+	<% if user_signed_in? %>
+    	
+		<div class="user_review">
+	  		<%= link_to "Kritik verfassen", new_game_review_path(@game), class: "btn btn-large btn-primary" %>
+		</div>
+	<% end %>
+	
+	<% if @reviews.any? %>
+  		<ol class="reviews">
+    		<%= render partial: 'reviews/game_review', collection: @reviews %>
+  		</ol>
+  		<%= will_paginate @reviews %>
+	<% end %>

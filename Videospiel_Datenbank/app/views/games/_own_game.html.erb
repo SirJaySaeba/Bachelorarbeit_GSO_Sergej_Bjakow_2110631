@@ -1,0 +1,5 @@
+
+<%= form_for(current_user.relationships.build(owned_id: @game.id), remote: true) do |f| %>
+  <div><%= f.hidden_field :owned_id %></div>
+  <%= f.submit "Hinzufügen", class: "btn btn-large btn-primary" %>
+<% end %>

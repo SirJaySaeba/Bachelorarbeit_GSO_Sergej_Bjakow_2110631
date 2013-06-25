@@ -1,0 +1,540 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <title>Class and Instance Methods in Ruby // RailsTips by John Nunemaker</title> 
+  <link href="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/common.css" rel="stylesheet" type="text/css"> 
+  <link href="http://feeds.feedburner.com/railstips" rel="alternate" type="application/atom+xml" title="Railstips Articles"> 
+  <link href="http://feeds.feedburner.com/railsquicktips" rel="alternate" type="application/atom+xml" title="Rails Quick Tips (links)">
+<script src="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/mixpanel.js" async="" type="text/javascript"></script><script src="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/track.js" data-site-id="4d5f4992089bb618a2000005" id="gauges-tracker" async="" type="text/javascript"></script><script src="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/ga.js" async="" type="text/javascript"></script><style type="text/css"></style></head> 
+<body>
+
+<div id="wrapper"> 
+  <div id="header"> 
+    <h3><a href="http://www.railstips.org/">Rails<span>Tips</span></a></h3> 
+    <p>One man, lazily posting some of the things he learns. <img src="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/feed-icon-12x12-orange.gif" alt="Feed Icon" height="12" width="12"><a href="http://feeds.feedburner.com/railstips">subscribe »</a></p> 
+    <div id="nav">
+      <ul>
+        <li><a href="http://www.railstips.org/about/">About</a></li> 
+        <li><a href="http://www.railstips.org/smorgasbord/">Smorgasbord</a></li> 
+        <li><a href="https://github.com/jnunemaker">Projects</a></li> 
+      </ul>
+    </div>
+    <form action="http://www.google.com/cse" id="cse-search-box">
+      <div>
+        <input name="cx" value="partner-pub-8307547889068400:8239392529" type="hidden">
+        <input name="ie" value="UTF-8" type="hidden">
+        <input name="q" id="q" size="25" type="text">
+        <input name="sa" value="Go" type="submit">
+      </div>
+    </form>
+  </div>
+  
+  <div id="content">
+    <div id="primary">
+
+  <div class="post">
+    <div class="when"> 
+      <h3>May 11, 2009</h3> 
+      <p class="author">Posted by John</p>
+      <p class="tags">Tagged <a href="http://www.railstips.org/blog/labels/beginner/">beginner</a>, <a href="http://www.railstips.org/blog/labels/class/">class</a>, and <a href="http://www.railstips.org/blog/labels/methods/">methods</a></p>
+      
+      
+      <p class="pagination">
+        Older: <a href="http://www.railstips.org/blog/archives/2009/05/03/railsconf-2009/">RailsConf 2009</a><br><br>
+        Newer: <a href="http://www.railstips.org/blog/archives/2009/05/15/include-vs-extend-in-ruby/">Include vs Extend in Ruby</a>
+      </p>
+      
+      
+      <div id="influads_block" class="influads_block"> <a rel="nofollow" class="influads_link_img" href="http://engine.influads.com/click/51c752732adc8f9566005a81"><img class="influads_img" alt="" src="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/e06d43193040ad095655573532b00dbd.jpg"></a><div class="influads_text"><a rel="nofollow" class="influads_text_a" href="http://engine.influads.com/click/51c752732adc8f9566005a81">Free Web App Performance Monitoring and Shirt When You Try New Relic</a></div><div class="influads_powered_div"><a class="influads_powered_link" href="http://influads.com/">Powered by InfluAds</a></div></div>
+<script defer="defer" async="" type="text/javascript" src="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/acc_1050d773_pub"></script><script type="text/javascript">(function(){var acc='acc_1050d773_pub';var st='nocss';var or='130';var e=document.getElementsByTagName('script')[0];var d=document.createElement('script');d.src=('https:' == document.location.protocol ?'https://' : 'http://') +'engine.influads.com/show/'+or+'/'+st+'/'+acc;d.type='text/javascript';d.async=true;d.defer=true; e.parentNode.insertBefore(d,e);})();</script>
+    </div> 
+    <div class="title"> 
+      <h1>Class and Instance Methods in&nbsp;Ruby</h1> 
+    </div>
+    <div class="body"> 
+      <p>The other day I was explaining the difference between class and
+ instance methods to a friend and I realized that I should probably 
+write up a post. I figured since I’m on a plane headed back home, now 
+was as good of time as ever. If you want a little history, you can read 
+about the difference between <a href="http://railstips.org/2006/11/18/class-and-instance-variables-in-ruby">class and instance variables</a>.</p>
+<h2>One Line Summary</h2>
+<p>Class methods are methods that are called on a class and instance 
+methods are methods that are called on an instance of a class. Here is a
+ quick example and then we’ll go into a bit more detail.</p>
+<pre><code class="ruby"><span class="keywords">class</span> Foo
+  <span class="keywords">def</span> <span class="keywords">self</span>.bar
+    puts <span class="string">'class method'</span>
+  <span class="keywords">end</span>
+  
+  <span class="keywords">def</span> baz
+    puts <span class="string">'instance method'</span>
+  <span class="keywords">end</span>
+<span class="keywords">end</span>
+
+Foo.bar <span class="comment"># =&gt; "class method"</span>
+Foo.baz <span class="comment"># =&gt; NoMethodError: undefined method ‘baz’ for Foo:Class</span>
+
+Foo.new.baz <span class="comment"># =&gt; instance method</span>
+Foo.new.bar <span class="comment"># =&gt; NoMethodError: undefined method ‘bar’ for #&lt;Foo:0x1e820&gt;</span></code></pre>
+<p>See the difference? bar is a <strong>class method</strong>, so calling bar on the Foo class works fine. baz is an <strong>instance method</strong>, so calling baz on the Foo class raises a NoMethodError. Then, on the next couple lines, we call both methods on an <strong>instance</strong> of Foo (Foo.new).</p>
+<p>Now that we have a base, let’s show a few of the ways you can create 
+class and instance methods and examples of what they would be used for.</p>
+<h2>Class Methods</h2>
+<p>Ruby is very flexible and as such it allows several ways to define a 
+class method. The following is a sample of the most commonly used ways.</p>
+<pre><code class="ruby"><span class="comment"># Way 1</span>
+<span class="keywords">class</span> Foo
+  <span class="keywords">def</span> <span class="keywords">self</span>.bar
+    puts <span class="string">'class method'</span>
+  <span class="keywords">end</span>
+<span class="keywords">end</span>
+
+Foo.bar <span class="comment"># "class method"</span>
+
+<span class="comment"># Way 2</span>
+<span class="keywords">class</span> Foo
+  <span class="keywords">class</span> &lt;&lt; <span class="keywords">self</span>
+    <span class="keywords">def</span> bar
+      puts <span class="string">'class method'</span>
+    <span class="keywords">end</span>
+  <span class="keywords">end</span>
+<span class="keywords">end</span>
+
+Foo.bar <span class="comment"># "class method"</span>
+
+<span class="comment"># Way 3</span>
+<span class="keywords">class</span> Foo; <span class="keywords">end</span>
+<span class="keywords">def</span> Foo.bar
+  puts <span class="string">'class method'</span>
+<span class="keywords">end</span>
+
+Foo.bar <span class="comment"># "class method"</span></code></pre>
+<p>The first way is my preference. When I see self.method_name it is 
+immediately apparent to me that this is a class method. A lot of people 
+use way #2 and it is pretty heavily used in Rails.</p>
+<p>There is nothing wrong with it, but when you have a class with a lot of class methods in a <code>class &lt;&lt; self</code> block, it can be hard to tell if the method is a class or instance method because it is defined the same (<code>def bar</code>). If this doesn’t make sense, feel free to use it for a while and you’ll probably run into what I’m talking about.</p>
+<p>Way 3 is not that common as far as I have seen and is more often a 
+way to quickly add methods on the fly to a class. These are not the only
+ three ways to define class methods, but they seem to be the ones that I
+ see the most.</p>
+<p>So when would you use a class method? Class methods are for anything 
+that does not deal with an individual instance of a class. 
+ActiveRecord::Base#find is one example. If you look in 
+ActiveRecord::Base, you’ll see something like this:</p>
+<pre><code class="ruby"><span class="keywords">module</span> ActiveRecord
+  <span class="keywords">class</span> Base
+    <span class="comment"># some stuff</span>
+    <span class="keywords">class</span> &lt;&lt; <span class="keywords">self</span>
+      <span class="keywords">def</span> find<span class="brackets">(</span>...<span class="brackets">)</span>
+        <span class="comment"># blah</span>
+      <span class="keywords">end</span>
+    <span class="keywords">end</span>
+  <span class="keywords">end</span>
+<span class="keywords">end</span></code></pre>
+<p>Looks familiar, eh? Some other uses of class methods in Rails are 
+validations and associations in ActiveRecord and before/after/around 
+filters in ActionPack. The way this works is something like this 
+(simplified for clarity):</p>
+<pre><code class="ruby"><span class="keywords">module</span> ActiveRecord
+  <span class="keywords">class</span> Base
+    <span class="keywords">def</span> <span class="keywords">self</span>.validates_presence_of<span class="brackets">(</span>...<span class="brackets">)</span>
+      <span class="comment"># make sure present</span>
+    <span class="keywords">end</span>
+  <span class="keywords">end</span>
+<span class="keywords">end</span>
+
+<span class="keywords">class</span> Foo &lt; ActiveRecord::Base
+  validates_presence_of<span class="symbol"> :bar</span>
+<span class="keywords">end</span></code></pre>
+<p>When you say validates_presence_of, the class method in AR::Base is what gets called.</p>
+<h2>Instance Methods</h2>
+<p>Enough about class methods, lets move on. Instance methods are a bit 
+more simple. Here are a few common ways that instance methods are 
+defined.</p>
+<pre><code class="ruby"><span class="comment"># Way 1</span>
+<span class="keywords">class</span> Foo
+  <span class="keywords">def</span> baz
+    puts <span class="string">'instance method'</span>
+  <span class="keywords">end</span>
+<span class="keywords">end</span>
+
+Foo.new.baz <span class="comment"># "instance method"</span>
+
+<span class="comment"># Way 2</span>
+<span class="keywords">class</span> Foo
+  attr_accessor<span class="symbol"> :baz</span>
+<span class="keywords">end</span>
+
+foo = Foo.new
+foo.baz = <span class="string">'instance method'</span>
+puts foo.baz
+
+<span class="comment"># Way 3</span>
+<span class="keywords">class</span> Foo; <span class="keywords">end</span>
+
+foo = Foo.new
+<span class="keywords">def</span> foo.bar
+  puts <span class="string">'instance method'</span>
+<span class="keywords">end</span>
+
+Foo.new.baz <span class="comment"># "instance method"</span></code></pre>
+<p>The key difference is instance methods only work with an instance and
+ thus you have to create a new instance to use them (Foo.new). Again, 
+there are more ways to define instance methods than this, especially if 
+you look into meta programming.</p>
+<p>So what are some examples uses of instance methods in Rails, to give 
+you a better idea? Ever do a find in a destroy action and then call 
+destroy on the found instance? destroy is an instance method.</p>
+<pre><code class="ruby"><span class="keywords">class</span> FoosController &lt; ActionController
+  <span class="keywords">def</span> destroy
+    foo = Foo.find<span class="brackets">(</span>params<span class="symbol">[:id</span>]<span class="brackets">)</span>
+    foo.destroy
+    redirect_to foos_url
+  <span class="keywords">end</span>
+<span class="keywords">end</span></code></pre>
+<p>So are save and update_attributes, which you have definitely used before if you’ve done any Rails.</p>
+<pre><code class="ruby">foo = Foo.new<span class="brackets">(</span>:title =&gt; <span class="string">'Bar'</span><span class="brackets">)</span>
+foo.save <span class="comment"># is an instance method</span></code></pre>
+<h2>Conclusion</h2>
+<p>Class methods can only be called on classes and instance methods can 
+only be called on an instance of a class. It’s simple when you 
+understand it, but I remember being confused when I was learning Ruby. 
+Hope this helps. If I was unclear or incorrect at any point above, let 
+me know.</p>
+<p>The next article that I also wrote on the plane ride home from Railsconf is <a href="http://railstips.org/2009/5/15/include-verse-extend-in-ruby">Include verse Extend</a>, which builds on this article.</p>
+    </div> 
+  </div>
+  
+  <div class="commentsblock">
+    <h3 id="comments">1 Comment</h3>
+    
+    <ol class="comments" id="comments-list">
+      
+        <li class="comment omega odd" id="comment-4b421903dabe9d782b000184">
+          <div class="comment_author">
+            <img alt="Sjoerd Andringa" src="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/a95a07500a9a087e00f796151e9e7b2c.jpg">
+            <cite><a href="http://dev.innovationfactory.nl/">Sjoerd Andringa</a></cite>
+            <p class="date">
+              <a href="#comment-4b421903dabe9d782b000184" title="Link to this Comment">
+                May 20, 2009</a>
+            </p>
+          </div>
+        
+          <div class="comment_body">
+            <p>Very clear article, excellent those who are new to Ruby 
+or Object Oriented Programming in general. For anyone who’s interested 
+in metaprogramming with Ruby it might be interesting to know that under 
+Ruby’s hood class methods don’t really exist: they’re just instance 
+methods on the class’s metaclass (which is an instance too, of Class).</p>
+<pre><code class="ruby">
+<span class="keywords">class</span> Train
+  <span class="keywords">def</span> <span class="keywords">self</span>.metaclass
+    <span class="keywords">class</span> &amp;lt;&amp;lt; <span class="keywords">self</span>; <span class="keywords">self</span>; <span class="keywords">end</span>
+  <span class="keywords">end</span>
+
+  <span class="keywords">def</span> <span class="keywords">self</span>.depart
+    <span class="comment"># ...</span>
+  <span class="keywords">end</span>
+<span class="keywords">end</span>
+
+Train.metaclass.instance_methods.include? <span class="string">"depart"</span> <span class="comment"># =&amp;gt; true</span>
+</code></pre>
+          </div>
+        </li>
+      
+      
+      <!-- only if accepting comments when that works -->
+      <li id="comment-preview" class="comment"></li>
+    </ol>
+    
+    <div id="comment-form-wrapper">
+      
+        <p>Sorry, comments are closed for this article to ease the burden of pruning spam.</p>
+      
+    </div>
+    
+  </div>
+    </div> 
+    <div id="secondary"> 
+      <div class="section"> 
+        <h3>About</h3> 
+        <p>Authored by John Nunemaker (Noo-neh-maker), a web developer and programmer who has fallen deeply in love with Ruby. <a href="http://www.railstips.org/about/">More about John.</a></p> 
+      </div>
+ 
+      <div class="section">
+        
+      </div>
+      
+      <div class="section"> 
+        <h3>Syndication</h3> 
+        <p> 
+          <img src="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/feed-icon-12x12-orange.gif" alt="Feed Icon" class="feed_icon" height="12" width="12"><a href="http://feeds.feedburner.com/railstips">RailsTips Articles</a> - An assortment of howto's and thoughts on Ruby and Rails.
+        </p> 
+        <p> 
+          <img src="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/feed-icon-12x12-orange.gif" alt="Feed Icon" class="feed_icon" height="12" width="12"><a href="http://feeds.feedburner.com/railsquicktips">Rails Quick Tips</a> - Ruby and Rails related links.
+        </p> 
+      </div>
+    </div> 
+  </div> 
+  
+  <div id="more"> 
+    <ul id="archive_bar_graph">
+      
+      
+        <li>
+          <span class="label">Apr</span>
+          <a href="http://www.railstips.org/blog/archives/2013/04/" title="Archives for April 2013">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Jan</span>
+          <a href="http://www.railstips.org/blog/archives/2013/01/" title="Archives for January 2013">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Oct</span>
+          <a href="http://www.railstips.org/blog/archives/2012/10/" title="Archives for October 2012">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Jul</span>
+          <a href="http://www.railstips.org/blog/archives/2012/07/" title="Archives for July 2012">
+            <span class="count" style="height:20px;">2</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Mar</span>
+          <a href="http://www.railstips.org/blog/archives/2012/03/" title="Archives for March 2012">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Feb</span>
+          <a href="http://www.railstips.org/blog/archives/2012/02/" title="Archives for February 2012">
+            <span class="count" style="height:20px;">2</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Jan</span>
+          <a href="http://www.railstips.org/blog/archives/2012/01/" title="Archives for January 2012">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Dec</span>
+          <a href="http://www.railstips.org/blog/archives/2011/12/" title="Archives for December 2011">
+            <span class="count" style="height:20px;">2</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Aug</span>
+          <a href="http://www.railstips.org/blog/archives/2011/08/" title="Archives for August 2011">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Jul</span>
+          <a href="http://www.railstips.org/blog/archives/2011/07/" title="Archives for July 2011">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Jun</span>
+          <a href="http://www.railstips.org/blog/archives/2011/06/" title="Archives for June 2011">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">May</span>
+          <a href="http://www.railstips.org/blog/archives/2011/05/" title="Archives for May 2011">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Mar</span>
+          <a href="http://www.railstips.org/blog/archives/2011/03/" title="Archives for March 2011">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Feb</span>
+          <a href="http://www.railstips.org/blog/archives/2011/02/" title="Archives for February 2011">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Jan</span>
+          <a href="http://www.railstips.org/blog/archives/2011/01/" title="Archives for January 2011">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Dec</span>
+          <a href="http://www.railstips.org/blog/archives/2010/12/" title="Archives for December 2010">
+            <span class="count" style="height:40px;">4</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Oct</span>
+          <a href="http://www.railstips.org/blog/archives/2010/10/" title="Archives for October 2010">
+            <span class="count" style="height:20px;">2</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Aug</span>
+          <a href="http://www.railstips.org/blog/archives/2010/08/" title="Archives for August 2010">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Jul</span>
+          <a href="http://www.railstips.org/blog/archives/2010/07/" title="Archives for July 2010">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">May</span>
+          <a href="http://www.railstips.org/blog/archives/2010/05/" title="Archives for May 2010">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Mar</span>
+          <a href="http://www.railstips.org/blog/archives/2010/03/" title="Archives for March 2010">
+            <span class="count" style="height:20px;">2</span>
+          </a>
+        </li>
+      
+        <li>
+          <span class="label">Jan</span>
+          <a href="http://www.railstips.org/blog/archives/2010/01/" title="Archives for January 2010">
+            <span class="count" style="height:10px;">1</span>
+          </a>
+        </li>
+      
+    </ul>
+    
+    <div class="cell" id="more_site_links"> 
+      <div class="section"> 
+        <h3 class="column_heading">Site Links</h3> 
+        <ul> 
+         <li><a href="http://www.railstips.org/">RailsTips Home</a></li> 
+         <li><a href="http://www.railstips.org/about/">The Sexy Author</a></li> 
+         <li><a href="http://www.railstips.org/smorgasbord/">Visit the Archives</a></li> 
+         <li><a href="http://twitter.com/#%21/railstipscom">Follow RT on Twitter</a></li> 
+         <li><img src="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/feed-icon-12x12-orange.gif" alt="Feed Icon" class="feed_icon" height="12" width="12"><a href="http://feeds.feedburner.com/railstips/">Articles Feed</a></li> 
+         <li><img src="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/feed-icon-12x12-orange.gif" alt="Feed Icon" class="feed_icon" height="12" width="12"><a href="http://feeds.feedburner.com/railsquicktips/">Quick Tips Feed</a></li> 
+        </ul> 
+      </div> 
+    </div> 
+    
+    <div class="row"> 
+      <div class="cell links"> 
+        <h3 class="column_heading">Recent <small><a href="http://www.railstips.org/smorgasbord/" title="view all articles">view the smörgåsbord</a></small></h3> 
+        <ul> 
+          
+          
+            <li><a href="http://www.railstips.org/blog/archives/2013/04/18/let-nunes-do-it/">Let Nunes Do It</a></li>
+          
+            <li><a href="http://www.railstips.org/blog/archives/2013/01/23/an-instrumented-library-in-30-lines/">An Instrumented Library in ~30 Lines</a></li>
+          
+            <li><a href="http://www.railstips.org/blog/archives/2012/10/10/booleans-are-baaaaaaaaaad/">Booleans are Baaaaaaaaaad</a></li>
+          
+            <li><a href="http://www.railstips.org/blog/archives/2012/07/05/four-guidelines-that-i-feel-have-improved-my-code/">Four Guidelines That I Feel Have Improved My Code</a></li>
+          
+            <li><a href="http://www.railstips.org/blog/archives/2012/03/05/misleading-title-about-queueing/">Misleading Title About Queueing</a></li>
+          
+            <li><a href="http://www.railstips.org/blog/archives/2012/02/06/more-tiny-classes/">More Tiny Classes</a></li>
+          
+        </ul> 
+      </div> 
+ 
+      <div class="cell links omega"> 
+        <h3>Quick Links <small><a href="http://feeds.feedburner.com/railsquicktips/">subscribe to feed</a></small></h3> 
+        
+        
+          <ul id="more_quick_links">
+          
+            <li><a href="http://labs.spotify.com/2013/02/25/in-praise-of-boring-technology/">In praise of “boring” technology | Spotify Labs</a></li>
+          
+            <li><a href="http://www.informationweek.com/news/development/architecture-design/231000038">In Praise Of Small Code - Development - Architecture &amp; Design - Informationweek</a></li>
+          
+            <li><a href="https://github.com/stripe/einhorn">stripe/einhorn</a></li>
+          
+            <li><a href="http://ablogaboutcode.com/2012/05/03/benchmark-your-bundle/">Benchmark Your Bundle</a></li>
+          
+            <li><a href="http://practicingruby.com/articles/shared/ozkzbsdmagcm">Issue 2.7: "Unobtrusive Ruby" in Practice - Practicing Ruby</a></li>
+          
+            <li><a href="https://github.com/jbarnette/watchable">jbarnette/watchable</a></li>
+          
+          </ul>
+        
+      </div>
+    </div> 
+  </div> 
+  
+  <div id="footer"> 
+    Copyright © 2008 - 2013 John Nunemaker
+  </div> 
+</div> 
+
+
+<script type="text/javascript" src="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/jquery.js"></script> 
+<!--script type="text/javascript" src="http://engine.rubyrow.net/Server/RUBY/RAILSTIPS/NOCSS"></script-->
+<script src="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/code_highlighter.js" type="text/javascript"></script> 
+<script src="railstips%20-%20Klassen-%20und%20Instanzmethoden-Dateien/application.js" type="text/javascript"></script>
+<!-- GOOGLE ANALYTICS -->
+<script type="text/javascript"> 
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-85301-7']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+  })();
+</script>
+
+<script type="text/javascript">
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '4d5f4992089bb618a2000005');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+<!-- start Mixpanel --><script type="text/javascript">(function(d,c){var a,b,g,e;a=d.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===d.location.protocol?"https:":"http:")+'//api.mixpanel.com/site_media/js/api/mixpanel.2.js';b=d.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);c._i=[];c.init=function(a,d,f){var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";g="disable track track_pageview track_links track_forms register register_once unregister identify name_tag set_config".split(" ");
+for(e=0;e<g.length;e++)(function(a){b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,0)))}})(g[e]);c._i.push([a,d,f])};window.mixpanel=c})(document,[]);
+mixpanel.init("7f466970104b81d85aacd4adacce630e");</script><!-- end Mixpanel -->
+
+ 
+</body></html>

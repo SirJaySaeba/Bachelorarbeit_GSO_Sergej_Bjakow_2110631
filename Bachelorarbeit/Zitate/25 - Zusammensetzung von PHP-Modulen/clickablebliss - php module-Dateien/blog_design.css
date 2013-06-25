@@ -1,0 +1,212 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	background-color: #0072BC;
+	background-image: url(http://blog.clickablebliss.com/wp-content/themes/sandbox/images/blog_pattern.png);
+	background-repeat: repeat;
+	font-size: 11pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+#innerbody
+{
+	background-image: url(http://blog.clickablebliss.com/wp-content/themes/sandbox/images/blog_pattern_fade.png);
+	background-repeat: repeat-x;	
+}
+
+#container
+{
+	margin: 0 50px;
+	padding: 0;
+	background-color: #fff;
+	min-width: 600px;
+	position: relative;
+}
+
+#header
+{
+	background-color: #1B1B1B;
+	background-image: url(http://blog.clickablebliss.com/wp-content/themes/sandbox/images/black_fade.png);
+	background-repeat: repeat-x;
+	position: relative;
+}
+
+#nav
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 10px 10px 0 0;
+}
+
+#nav ul,
+#footer ul
+{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#nav ul li,
+#footer ul li
+{
+	margin: 0;
+	padding: 0;
+	display: inline;
+}
+
+#nav ul li
+{
+	color: #fff;
+}
+
+#footer ul li
+{
+	color: #000;
+}
+
+#nav ul li a
+{
+	color: #fff;
+	text-decoration: none;
+}
+
+#nav ul li a:focus,
+#nav ul li a:hover
+{
+	text-decoration: underline;
+}
+
+#content
+{
+	margin: 2em 350px 0 2em;
+}
+
+#content p,
+#content li { line-height: 17pt; }
+
+#sidebar
+{
+	width: 290px;
+	position: absolute;
+	top: 143px;
+	right: 0;
+	font-size: 10pt;
+	margin: 1em 1em 0 0;
+	line-height: normal;
+}
+
+#about img
+{
+    float: left;
+    padding: 0 10px 0 0;
+}
+
+#footer
+{
+	background-color: #eee;
+	padding: .5em 1em;
+}
+
+img { border: 0; }
+
+.nav-next { text-align: right; }
+
+#comments ol.commentlist
+{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#comments li.comment
+{
+	margin: 1em 0;
+	padding: .5em 1em;
+	border-color: #0072BC;
+	border-width: 0 0 0 3px;
+	border-style: solid;
+	background-color: #E2ECF7;
+}
+
+#comments .comment-author-icon
+{
+    width: 65px;
+    float:left;
+}
+
+form.add_comment_form
+{
+	background-color: #eee;
+	border-color: #ccc;
+	border-width: 1px 0;
+	border-style: solid;
+	padding: .5em 1em;
+	margin-bottom: 1em;
+}
+
+form.add_comment_form table
+{
+	color: #666;
+	margin: .5em 0 1em 0;
+}
+
+form.add_comment_form table td { padding: 0 15px 0 0; }
+
+form.add_comment_form label
+{
+	font-weight: bold;
+	color: #000;
+}
+
+form.add_comment_form textarea
+{
+	width: 100%;
+}
+
+/* Hide all HRs, they are only meant for print, or non CSS browsers */
+hr { display: none; }
+
+.wp_syntax {
+  color: #100;
+  background-color: #f9f9f9;
+  border: 1px solid silver;
+  margin: 0 0 1.5em 0;
+  overflow: auto;
+}
+
+/* IE FIX */
+.wp_syntax {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: expression(this.scrollWidth > this.offsetWidth ? 15 : 0);
+  width: 100%;
+}
+
+.wp_syntax table {
+  border-collapse: collapse;
+}
+
+.wp_syntax div, .wp_syntax td {
+  vertical-align: top;
+  padding: 2px 4px;
+}
+
+.wp_syntax .line_numbers {
+  text-align: right;
+  background-color: #def;
+  color: gray;
+  overflow: visible;
+}
+
+/* potential overrides for other styles */
+.wp_syntax pre {
+  margin: 0;
+  width: auto;
+  float: none;
+  clear: none;
+  overflow: visible;
+  font-size: 12px;
+  line-height: 1.333;
+}

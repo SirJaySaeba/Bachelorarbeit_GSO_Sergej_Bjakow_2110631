@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>GameHawks | <%= yield(:title) %></title>  
+	  <%= stylesheet_link_tag    "application", :media => "all" %>
+	  <%= javascript_include_tag "application" %>
+	  <%= csrf_meta_tags %>
+	  <!--%= yield :script %-->
+	</head>
+	
+	<body>
+	
+		<%= render "layouts/header"%>
+		<div id="background_1">
+			<div class="background_2"></div>
+				
+		    <div class="content">
+			    <div class="row-fluid">
+					  <% flash.each do |key, value| %>
+				        <div class="alert alert-<%= key %>"><%= value %></div>
+				      <% end %>
+				      
+				      <div class="span10 main-container">
+				      	<%= yield %>
+				      	
+				      </div>
+				      
+				      <div class="span2 sidebar"> 
+				      	<%= render "layouts/sidebar_user"%> 
+				      	<%= yield(:sidebar)%>
+				      </div>
+			      </div>
+		    </div>
+		    
+		    
+	  </div>
+	<%= render 'layouts/footer' %>
+	</body>
+</html>

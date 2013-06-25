@@ -1,0 +1,530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+	<title>Clickable Bliss Blog » PHP vs Ruby on Rails, Part 1</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="generator" content="WordPress 2.8.4"><!-- LEAVE FOR STATS -->
+	<meta name="description" content="Cocoa, Rails and User Interface commentary.">
+	<link rel="alternate" type="application/rss+xml" href="http://blog.clickablebliss.com/feed/" title="Clickable Bliss Blog RSS 2.0 Feed">
+	<link rel="alternate" type="application/rss+xml" href="http://blog.clickablebliss.com/comments/feed/" title="Clickable Bliss Blog Comments RSS 2.0 Feed">
+	<link rel="pingback" href="http://blog.clickablebliss.com/xmlrpc.php">
+	<link rel="start" href="http://blog.clickablebliss.com/" title="Clickable Bliss Blog">
+	<link rel="stylesheet" type="text/css" media="all" href="clickablebliss%20-%20php%20module-Dateien/blog_design.css" title="Sandbox">
+<link rel="alternate" type="application/rss+xml" title="Clickable Bliss Blog » PHP vs Ruby on Rails, Part 1 Comments Feed" href="http://blog.clickablebliss.com/2005/12/24/php-vs-ruby-on-rails-part-1/feed/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.clickablebliss.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.clickablebliss.com/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="Clickable Bliss Blog" href="http://blog.clickablebliss.com/">
+<link rel="start" title="Why run a company blog?" href="http://blog.clickablebliss.com/2005/12/09/why-run-a-company-blog/">
+<link rel="prev" title="Rails performance and caching, part two" href="http://blog.clickablebliss.com/2005/12/19/rails-performance-and-caching-part-two/">
+<link rel="next" title="PHP vs Ruby on Rails, Part 2" href="http://blog.clickablebliss.com/2005/12/26/php-vs-ruby-on-rails-part-2/">
+<meta name="generator" content="WordPress 2.8.4">
+
+<link rel="stylesheet" href="clickablebliss%20-%20php%20module-Dateien/wp-syntax.css" type="text/css" media="screen">
+
+<!-- this make my mint listing more useful by stripping out the repatitive page title. -->
+<script type="text/javascript" language="JavaScript">
+// <![CDATA[
+var Mint_SI_DocumentTitle = ' &raquo; PHP vs Ruby on Rails, Part 1';
+// ]]>
+</script>
+<script src="clickablebliss%20-%20php%20module-Dateien/a_002" type="text/javascript"></script><script src="clickablebliss%20-%20php%20module-Dateien/a" type="text/javascript"></script>
+
+</head>
+
+<body>
+<div id="innerbody">
+<div id="container">
+
+<div id="header">
+	
+	<div id="branding">
+	<a href="http://blog.clickablebliss.com/"><img src="clickablebliss%20-%20php%20module-Dateien/blog_logo.png" alt="Clickable Bliss Blog" height="143" width="407"></a>
+	</div><!-- end branding -->
+	
+
+	<div id="nav">
+	<ul>
+	<li><a href="http://clickablebliss.com/">Home</a> • </li>
+	<li><a href="http://clickablebliss.com/twizshow">TwizShow</a> • </li>
+	<li><a href="http://blog.clickablebliss.com/">Blog</a> • </li>
+	<li><a href="http://clickablebliss.com/about">About</a> • </li>
+	<li><a href="http://clickablebliss.com/contact">Contact</a></li>
+	</ul>
+	</div> <!-- end nav -->
+
+<hr>
+</div> <!-- end header -->
+
+
+<div id="content">
+
+
+<div id="nav-above" class="navigation">
+<div class="nav-previous">« <a href="http://blog.clickablebliss.com/2005/12/19/rails-performance-and-caching-part-two/">Rails performance and caching, part two</a></div>
+<div class="nav-next"><a href="http://blog.clickablebliss.com/2005/12/26/php-vs-ruby-on-rails-part-2/">PHP vs Ruby on Rails, Part 2</a> »</div>
+</div>
+
+<h2>PHP vs Ruby on Rails, Part 1</h2>
+
+<p>Over the last few weeks, I’ve been asked by both friends and clients, “So what is that thing called <a href="http://www.rubyonrails.org/">Rails</a> I keep hearing about (and/or keep hearing you talk about)? How is it different from <a href="http://www.php.net/">PHP</a>?”
+ Typically I give them a three-part answer that’ll I’ll now iterate for 
+the blog. While this is far from a complete comparison, hopefully it 
+will be useful to some people out there.
+The first thing to keep in mind when trying to form a comparison between
+ PHP and Rails, is that <strong>PHP is just a language</strong>. It’s a 
+scripting language that has a lot of useful functions that make adding 
+dynamic content to web pages easier than its predecessors. What PHP is 
+not (and what Rails, in fact, is) is a framework. In software terms, 
+frameworks are generally tools and pre-built objects that help you 
+create a solution faster by not reinventing the wheel.</p>
+
+<p>More specifically, Rails is a full-stack framework. Full-stack 
+basically means that when you decide to use Rails it will provide 
+practically all of the tools necessary all by itself. While you are 
+welcome to use other tools for sections of Rails’ functionality, most 
+current Rails developers are not (and for obvious reasons described 
+below).</p>
+
+<p>So PHP is just a language. When you choose to use PHP to build a 
+significant web application what you’ll want to do is look for tools and
+ pre-built objects that are written in PHP. Some are packaged together 
+in frameworks. Other times you’ll assemble them ala cart (a database 
+abstraction layer here, a template system there). Sometimes building 
+systems this way makes a lot of sense, but other times the overhead of 
+divided tools makes for more work than it might be worth.</p>
+
+<p>In Rails, they follow a mantra of “Convention Over Configuration.” 
+With this in mind, Rails will follow industry conventions to make your 
+job easier whenever possible. One example where you can see this in 
+action is with page templates.</p>
+
+<p>In Rails, if you have, for example, a <code>BlogController</code> and it has a method called <code>list</code>, Rails will automatically use the <code>list.rhtml</code> file inside of a folder called <code>blog</code> in your <code>views</code>
+ folder. Not only that, but Rails will automatically pass on any 
+instance variables you were using in the controller so that the view has
+ access to them.</p>
+
+<p>Now, when I am doing something similar in my own PHP apps, I have to 
+manually instantiate the template object, manually pass references to 
+any variables I know the view will be interested in and then manually 
+tell it what template file to use. While all that manual code is pretty 
+simple and easy to write, on even medium-sized apps it starts to take a 
+toll on the leaness of the codebase.</p>
+
+<p>This is one of the many reasons I like Rails. It will follow obvious 
+conventions when possible but allow you to override the convention with a
+ specific command; in this case to use a template file other than <code>list.rhtml</code> if needed.</p>
+
+<p>Conclusion for part 1: PHP is just a language. Rails is a full-stack 
+framework. PHP has lots of useful tools; they just don’t gel as well and
+ usually require more configuration.</p>
+
+<p>Part 2 will be posted soon. In it, we’ll look into the Ruby language and how it differs from PHP.</p>
+
+<p><strong>Update:</strong>: <a href="http://clickablebliss.com/blog/2005/12/26/php_vs_ruby_on_rails_part_2/">Part 2</a> is now online!</p>
+
+<p>Posted on: <abbr class="published" title="2005-12-24T12:36:00-0500">December 24, 2005 – 12:36 PM</abbr></p>
+
+<div id="comments">
+
+
+
+
+
+	<h3 class="comment-header" id="numcomments">25 Comments</h3>
+	<ol id="comments" class="commentlist">
+		<li id="comment-5" class="comment c0 c-y2006 c-m06 c-d24 c-h11 alt">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/78beecafe6b64c01f7eebca29d1e9a18.png" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong><a href="http://webdevchron.blogspot.com/" rel="external nofollow" class="url">Deepak Bansal</a> wrote:</strong></div>
+						
+			<p>Here is my take on the subject, why I think PHP may win out despite rails superiority,  <a href="http://webdevchron.blogspot.com/"> webdevchron.blogspot.com </a></p>
+		</li>
+
+		<li id="comment-6" class="comment c1 c-y2006 c-m09 c-d03 c-h08">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/ad516503a11cd5ca435acc9bb6523536.png" class="avatar avatar-48 photo avatar-default" height="48" width="48"></div>
+			<div class="comment-author"><strong>Anonymous wrote:</strong></div>
+						
+			<p>is this in ruby?</p>
+		</li>
+
+		<li id="comment-7" class="comment c2 c-y2006 c-m09 c-d03 c-h03 alt">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/ad516503a11cd5ca435acc9bb6523536.png" class="avatar avatar-48 photo avatar-default" height="48" width="48"></div>
+			<div class="comment-author"><strong><a href="http://clickablebliss.com/contact" rel="external nofollow" class="url">Mike Zornek</a> wrote:</strong></div>
+						
+			<p>Yes, this whole site is in done Ruby, more specifically Rails.</p>
+		</li>
+
+		<li id="comment-8" class="comment c3 c-y2006 c-m09 c-d18 c-h04">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/96aa31968cc6933e8029425b90b1825b.png" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong>Deepak wrote:</strong></div>
+						
+			<p>Wonderful article distinguishing PHP and Ruby. Its really gud. 
+What about image-processing in ruby? Like we have GD in php! Is there 
+any ruby specific libraray available? Please comment!!!</p>
+		</li>
+
+		<li id="comment-9" class="comment c4 c-y2006 c-m09 c-d18 c-h07 alt">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/ad516503a11cd5ca435acc9bb6523536.png" class="avatar avatar-48 photo avatar-default" height="48" width="48"></div>
+			<div class="comment-author"><strong><a href="http://clickablebliss.com/contact" rel="external nofollow" class="url">Mike Zornek</a> wrote:</strong></div>
+						
+			<p>To Deepak: A popular soultion to image processing is <a href="http://rubyforge.org/projects/rmagick/">rmagick</a>:</p>
+
+<blockquote>
+  <p>An interface to the ImageMagick (www.imagemagick.org) and 
+GraphicsMagick (www.graphicsmagick.org) image processing libraries. 
+Supports more than 90 image formats, including GIF, JPEG, PNG. Includes 
+RVG, a 2D drawing API. Comprehensive HTML documentation.</p>
+</blockquote>
+		</li>
+
+		<li id="comment-10" class="comment c5 c-y2006 c-m09 c-d19 c-h04">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/96aa31968cc6933e8029425b90b1825b.png" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong>Deepak wrote:</strong></div>
+						
+			<p>To Mike Zornek : hi Mike, I have seen the link you supplied for 
+imagemagik. its reallty wonderfull if i have imagemagick or rmagick 
+integtated with ruby as it offers almost all effects which photoshop 
+offers. thanks and regards, deepak</p>
+		</li>
+
+		<li id="comment-11" class="comment c6 c-y2006 c-m09 c-d20 c-h07 alt">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/96aa31968cc6933e8029425b90b1825b.png" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong>Deepak wrote:</strong></div>
+						
+			<p>Hi Mike!</p>
+
+<p>I have just installed ruby on rails on my computer sucessfuly! But em
+ bit comfused where and how to start building web applications. Actually
+ i followed one good tutorial on configuring ruby and its wotking here. I
+ have installed few webpages written Ruby and they are also working. 
+Add/insert/update is all working fine. But the only problem is em unable
+ to locate the files which produces this webpges. Em a PHP developer and
+ using Ruby for first time and also very much interested in learning and
+ working in ruby. Also suggest me if there are good books on Ruby. 
+Please help. Your prompt reply shall be highly appericiable. Once again 
+thanks and regards, Deepak</p>
+		</li>
+
+		<li id="comment-12" class="comment c7 c-y2006 c-m09 c-d20 c-h01">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/ad516503a11cd5ca435acc9bb6523536.png" class="avatar avatar-48 photo avatar-default" height="48" width="48"></div>
+			<div class="comment-author"><strong><a href="http://clickablebliss.com/contact" rel="external nofollow" class="url">Mike Zornek</a> wrote:</strong></div>
+						
+			<p>The book I like to recommend is <a href="http://www.pragmaticprogrammer.com/titles/rails/index.html">Agile Web Development with Rails</a>.
+ I buy the PDF+Print combos from those guys and love it. The print is 
+great for reading through the whole book from the couch and then the PDF
+ comes in handy for reference.</p>
+
+<p>Best of luck getting started with Rails.</p>
+		</li>
+
+		<li id="comment-13" class="comment c8 c-y2006 c-m09 c-d20 c-h11 alt">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/96aa31968cc6933e8029425b90b1825b.png" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong>Deepak wrote:</strong></div>
+						
+			<p>Hi mike!!!</p>
+
+<p>thanks for the prompt reply and ur suggestions. Could you please do 
+one more favor?? I mean please send me the the PDF version of the same 
+book if possible or otherwise i will have to purchase online. </p>
+
+<p>Thanks and regards, 
+Deepak</p>
+		</li>
+
+		<li id="comment-14" class="comment c9 c-y2006 c-m09 c-d27 c-h11">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/ad516503a11cd5ca435acc9bb6523536.png" class="avatar avatar-48 photo avatar-default" height="48" width="48"></div>
+			<div class="comment-author"><strong>Bunti wrote:</strong></div>
+						
+			<p>Hahaha. You’re kidding right. He’s not gonna give you the ebook. however if you goto <a href="http://www.ebooksportal.org/" rel="nofollow">http://www.ebooksportal.org</a> you’ll find it there and a lot more too.</p>
+		</li>
+
+		<li id="comment-15" class="comment c10 c-y2006 c-m11 c-d01 c-h06 alt">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/ad516503a11cd5ca435acc9bb6523536.png" class="avatar avatar-48 photo avatar-default" height="48" width="48"></div>
+			<div class="comment-author"><strong>Deepak wrote:</strong></div>
+						
+			<p>Hello, em just about to purchase the books online. But i was 
+expecting a short reply from you mike. anyways bro. i have lots of books
+ on php, please command me if u need any of them and i will forward you 
+just like anything. Take care bro. 
+Bye Bye ANGREZZ</p>
+		</li>
+
+		<li id="comment-16" class="comment c11 c-y2006 c-m11 c-d01 c-h01">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/ad516503a11cd5ca435acc9bb6523536.png" class="avatar avatar-48 photo avatar-default" height="48" width="48"></div>
+			<div class="comment-author"><strong><a href="http://clickablebliss.com/contact" rel="external nofollow" class="url">Mike Zornek</a> wrote:</strong></div>
+						
+			<p>Yeah, sorry. No I’m not going to post my PDF you’ll have to buy your own.</p>
+		</li>
+
+		<li id="comment-17" class="comment c12 c-y2006 c-m11 c-d27 c-h04 alt">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/ad516503a11cd5ca435acc9bb6523536.png" class="avatar avatar-48 photo avatar-default" height="48" width="48"></div>
+			<div class="comment-author"><strong>Deepak wrote:</strong></div>
+						
+			<p>Hello!!</p>
+
+<p>Thanks for replying. and i would like to tell you that i have got the
+ same ebook on RoR and its really fantastic. I would like to say thank 
+to you. Thanks for the great suggesstions and all that. 
+Take care and b bye</p>
+		</li>
+
+		<li id="comment-18" class="comment c13 c-y2007 c-m02 c-d14 c-h03">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/e545f8ab59e013ce6de290958d8f3f03.jpg" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong><a href="http://patf.net/blogs" rel="external nofollow" class="url">pfarrell</a> wrote:</strong></div>
+						
+			<p>Very nice comments a about the states of the languages.  Maybe you
+ could comment on how portable Ruby code is versus Php.  I know they’re 
+both interpreted languages, but I’ve seen numerous Php apps that you can
+ deploy on your own network easily and haven’t seen that many Ruby ones 
+yet.</p>
+		</li>
+
+		<li id="comment-19" class="comment c14 c-y2007 c-m03 c-d20 c-h11 alt">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/adde22c3cff9664c0d249a8d01e7e4dd.png" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong>Parag wrote:</strong></div>
+						
+			<p>Dear Mike,</p>
+
+<p>I am from India. I was more than happy to read this blogs of Ruby on 
+Rails. I was looking for a start, which you prpvided in a simple yet 
+effective way.</p>
+
+<p>I would appreciate a little more support from you.</p>
+
+<p>(1) Could you kindly put some links pof hosting providers for Ruby On Rails, which you think are reasonbale and good.</p>
+
+<p>(2) Could you kindly place links to few starterkits ( ready made little websites ) with source codes for learning purpose.</p>
+
+<p>(3) Good list for few IDE tools, just like dreamweaver, expression 
+web or Visual web developer, which are really great in creating wesites 
+with Ruby easily and quickly.</p>
+
+<p>This few information will really give a boost to new developers like us.</p>
+
+<p>Thanks</p>
+
+<p>Paraag P Kantharia</p>
+		</li>
+
+		<li id="comment-753" class="comment c15 c-y2007 c-m06 c-d08 c-h05">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/b49df74b2be177e1f8b9e3581cbdd454.png" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong><a href="http://www.thembid.com/" rel="external nofollow" class="url">Elmer Thomas</a> wrote:</strong></div>
+						
+			<p>You can read about our take at <a href="http://blog.thembid.com/index.php/2007/06/07/php-vs-ruby-an-experience/" rel="nofollow">our blog</a>.</p>
+		</li>
+
+		<li id="comment-3858" class="comment c16 c-y2007 c-m08 c-d05 c-h12 alt">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/ad516503a11cd5ca435acc9bb6523536.png" class="avatar avatar-48 photo avatar-default" height="48" width="48"></div>
+			<div class="comment-author"><strong>10098 wrote:</strong></div>
+						
+			<p>PHP has a framework. <a href="http://framework.zend.com/" rel="nofollow">http://framework.zend.com</a></p>
+		</li>
+
+		<li id="comment-20732" class="comment c17 c-y2008 c-m01 c-d16 c-h03">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/e83729d1c67fafc14f5cd19f740bcab2.jpg" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong>saurabh purnaye wrote:</strong></div>
+						
+			<p>pls refer to following ads 
+<a href="http://www.youtube.com/watch?v=n1NVfDlU6yQ" rel="nofollow">http://www.youtube.com/watch?v=n1NVfDlU6yQ</a>
+<a href="http://www.youtube.com/watch?v=Ld919lziKgE" rel="nofollow">http://www.youtube.com/watch?v=Ld919lziKgE</a>
+<a href="http://www.youtube.com/watch?v=GQXqWkWqnSw" rel="nofollow">http://www.youtube.com/watch?v=GQXqWkWqnSw</a></p>
+		</li>
+
+		<li id="comment-21925" class="comment c18 c-y2008 c-m01 c-d30 c-h07 alt">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/bb5ad772e592dfb29e4fd907a6e92b95.png" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong>Razor wrote:</strong></div>
+						
+			<p>Sorry but this post is a bit crappy.
+Why you compare Ruby Framework to PHP language?
+Why don’t you compare other frameworks like Symfony, Cake, Prado, Zend 
+Framework to Rails? Or why don’t you compare Ruby with PHP?
+Those would be far more true than compering framework to language.</p>
+		</li>
+
+		<li id="comment-26769" class="comment c19 c-y2008 c-m03 c-d16 c-h05">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/c4f07c10c49799c211793cca5b3d3ee9.jpg" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong><a href="http://luckyapps.com/greg/blog/" rel="external nofollow" class="url">Greg Magarshak</a> wrote:</strong></div>
+						
+			<p>Isn’t it a bit silly to compare PHP to Rails?</p>
+
+<p>Compare PHP to Ruby, and compare, say, symfony on PHP to Rails on Ruby :)</p>
+
+<p>That’s rails on ruby, ruby on rails is just funny :)</p>
+		</li>
+
+		<li id="comment-60795" class="comment c20 c-y2008 c-m11 c-d17 c-h05 alt">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/9b4f19ca0074a1b5b1a88f603c41086c.png" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong><a href="http://www.mybloglog.com/buzz/community/theLolitas" rel="external nofollow" class="url">Jmitieim</a> wrote:</strong></div>
+						
+			<p>perfect design thanks <a href="http://www.mybloglog.com/buzz/community/theLolitas" rel="nofollow">little girls angels lolitas
+</a>  %-P</p>
+		</li>
+
+		<li id="comment-63802" class="comment c21 c-y2008 c-m12 c-d02 c-h10">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/ad516503a11cd5ca435acc9bb6523536.png" class="avatar avatar-48 photo avatar-default" height="48" width="48"></div>
+			<div class="comment-author"><strong>armando p wrote:</strong></div>
+						
+			<p>nice part 1.  The only thing i can see beneficial here is how you 
+distinguish PHP (the language) from RoR (the framework). Also the items 
+you point out as cool in Ruby on Rails can be done, and i think were 
+done long before RoR was created using Symfony.  Part 1 still doesnt 
+persuade me to make the switch…</p>
+		</li>
+
+		<li id="comment-73669" class="comment c22 c-y2009 c-m01 c-d16 c-h11 alt">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/2abfda3f4977cc89b387bfa3f2b3f0e8.png" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong>Melerxp wrote:</strong></div>
+						
+			<p>Guys,</p>
+
+<p>When it comes time to shave your face for the first time, what is your choice - an electric razor or a blade? Why?</p>
+		</li>
+
+		<li id="comment-94740" class="comment c23 c-y2009 c-m05 c-d25 c-h11">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/cc5e62d1ae58b027e743021f5936b9bf.jpg" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong><a href="http://www.chriswpage.com/" rel="external nofollow" class="url">Chris Page</a> wrote:</strong></div>
+						
+			<p>I’m editing an article on this topic titled “Choosing the best 
+tool for the Job:  CMS and SaaS, PHP MVC, Django, or Rails”.  I’ve gone a
+ bit more in depth with pros and cons considering:</p>
+
+<p>-Budget and Overhead Factors
+-Work force skill level
+-Stability of Framework/Language</p>
+
+<p>Give it a read at:</p>
+
+<p><a href="http://www.chriswpage.com/2009/05/choosing-the-best-platform-for-the-job-cms-solution-php-mvc-django-or-ruby-on-rails/" rel="nofollow">http://www.chriswpage.com/2009/05/choosing-the-best-platform-for-the-job-cms-solution-php-mvc-django-or-ruby-on-rails/</a></p>
+		</li>
+
+		<li id="comment-145166" class="comment c24 c-y2012 c-m01 c-d26 c-h11 alt">
+			<div class="comment-author-icon"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/c40447fa4c897eb31d3d0a9f8e27089a.png" class="avatar avatar-48 photo" height="48" width="48"></div>
+			<div class="comment-author"><strong><a href="http://maypun.blogspot.com/" rel="external nofollow" class="url">daniel</a> wrote:</strong></div>
+						
+			<p>May be the must be “Symphony” Vs Rails or “Yii vs Rails”, I think.</p>
+		</li>
+
+
+	</ol>
+
+
+
+
+
+	<h3 id="respond">Post a Comment | <a href="http://blog.clickablebliss.com/2005/12/24/php-vs-ruby-on-rails-part-1/feed/">Comment RSS feed</a></h3>
+
+	<div class="formcontainer">	
+
+		<form id="commentform" action="http://blog.clickablebliss.com/2005/12/24/php-vs-ruby-on-rails-part-1/#comment-239000" method="post" class="add_comment_form">
+
+			
+			<table cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td><label for="author">Name</label></td>
+				<td><input id="author" name="author" size="30" maxlength="20" tabindex="3" type="text"></td>
+			</tr>
+			<tr>
+				<td><label for="email">Email</label></td>
+				<td><input id="email" name="email" size="30" maxlength="50" tabindex="4" type="text"> (used for <a href="http://gravatar.com/">gravatar</a>), address not displayed on site)</td>
+			</tr>
+			<tr>
+				<td><label for="url">Website</label></td>
+				<td><input id="url" name="url" size="30" maxlength="50" tabindex="5" type="text"></td>
+			</tr>
+			</tbody></table>
+
+
+			<div class="form-textarea"><textarea id="comment" name="comment" cols="45" rows="8" tabindex="6"></textarea></div>
+
+			<p class="form-submit"><input id="preview" name="preview" tabindex="5" value="Preview" type="submit"><input id="submit" name="submit" tabindex="6" style="font-weight: bold" value="Post" type="submit"><input name="comment_post_ID" value="9" type="hidden"></p>
+
+<script src="clickablebliss%20-%20php%20module-Dateien/a_003" type="text/javascript"></script><div id="commentPreview"></div>
+
+	<p style="clear: both;" class="subscribe-to-comments">
+	<input name="subscribe" id="subscribe" value="subscribe" style="width: auto;" type="checkbox">
+	<label for="subscribe">Notify me of followup comments via e-mail</label>
+	</p>
+
+
+
+		</form><!-- commentform -->
+	</div><!-- formcontainer -->
+
+
+</div>
+</div><!-- #content -->
+
+<div id="sidebar">
+
+<h4>About the author</h4>
+
+<p id="about"><img alt="" src="clickablebliss%20-%20php%20module-Dateien/68d48587fc806c2b35eb9ff0b7ad8115.jpg" class="avatar avatar-48 photo" height="48" width="48">Hi. My name is Mike Zornek (<a href="http://twitter.com/zorn">@zorn</a>).
+ I am an independent developer from Philadelphia, PA working under the 
+company name Clickable Bliss. I develop applications for Mac OS X, iOS 
+and the web. Outside of programming I enjoy playing video games, 
+reading/lisenting to various industry blogs/podcasts and have been know 
+to dabble in video editing.</p>
+
+<h4>Try my software</h4>
+
+<p><a href="http://clickablebliss.com/twizshow"><img src="clickablebliss%20-%20php%20module-Dateien/twizshow_app_icon_128.png" alt="An iOS quiz game based on your Twitter friends." height="129" width="128"></a><br><br><strong><a href="http://clickablebliss.com/twizshow">TwizShow</a></strong><br>An iOS quiz game based on your Twitter friends.</p>
+
+<h4>Follow me on Twitter</h4>
+
+<ul>
+<li><a href="http://twitter.com/zorn">Mike Zornek</a></li>
+<li><a href="http://twitter.com/twizshowapp">TwizShow</a></li>
+</ul>
+
+<h4>Search the Blog</h4>
+
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/search">
+<input name="ie" value="UTF-8" type="hidden">
+<input name="oe" value="UTF-8" type="hidden">
+<input name="q" maxlength="255" id="search-site" type="text">
+<input name="btnG" value="Search" type="submit">
+<input name="domains" value="blog.clickablebliss.com" type="hidden">
+<input name="sitesearch" value="blog.clickablebliss.com" type="hidden">
+</form>
+<!-- SiteSearch Google -->
+
+<h4>Feeds</h4>
+
+<ul>
+<li><a href="http://blog.clickablebliss.com/feed/" title="Clickable Bliss Blog RSS 2.0 Feed" rel="alternate" type="application/rss+xml">All posts</a></li>
+<li><a href="http://blog.clickablebliss.com/comments/feed/" title="Clickable Bliss Blog Comments RSS 2.0 Feed" rel="alternate" type="application/rss+xml">All comments</a></li>
+</ul>
+
+
+</div><div id="footer">
+
+<form method="get" action="http://www.google.com/search">
+
+<p>Search the blog: 
+<!-- SiteSearch Google -->
+<input name="ie" value="UTF-8" type="hidden">
+<input name="oe" value="UTF-8" type="hidden">
+<input name="q" maxlength="255" id="search-site" type="text">
+<input name="btnG" value="Search" type="submit">
+<input name="domains" value="blog.clickablebliss.com" type="hidden">
+<input name="sitesearch" value="blog.clickablebliss.com" type="hidden">
+<!-- SiteSearch Google -->
+</p>
+</form>
+
+<ul>
+<li><a href="http://clickablebliss.com/">Home</a> • </li>
+<li><a href="http://clickablebliss.com/twizshow">TwizShow</a> • </li>
+<li><a href="http://blog.clickablebliss.com/">Blog</a> • </li>
+<li><a href="http://clickablebliss.com/about">About</a> • </li>
+<li><a href="http://clickablebliss.com/contact">Contact</a></li>
+</ul>
+
+<p>Copyright © 2013 Clickable Bliss. All rights reserved.
+
+</p></div><!-- end footer -->
+
+</div> <!-- end container -->
+</div> <!-- end innerbody -->
+
+
+</body></html>

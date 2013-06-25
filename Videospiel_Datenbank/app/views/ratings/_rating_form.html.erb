@@ -1,0 +1,49 @@
+<!--form_for(create_rating, :remote => true, :html => { :class => 'create_rating' }) do |f| -->
+<!-- form_for(create_rating, remote: true) do |f| -->
+<!--form_for(create_rating, :html => { :class => 'create_rating' }) do |f| -->
+<div class="rating_form">
+	<% if user_signed_in? %>
+		<%= form_for(prep_user_rating, :remote => true, :html => { :class => 'create_rating' }) do |f| %>
+		    <%= f.label("value_1", content_tag(:span, '1'), {:class=>"rating", :id=>"1"}) %>
+		    <%= radio_button_tag("rating[value]", 1, current_user_rating == 1, :class => 'rating_button') %>
+		    
+		    <%= f.label("value_2", content_tag(:span, '2'), {:class=>"rating", :id=>"2"}) %>
+		    <%= radio_button_tag("rating[value]", 2, current_user_rating == 2, :class => 'rating_button') %>
+		    
+		    <%= f.label("value_3", content_tag(:span, '3'), {:class=>"rating", :id=>"3"}) %>
+		    <%= radio_button_tag("rating[value]", 3, current_user_rating == 3, :class => 'rating_button') %>
+		    
+		    <%= f.label("value_4", content_tag(:span, '4'), {:class=>"rating", :id=>"4"}) %>
+		    <%= radio_button_tag("rating[value]", 4, current_user_rating == 4, :class => 'rating_button') %>
+		    
+		    <%= f.label("value_5", content_tag(:span, '5'), {:class=>"rating", :id=>"5"}) %>
+		    <%= radio_button_tag("rating[value]", 5, current_user_rating == 5, :class => 'rating_button') %>
+		    
+		    <%= f.label("value_6", content_tag(:span, '6'), {:class=>"rating", :id=>"6"}) %>
+		    <%= radio_button_tag("rating[value]", 6, current_user_rating == 6, :class => 'rating_button') %>
+		    
+		    <%= f.label("value_7", content_tag(:span, '7'), {:class=>"rating", :id=>"7"}) %>
+		    <%= radio_button_tag("rating[value]", 7, current_user_rating == 7, :class => 'rating_button') %>
+		    
+		    <%= f.label("value_8", content_tag(:span, '8'), {:class=>"rating", :id=>"8"}) %>
+		    <%= radio_button_tag("rating[value]", 8, current_user_rating == 8, :class => 'rating_button') %>
+		    
+		    <%= f.label("value_9", content_tag(:span, '9'), {:class=>"rating", :id=>"9"}) %>
+		    <%= radio_button_tag("rating[value]", 9, current_user_rating == 9, :class => 'rating_button') %>
+		    
+		    <%= f.label("value_10", content_tag(:span, '10'), {:class=>"rating", :id=>"10"}) %>
+		    <%= radio_button_tag("rating[value]", 10, current_user_rating == 10, :class => 'rating_button') %>
+		    
+		    <%= hidden_field_tag("game_id", @game.id) %>
+		    <!--%= f.submit :Submit, class: "btn" %-->
+		<% end %>
+	<% else %> 
+		Loggen sie sich ein um eine Bewertung abzugeben
+		<%= link_to "Login", signin_path, class: "btn" %>
+	<% end %>
+
+</div>
+
+<!--% conjjtent_for :script do %>
+  <%= javascript_include_tag %>
+<% end %-->

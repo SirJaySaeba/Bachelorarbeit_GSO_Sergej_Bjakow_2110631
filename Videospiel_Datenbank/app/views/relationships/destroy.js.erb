@@ -1,0 +1,5 @@
+
+
+$("#own_game_form").html("<%= escape_javascript(render('games/own_game')) %>")
+
+$(".own_stats").html('<%= pluralize(@game.owners.count, "User", "Usern") %>')

@@ -1,0 +1,54 @@
+// Place all the styles related to the ratings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+@import "variables";
+
+label{
+  display: inline !important;
+}
+
+.rating_area{
+  background: #9a9a9a;
+  width: 500px;
+  padding: 5px;
+  .rating_form{
+    background: white;
+    padding: 10px;
+    .create_rating input.rating_button { 
+      display: none;
+    }
+  }
+}
+
+.rating_bar{
+  width: 500px;
+  background: image-url("energybar.png") no-repeat;
+  height: 46px;
+  position: relative;
+  top: 40px;
+}
+  .rating_filled{
+    
+    height: 31px;
+    margin-left: 27px;
+    @include ratingGradient;
+  }
+
+.create_rating label.rating { 
+  cursor: pointer; 
+  display: block; 
+  height: 20px; 
+  width: 20px; 
+  float: left; 
+  background-image: image-url("r_dim.png");
+}
+
+.create_rating label.rating span { 
+  display: none; 
+  padding-left: 5px;
+}
+
+.create_rating label.rating.bright { background-image: image-url("r_bright.png"); }
+.create_rating label.rating.glow { background-image: image-url("r_glow.png"); }
+

@@ -1,0 +1,7 @@
+  Im Besitz von </br>
+ <a href="<%= owners_game_path(@user) %>">
+    <strong class="own_stats">
+       <%= pluralize(@game.owners.count, "User", "Usern") %>
+    </strong>
+ </a>
+  

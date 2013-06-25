@@ -1,0 +1,2025 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="ltr"><head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script async="" src="ActiveRecord%20-%20Pluralization-Dateien/cbgapi.loaded_1"></script><script async="" src="ActiveRecord%20-%20Pluralization-Dateien/cbgapi.loaded_0"></script><script type="text/javascript">(function() { var b=window,e="jstiming",g="tick";(function(){function d(a){this.t={};this.tick=function(a,d,c){c=void 0!=c?c:(new Date).getTime();this.t[a]=[c,d]};this[g]("start",null,a)}var a=new d;b.jstiming={Timer:d,load:a};if(b.performance&&b.performance.timing){var a=b.performance.timing,c=b[e].load,f=a.navigationStart,a=a.responseStart;0<f&&a>=f&&(c[g]("_wtsrt",void 0,f),c[g]("wtsrt_","_wtsrt",a),c[g]("tbsd_","wtsrt_"))}try{a=null,b.chrome&&b.chrome.csi&&(a=Math.floor(b.chrome.csi().pageT),c&&0<f&&(c[g]("_tbnd",void 0,b.chrome.csi().startE),
+c[g]("tbnd_","_tbnd",f))),null==a&&b.gtbExternal&&(a=b.gtbExternal.pageT()),null==a&&b.external&&(a=b.external.pageT,c&&0<f&&(c[g]("_tbnd",void 0,b.external.startE),c[g]("tbnd_","_tbnd",f))),a&&(b[e].pt=a)}catch(l){}})();b.tickAboveFold=function(d){var a=0;if(d.offsetParent){do a+=d.offsetTop;while(d=d.offsetParent)}d=a;750>=d&&b[e].load[g]("aft")};var h=!1;function k(){h||(h=!0,b[e].load[g]("firstScrollTime"))}b.addEventListener?b.addEventListener("scroll",k,!1):b.attachEvent("onscroll",k);
+ })();</script>
+<meta content="blogger" name="generator">
+<link href="http://sumanthtechsavvy.blogspot.de/favicon.ico" rel="icon" type="image/x-icon">
+<link href="http://sumanthtechsavvy.blogspot.com/2008/02/activerecord-pluralization-convention.html" rel="canonical">
+<link rel="alternate" type="application/atom+xml" title="TechSavvy - Atom" href="http://sumanthtechsavvy.blogspot.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="TechSavvy - RSS" href="http://sumanthtechsavvy.blogspot.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="TechSavvy - Atom" href="http://www.blogger.com/feeds/26844340/posts/default">
+
+<link rel="alternate" type="application/atom+xml" title="TechSavvy - Atom" href="http://sumanthtechsavvy.blogspot.com/feeds/5930258165158518544/comments/default">
+<link rel="image_src" href="http://bp1.blogger.com/_weQz7cj2SZo/R6c0HOtAcSI/AAAAAAAAAWQ/hHy4YjGm718/s72-c/pluralisation.JPG">
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<title>TechSavvy: ActiveRecord - Pluralization convention</title>
+<link type="text/css" rel="stylesheet" href="ActiveRecord%20-%20Pluralization-Dateien/1832531788-widget_css_bundle.css">
+<link type="text/css" rel="stylesheet" href="ActiveRecord%20-%20Pluralization-Dateien/authorization.css">
+<style id="page-skin-1" type="text/css"><!--
+/*
+* Blogger Template Style
+* Name:     TicTac (Blueberry)
+* Date:     1 March 2004
+* Updated by: Blogger Team
+*/
+/* Variable definitions
+====================
+<Variable name="textcolor" description="Text Color"
+type="color" default="#333">
+<Variable name="pagetitlecolor" description="Page Header Color"
+type="color" default="#FFF">
+<Variable name="datecolor" description="Date Header Color"
+type="color" default="#999999">
+<Variable name="titlecolor" description="Post Title Color"
+type="color" default="#993333">
+<Variable name="footercolor" description="Post Footer Color"
+type="color" default="#999">
+<Variable name="sidebartextcolor" description="Sidebar Text Color"
+type="color" default="#999">
+<Variable name="sidebarcolor" description="Sidebar Title Color"
+type="color" default="#666">
+<Variable name="linkcolor" description="Link Color"
+type="color" default="#69c">
+<Variable name="visitedlinkcolor" description="Visited Link Color"
+type="color" default="#666699">
+<Variable name="bodyfont" description="Text Font"
+type="font"
+default="normal normal 100% Verdana, sans-serif">
+<Variable name="pagetitlefont" description="Page Header Font"
+type="font" default="normal normal 100% 'Lucida Grande','Trebuchet MS'">
+<Variable name="titlefont" description="Post Title Font"
+type="font" default="normal bold 130% 'Lucida Grande','Trebuchet MS'">
+<Variable name="sidebarheaderfont" description="Sidebar Title Font"
+type="font" default="normal bold 130% 'Lucida Grande','Trebuchet MS'">
+<Variable name="startSide" description="Start side in blog language"
+type="automatic" default="left">
+<Variable name="endSide" description="End side in blog language"
+type="automatic" default="right">
+*/
+/* ---( page defaults )--- */
+body {
+margin: 0;
+padding: 0;
+font-size: small;
+text-align: center;
+color: #333333;
+background: #e0e0e0;
+}
+blockquote {
+margin-top: 0;
+margin-right: 0;
+margin-bottom: 0;
+margin-left: 30px;
+padding-top: 10px;
+padding-right: 0;
+padding-bottom: 0;
+padding-left: 20px;
+font-size: 88%;
+line-height: 1.5em;
+color: #666;
+background: url(http://www.blogblog.com/tictac_blue/quotes.gif) no-repeat top left;
+}
+blockquote p {
+margin-top: 0;
+}
+abbr, acronym {
+cursor: help;
+font-style: normal;
+border-bottom: 1px dotted;
+}
+code {
+color: #996666;
+}
+hr {
+display: none;
+}
+img {
+border: none;
+}
+/* unordered list style */
+ul {
+list-style: none;
+margin-left: 10px;
+padding: 0;
+}
+li {
+list-style: none;
+padding-left: 14px;
+margin-bottom: 3px;
+background: url(http://www.blogblog.com/tictac_blue/tictac_blue.gif) no-repeat left 6px;
+}
+/* links */
+a:link {
+color: #6699cc;
+}
+a:visited {
+color: #666699;
+}
+a:hover {
+color: #5B739C;
+}
+a:active {
+color: #5B739C;
+text-decoration: none;
+}
+/* ---( layout structure )---*/
+#outer-wrapper {
+width: 847px;
+margin: 0px auto 0;
+text-align: left;
+font: normal normal 100% Verdana, sans-serif;
+background: url(http://www.blogblog.com/tictac_blue/tile_left.gif) repeat-y;
+}
+#content-wrapper {
+margin-left: 42px; /* to avoid the border image */
+width: 763px;
+}
+#main {
+float: left;
+width: 460px;
+margin-top: 20px;
+margin-right: 0;
+margin-bottom: 0;
+margin-left: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: 0;
+padding-left: 1em;
+line-height: 1.5em;
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;     /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar {
+float: right;
+width: 259px;
+padding-top: 20px;
+padding-right: 0px;
+padding-bottom: 0;
+padding-left: 0;
+font-size: 85%;
+line-height: 1.4em;
+color: #999999;
+background: url(http://www.blogblog.com/tictac_blue/sidebar_bg.gif) no-repeat left top;
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;     /* fix for long non-text content breaking IE sidebar float */
+}
+/* ---( header and site name )--- */
+#header-wrapper {
+margin: 0;
+padding: 0;
+font: normal normal 100% 'Lucida Grande','Trebuchet MS';
+background: #e0e0e0 url(http://www.blogblog.com/tictac_blue/top_div_blue_left.gif) no-repeat left top;
+}
+#header {
+margin: 0;
+padding-top: 25px;
+padding-right: 60px;
+padding-bottom: 35px;
+padding-left: 160px;
+color: #FFFFFF;
+background: url(http://www.blogblog.com/tictac_blue/top_h1.gif) no-repeat bottom left;
+}
+#header h1 {
+font-size: 200%;
+text-shadow: #4F73B6 2px 2px 2px;
+}
+#header h1 a {
+text-decoration: none;
+color: #FFFFFF;
+}
+#header h1 a:hover {
+color: #eee;
+}
+/* ---( main column )--- */
+h2.date-header {
+margin-top: 0;
+padding-left: 14px;
+font-size: 90%;
+color: #999999;
+background: url(http://www.blogblog.com/tictac_blue/date_icon_blue.gif) no-repeat left 50%;
+}
+.post h3 {
+margin-top: 0;
+font: normal bold 130% 'Lucida Grande','Trebuchet MS';
+letter-spacing: -1px;
+color: #993333;
+}
+.post {
+margin-top: 0;
+margin-right: 0;
+margin-bottom: 1.5em;
+margin-left: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: 1.5em;
+padding-left: 14px;
+border-bottom: 1px solid #ddd;
+}
+.post h3 a,
+.post h3 a:visited {
+color: #993333;
+text-decoration: none;
+}
+.post-footer {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: 0;
+padding-left: 14px;
+font-size: 88%;
+color: #999999;
+background: url(http://www.blogblog.com/tictac_blue/tictac_grey.gif) no-repeat left 8px;
+}
+.post img, table.tr-caption-container {
+padding: 6px;
+border-top: 1px solid #ddd;
+border-left: 1px solid #ddd;
+border-bottom: 1px solid #c0c0c0;
+border-right: 1px solid #c0c0c0;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* comment styles */
+#comments {
+padding: 10px 10px 0px 10px;
+font-size: 85%;
+line-height: 1.5em;
+color: #666;
+background: #eee url(http://www.blogblog.com/tictac_blue/comments_curve.gif) no-repeat top left;
+}
+#comments h4 {
+margin-top: 20px;
+margin-right: 0;
+margin-bottom: 15px;
+margin-left: 0;
+padding-top: 8px;
+padding-right: 0;
+padding-bottom: 0;
+padding-left: 40px;
+font-family: "Lucida Grande", "Trebuchet MS";
+font-size: 130%;
+color: #666;
+background: url(http://www.blogblog.com/tictac_blue/bubbles.gif) no-repeat 10px 0;
+height: 29px !important; /* for most browsers */
+height /**/:37px; /* for IE5/Win */
+}
+#comments ul {
+margin-left: 0;
+}
+#comments li {
+background: none;
+padding-left: 0;
+}
+.comment-body {
+padding-top: 0;
+padding-right: 10px;
+padding-bottom: 0;
+padding-left: 25px;
+background: url(http://www.blogblog.com/tictac_blue/tictac_blue.gif) no-repeat 10px 5px;
+}
+.comment-body p {
+margin-bottom: 0;
+}
+.comment-author {
+margin-top: 4px;
+margin-right: 0;
+margin-bottom: 0;
+margin-left: 0;
+padding-top: 0;
+padding-right: 10px;
+padding-bottom: 0;
+padding-left: 60px;
+color: #999;
+background: url(http://www.blogblog.com/tictac_blue/comment_arrow_blue.gif) no-repeat 44px 2px;
+}
+.comment-footer {
+border-bottom: 1px solid #ddd;
+padding-bottom: 1em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+/* ---( sidebar )--- */
+.sidebar h2 {
+margin-top: 0;
+margin-right: 0;
+margin-bottom: 0;
+margin-left: 0;
+padding-top: 25px;
+padding-right: 0;
+padding-bottom: 0;
+padding-left: 40px;
+font: normal bold 130% 'Lucida Grande','Trebuchet MS';
+color: #666666;
+height: 32px;
+background: url(http://www.blogblog.com/tictac_blue/sidebar_icon.gif) no-repeat 10px 15px;
+height: 32px !important; /* for most browsers */
+height /**/:57px; /* for IE5/Win */
+}
+.sidebar .widget {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: 10px;
+padding-left: 10px;
+border-bottom: 1px solid #ddd;
+}
+.sidebar li {
+background: url(http://www.blogblog.com/tictac_blue/tictac_blue.gif) no-repeat left 5px;
+}
+.profile-textblock {
+clear: both;
+margin-left: 0;
+}
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+border: 1px solid #ddd;
+padding: 4px;
+}
+/* ---( footer )--- */
+.clear { /* to fix IE6 padding-top issue */
+clear: both;
+}
+#footer-wrapper {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: 9px;
+padding-left: 0;
+font-size: 85%;
+color: #ddd;
+background: url(http://www.blogblog.com/tictac_blue/bottom_sill.gif) no-repeat bottom left;
+}
+#footer {
+margin: 0;
+padding-top: 20px;
+padding-right: 320px;
+padding-bottom: 20px;
+padding-left: 95px;
+background: url(http://www.blogblog.com/tictac_blue/bottom_sash_left.gif) no-repeat top left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #outer-wrapper,
+body#layout #main,
+body#layout #sidebar {
+padding-top: 0;
+margin-top: 0;
+}
+body#layout #outer-wrapper,
+body#layout #content-wrapper {
+width: 740px;
+}
+body#layout #sidebar {
+margin-right: 0;
+margin-bottom: 1em;
+}
+body#layout #header,
+body#layout #footer,
+body#layout #main {
+padding: 0;
+}
+body#layout #content-wrapper {
+margin: 0px;
+}
+
+--></style>
+<script type="text/javascript">var a=navigator,b="userAgent",c="indexOf",f="&m=1",g="(^|&)m=",h="?",k="?m=1";function l(){var d=window.location.href,e=d.split(h);switch(e.length){case 1:return d+k;case 2:return 0<=e[1].search(g)?null:d+f;default:return null}}if(-1!=a[b][c]("Mobile")&&-1!=a[b][c]("WebKit")&&-1==a[b][c]("iPad")||-1!=a[b][c]("Opera Mini")||-1!=a[b][c]("IEMobile")){var m=l();m&&window.location.replace(m)};
+</script><script type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('headEnd');
+</script><script src="ActiveRecord%20-%20Pluralization-Dateien/google_top_exp.js" type="text/javascript"></script><style>.gc-bubbleDefault{background-color:transparent !important;text-align:left;padding:0 !important;margin:0 !important;border:0 !important;table-layout:auto !important}.gc-reset{background-color:transparent !important;border:0 !important;padding:0 !important;margin:0 !important;text-align:left}.pls-bubbleTop{border-bottom:1px solid #ccc !important}.pls-topTail,.pls-vertShimLeft,.pls-contentLeft{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/border_3.gif) !important}.pls-topTail{background-repeat:repeat-x !important;background-position:bottom !important}.pls-vertShim{background-color:#fff !important;text-align:right}.tbl-grey .pls-vertShim{background-color:#f5f5f5 !important}.pls-vertShimLeft{background-repeat:repeat-y !important;background-position:right !important;height:4px}.pls-vertShimRight{height:4px}.pls-confirm-container .pls-vertShim{background-color:#fff3c2 !important}.pls-contentWrap{background-color:#fff !important;position:relative !important;vertical-align:top}.pls-contentLeft{background-repeat:repeat-y;background-position:right;vertical-align:top}.pls-dropRight{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropR_3.png) !important;background-repeat:repeat-y !important;vertical-align:top}.pls-vert,.pls-tailleft,.pls-dropTR .pls-dropBR,.pls-dropBL,.pls-vert img{vertical-align:top}.pls-dropBottom{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropB_3.png) !important;background-repeat:repeat-x !important;width:100%;vertical-align:top}.pls-topLeft{background:inherit !important;text-align:right;vertical-align:bottom}.pls-topRight{background:inherit !important;text-align:left;vertical-align:bottom}.pls-bottomLeft{background:inherit !important;text-align:right}.pls-bottomRight{background:inherit !important;text-align:left;vertical-align:top}.pls-tailtop,.pls-tailright,.pls-tailbottom,.pls-tailleft{display:none;position:relative}.pls-tailbottom,.pls-tailtop,.pls-tailright,.pls-tailleft,.pls-dropTR,.pls-dropBR,.pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite_3.png) !important;background-repeat:no-repeat}.tbl-grey .pls-tailbottom,.tbl-grey .pls-tailtop,.tbl-grey .pls-tailright,.tbl-grey .pls-tailleft,.tbl-grey .pls-dropTR,.tbl-grey .pls-dropBR,.tbl-grey .pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite-grey.png) !important}.pls-tailbottom{background-position:-23px 0}.pls-confirm-container .pls-tailbottom{background-position:-23px -10px}.pls-tailtop{background-position:-19px -20px}.pls-tailright{background-position:0 0}.pls-tailleft{background-position:-10px 0}.pls-tailtop{vertical-align:top}.gc-bubbleDefault td{line-height:0;font-size:0}.pls-topLeft img,.pls-topRight img,.pls-tailbottom{vertical-align:bottom}.pls-bottomLeft img,.bubbleDropTR,.pls-dropBottomL img,.pls-dropBottom img,.pls-dropBottomR img,.pls-bottomLeft{vertical-align:top}.pls-dropTR{background-position:0 -22px}.pls-dropBR{background-position:0 -27px}.pls-dropBL{background-position:0 -16px}.pls-spacertop,.pls-spacerright,.pls-spacerbottom,.pls-spacerleft{position:static !important}.pls-spinner{bottom:0;position:absolute;left:0;margin:auto;right:0;top:0}</style><link media="screen" href="ActiveRecord%20-%20Pluralization-Dateien/inj_tf.css" rel="stylesheet" type="text/css"><script src="ActiveRecord%20-%20Pluralization-Dateien/a" type="text/javascript" charset="utf-8"></script></head>
+<body>
+<div class="navbar section" id="navbar"><div class="widget Navbar" id="Navbar1"><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"><iframe src="ActiveRecord%20-%20Pluralization-Dateien/navbar.htm" name="navbar-iframe" id="navbar-iframe" vspace="0" tabindex="0" style="" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+<script gapi_processed="true" type="text/javascript" src="navbar_data/plusone.js"></script>
+<script type="text/javascript">
+        gapi.load("iframes-styles-bubble", function() {
+          if (window.iframes && iframes.open) {
+            iframes.open(
+                '//www.blogger.com/navbar.g?targetBlogID\07526844340\46blogName\75TechSavvy\46publishMode\75PUBLISH_MODE_BLOGSPOT\46navbarType\75BLUE\46layoutType\75LAYOUTS\46searchRoot\75http://sumanthtechsavvy.blogspot.com/search\46blogLocale\75en_US\46v\0752\46homepageUrl\75http://sumanthtechsavvy.blogspot.com/\46targetPostID\0755930258165158518544\46blogPostOrPageUrl\75http://sumanthtechsavvy.blogspot.com/2008/02/activerecord-pluralization-convention.html\46vt\75-4923113974683673664',
+                {
+                  container: "navbar-iframe-container",
+                  id: "navbar-iframe"
+                },
+                {
+                });
+          }
+        });
+      </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id="outer-wrapper"><div id="wrap2">
+<!-- skip links for text browsers -->
+<span id="skiplinks" style="display:none;">
+<a href="#main">skip to main </a> |
+      <a href="#sidebar">skip to sidebar</a>
+</span>
+<div id="header-wrapper">
+<div class="header section" id="header"><div class="widget Header" id="Header1">
+<div id="header-inner">
+<div class="titlewrapper">
+<h1 class="title">
+<a href="http://sumanthtechsavvy.blogspot.de/">TechSavvy</a>
+</h1>
+</div>
+<div class="descriptionwrapper">
+<p class="description"><span>Technical Blog</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id="content-wrapper">
+<div id="crosscol-wrapper" style="text-align:center">
+<div class="crosscol section" id="crosscol"></div>
+</div>
+<div id="main-wrapper">
+<div class="main section" id="main"><div class="widget Blog" id="Blog1">
+<div class="blog-posts hfeed">
+<!-- google_ad_section_start(name=default) -->
+
+          <div class="date-outer">
+        
+<h2 class="date-header"><span>Monday, February 4</span></h2>
+
+          <div class="date-posts">
+        
+<div class="post-outer">
+<div class="post hentry" itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+<meta content="http://bp1.blogger.com/_weQz7cj2SZo/R6c0HOtAcSI/AAAAAAAAAWQ/hHy4YjGm718/s320/pluralisation.JPG" itemprop="image_url">
+<meta content="26844340" itemprop="blogId">
+<meta content="5930258165158518544" itemprop="postId">
+<a name="5930258165158518544"></a>
+<h3 class="post-title entry-title" itemprop="name">
+ActiveRecord - Pluralization convention
+</h3>
+<div class="post-header">
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content" id="post-body-5930258165158518544" itemprop="description articleBody">
+In the <a href="http://sumanthtechsavvy.blogspot.com/2008/01/activerecord-databases-ii.html">previous </a>post,
+ we had seen how simply we had connected our database to the 
+application.  Now let us look in to another convention wherein, you need
+ not have a xml file to connect each table in the database to the 
+classes (Note: class is the blue print from where we create objects) in 
+our application.<br>    The convention here followed is English way of 
+singular and plural forms.  The database is nothing but collection of 
+records, data in specific structure.  And a 'class' as per Object 
+Oriented Paradigm, it is a constructor and you can have multiple objects
+ of similar type from it!<br>So it absolutely makes sense to name our tables in plural form (collection of data) and a class in the singular form.<br>    Rails just does that!  we name the tables of database as plurals and the respective classes as singular form of the same.<br><br><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://bp1.blogger.com/_weQz7cj2SZo/R6c0HOtAcSI/AAAAAAAAAWQ/hHy4YjGm718/s1600-h/pluralisation.JPG"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="ActiveRecord%20-%20Pluralization-Dateien/pluralisation.JPG" alt="" id="BLOGGER_PHOTO_ID_5163152796614160674" border="0"></a>The
+ above snapshot is taken from David's book on rails.  As it shown here, 
+we maintain the singular form on to the class names and plural on the 
+table names.<br>   Rails literally understands the singular and plural form of the words you use.<br><br>Order           orders<br>Person            people<br><br>   You take a note of the way we write the names:<br><ul><li>the table names in plural form all lower case letters.</li><li>the class name in singular form with camel case/capitalized word</li></ul>Of course, I am sure you have few questions running into your mind:<br><ol><li>What if the word does not have proper plural form?</li><li>What if I do not want to follow this?</li></ol>The answers are:<br><ol><li>As
+ you can see in the above snapshot, the 'Person' as the class name and 
+'people' as the table name.  And if you do not have proper/matching form
+ for it, or you did not maintain the convention mentioned - you can use a
+ keyword called <span style="color: rgb(153, 0, 0); font-weight: bold;">set_table_name</span>, in the model class where ever you are defining the construct.</li><li>You can disable this feature globally with a variable under 'config/environment.rb' of the application.  <span style="color: rgb(153, 0, 0); font-weight: bold;">ActiveRecord::Base.pluralize_table_names = false</span></li></ol>
+      Well, this is just a convention that help avoid 
+writing/maintaining lot of xml files and connection problems.  Let me 
+also tell you that it is not mandatory to have this maintained strictly.<br>I guessed only the above questions, if you have more questions touch base with me and get them clarified.
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1"><span class="post-author vcard">
+Posted by
+<span class="fn" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+<span itemprop="name">sumanth krishna</span>
+</span>
+</span>
+<span class="post-timestamp">
+at
+<meta content="http://sumanthtechsavvy.blogspot.com/2008/02/activerecord-pluralization-convention.html" itemprop="url">
+<a class="timestamp-link" href="http://sumanthtechsavvy.blogspot.de/2008/02/activerecord-pluralization-convention.html" rel="bookmark" title="permanent link"><abbr class="published" itemprop="datePublished" title="2008-02-04T21:01:00+05:30">9:01 PM</abbr></a>
+</span>
+<span class="post-comment-link">
+</span>
+<span class="post-icons">
+<span class="item-action">
+<a href="http://www.blogger.com/email-post.g?blogID=26844340&amp;postID=5930258165158518544" title="Email Post">
+<img alt="" class="icon-action" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_email.gif" height="13" width="18">
+</a>
+</span>
+<span class="item-control blog-admin pid-1361093347">
+<a href="http://www.blogger.com/post-edit.g?blogID=26844340&amp;postID=5930258165158518544&amp;from=pencil" title="Edit Post">
+<img alt="" class="icon-action" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_edit_allbkg.gif" height="18" width="18">
+</a>
+</span>
+</span>
+<span class="post-backlinks post-comment-link">
+</span>
+</div>
+<div class="post-footer-line post-footer-line-2"><span class="post-labels">
+Labels:
+<a href="http://sumanthtechsavvy.blogspot.de/search/label/activerecord" rel="tag">activerecord</a>,
+<a href="http://sumanthtechsavvy.blogspot.de/search/label/Convention" rel="tag">Convention</a>,
+<a href="http://sumanthtechsavvy.blogspot.de/search/label/convention%20over%20configuration" rel="tag">convention over configuration</a>,
+<a href="http://sumanthtechsavvy.blogspot.de/search/label/database" rel="tag">database</a>,
+<a href="http://sumanthtechsavvy.blogspot.de/search/label/pluralization" rel="tag">pluralization</a>,
+<a href="http://sumanthtechsavvy.blogspot.de/search/label/tables" rel="tag">tables</a>
+</span>
+</div>
+<div class="post-footer-line post-footer-line-3"></div>
+</div>
+</div>
+<div class="comments" id="comments">
+<a name="comments"></a>
+<h4>No comments:</h4>
+<div id="Blog1_comments-block-wrapper">
+<dl class="avatar-comment-indent" id="comments-block">
+</dl>
+</div>
+<p class="comment-footer">
+<a href="http://www.blogger.com/comment.g?blogID=26844340&amp;postID=5930258165158518544" onclick="">Post a Comment</a>
+</p>
+<div id="backlinks-container">
+<div id="Blog1_backlinks-container"><a name="links"></a><h4>Links to this post</h4>
+<p class="comment-footer">
+<a class="comment-link" href="http://www.blogger.com/blog-this.g" id="Blog1_backlinks-create-link" target="_blank">Create a Link</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+<!-- google_ad_section_end -->
+</div>
+<div class="blog-pager" id="blog-pager">
+<span id="blog-pager-newer-link">
+<a class="blog-pager-newer-link" href="http://sumanthtechsavvy.blogspot.de/2008/02/hyderabad-hosts-barcamp5.html" id="Blog1_blog-pager-newer-link" title="Newer Post">Newer Post</a>
+</span>
+<span id="blog-pager-older-link">
+<a class="blog-pager-older-link" href="http://sumanthtechsavvy.blogspot.de/2008/01/activerecord-databases-ii.html" id="Blog1_blog-pager-older-link" title="Older Post">Older Post</a>
+</span>
+<a class="home-link" href="http://sumanthtechsavvy.blogspot.de/">Home</a>
+</div>
+<div class="clear"></div>
+<div class="post-feeds">
+<div class="feed-links">
+Subscribe to:
+<a class="feed-link" href="http://sumanthtechsavvy.blogspot.com/feeds/5930258165158518544/comments/default" target="_blank" type="application/atom+xml">Post Comments (Atom)</a>
+</div>
+</div>
+<script type="text/javascript">window.___gcfg = {'lang': 'en_US'};</script>
+</div></div>
+</div>
+<div id="sidebar-wrapper">
+<div class="sidebar section" id="sidebar"><div class="widget HTML" id="HTML3">
+<h2 class="title">Flipkart</h2>
+<div class="widget-content">
+<!-- Flipkart Search Bar -->
+<div style="overflow:hidden;"><form action="http://www.flipkart.com/search-all" method="get"><div style="background: #09334d; padding: 5px; float: left;"><img alt="Flipkart.com" title="Flipkart.com" style="max-width: 150px;vertical-align:middle;" src="ActiveRecord%20-%20Pluralization-Dateien/flipkart_india.png"><input name="affid" value="tosumanthk" type="hidden"><input name="wgtid" value="FK-AF-SB" type="hidden"><input name="query" type="text"><select onchange='this.form.action="http://www.flipkart.com/search-"+this.value;'><option value="all" selected="selected">All Categories</option><option value="clothing">Clothing</option><option value="footwear">Footwear</option><option value="mobiles">Mobiles &amp; Accessories</option><option value="computers">Computers</option><option value="leather-travel">Watches, Bags &amp; Wallets</option><option value="cameras">Cameras</option><option value="books-stationeries">Books, Pens &amp; Stationery</option><option value="homeappliance">Home &amp; Kitchen</option><option value="health-and-beauty">Beauty &amp; Health Care</option><option value="games">Games &amp; Consoles</option><option value="tv-video">TVs &amp; Video Players</option><option value="audioplayers">Home Audio &amp; MP3 Players</option><option value="movies-music">Music, Movies &amp; Posters</option><option value="babycaretoys">Baby Care &amp; Toys</option><option value="sports-fitness">Sport &amp; Fitness</option><option value="ebooks">eBooks</option></select><input onclick="this.form.submit()" value="Search" type="button"></div></form></div>
+<!-- end of Flipkart Search Bar -->
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=HTML&amp;widgetId=HTML3&amp;action=editWidget&amp;sectionId=sidebar" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML3"));' target="configHTML3" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+<div class="widget BlogList" id="BlogList1">
+<h2 class="title">I also write @</h2>
+<div class="widget-content">
+<div class="blog-list-container" id="BlogList1_container">
+<ul id="BlogList1_blogs">
+<li style="display: block;">
+<div class="blog-icon">
+</div>
+<div class="blog-content">
+<div class="blog-title">
+<a href="http://vforabettersociety.blogspot.com/" target="_blank">
+V For A Better Society</a>
+</div>
+<div class="item-content">
+<span class="item-title">
+<a href="http://vforabettersociety.blogspot.com/2011/04/supporting-anna-hazare.html" target="_blank">
+Supporting Anna Hazare</a>
+</span>
+</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+<li style="display: block;">
+<div class="blog-icon">
+</div>
+<div class="blog-content">
+<div class="blog-title">
+<a href="http://sumanth-krishna.blogspot.com/" target="_blank">
+My Scribbling Pad</a>
+</div>
+<div class="item-content">
+<span class="item-title">
+<a href="http://sumanth-krishna.blogspot.com/2009/06/recruitment-pains-1.html" target="_blank">
+Recruitment pains -1</a>
+</span>
+</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+<li style="display: block;">
+<div class="blog-icon">
+</div>
+<div class="blog-content">
+<div class="blog-title">
+<a href="http://yourway2health.blogspot.com/" target="_blank">
+U'r Way2Health</a>
+</div>
+<div class="item-content">
+<span class="item-title">
+<a href="http://yourway2health.blogspot.com/2008/07/smokers-beaware.html" target="_blank">
+Smokers beaware !!!</a>
+</span>
+</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=BlogList&amp;widgetId=BlogList1&amp;action=editWidget&amp;sectionId=sidebar" onclick='return _WidgetManager._PopupConfig(document.getElementById("BlogList1"));' target="configBlogList1" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div>
+</div><div class="widget AdSense" id="AdSense4">
+<div class="widget-content">
+<script type="text/javascript"><!--
+google_ad_client="pub-4164304796216478";
+google_ad_host="pub-1556223355139109";
+google_ad_width=120;
+google_ad_height=240;
+google_ad_format="120x240_as";
+google_ad_type="text_image";
+google_ad_host_channel="00000+00031+00005+00012";
+google_color_border="FFFFFF";
+google_color_bg="FFFFFF";
+google_color_link="333333";
+google_color_url="993333";
+google_color_text="999999";
+//--></script>
+<script type="text/javascript" src="ActiveRecord%20-%20Pluralization-Dateien/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:240px;margin:0;padding:0;position:relative;visibility:visible;width:120px"><ins id="aswift_0_anchor" style="display:block;border:none;height:240px;margin:0;padding:0;position:relative;visibility:visible;width:120px"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" frameborder="0" height="240" scrolling="no" width="120"></iframe></ins></ins>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=AdSense&amp;widgetId=AdSense4&amp;action=editWidget&amp;sectionId=sidebar" onclick='return _WidgetManager._PopupConfig(document.getElementById("AdSense4"));' target="configAdSense4" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget HTML" id="HTML1">
+<div class="widget-content">
+<script src="ActiveRecord%20-%20Pluralization-Dateien/a.js" type="text/javascript"></script><div id="FJ_FL_Cont" style="position: relative; width: 1px; height: 1px; border-width: 0; padding: 0; margin: 0; position: relative;"><div id="FJ_FL_Cover" style="position: absolute; left: 0px; top: 0px; width: 1px; height: 1px; z-index: 2;"></div><object id="FJ_FL_Obj" type="application/x-shockwave-flash" data="ActiveRecord%20-%20Pluralization-Dateien/fj.swf" style="position: absolute; left: 0px; top: 0px; width: 1px; height: 1px; z-index: 1;" height="1" width="1"><param name="wmode" value="transparent"><param name="AllowScriptAccess" value="always"><param name="movie" value="http://feedjit.com/flash/fj.swf"></object></div><div id="FJ_TF_Cont" style="position: relative; padding: 0; margin: 0; border-width: 0px; width: 160px;"><iframe marginheight="0" marginwidth="0" name="FJIframe" src="ActiveRecord%20-%20Pluralization-Dateien/activerecord-pluralization-convention.htm" style="width: 170px; border-width: 0px; z-index: 1;" frameborder="0" height="904" scrolling="no" width="170"></iframe></div><noscript><a href="http://feedjit.com/">Feedjit Live Website Statistics</a></noscript>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=HTML&amp;widgetId=HTML1&amp;action=editWidget&amp;sectionId=sidebar" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML1"));' target="configHTML1" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget HTML" id="HTML4">
+<h2 class="title">Communities</h2>
+<div class="widget-content">
+<ul><li>
+<a href="http://www.workingwithrails.com/person/10742-sumanth-krishna"><img alt="View Sumanth krishna's profile on LinkedIn" src="ActiveRecord%20-%20Pluralization-Dateien/compact-small.jpg" border="0" height="45" width="120"></a>
+</li></ul>
+<ul><li>
+<a href="http://www.linkedin.com/in/sumanthkrishna"><img alt="View Sumanth krishna's profile on LinkedIn" src="ActiveRecord%20-%20Pluralization-Dateien/btn_viewmy_120x33.gif" border="0" height="33" width="120"></a>
+</li></ul>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=HTML&amp;widgetId=HTML4&amp;action=editWidget&amp;sectionId=sidebar" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML4"));' target="configHTML4" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget LinkList" id="LinkList4">
+<h2>Links</h2>
+<div class="widget-content">
+<ul>
+<li><a href="http://www.qavibes.com/">QA Vibes</a></li>
+<li><a href="http://www.techcrunch.com/">TechCrunch</a></li>
+<li><a href="http://www.techmasala.com/">TechMasala</a></li>
+<li><a href="http://blog.lifebeyondcode.com/">Life Beyond Code</a></li>
+<li><a href="http://www.readwriteweb.com/">Read Write Web</a></li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=LinkList&amp;widgetId=LinkList4&amp;action=editWidget&amp;sectionId=sidebar" onclick='return _WidgetManager._PopupConfig(document.getElementById("LinkList4"));' target="configLinkList4" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget LinkList" id="LinkList3">
+<h2>Download Ruby Resources</h2>
+<div class="widget-content">
+<ul>
+<li><a href="http://tosumanthkrishna.googlepages.com/RubyonRailscoursestructure.pdf">RoR Course Structure</a></li>
+<li><a href="http://tosumanthkrishna.googlepages.com/RubyonRailscourse1-WhatisRuby-.pdf">What is Ruby?</a></li>
+<li><a href="http://tosumanthkrishna.googlepages.com/RubyonRailscourse1.2.pdf">Learn through Examples</a></li>
+<li><a href="http://tosumanthkrishna.googlepages.com/RubyonRailsInstallingRuby.pdf">Installing Ruby</a></li>
+<li><a href="http://tosumanthkrishna.googlepages.com/RubyonRailssimpleexamplesstrings.doc">Ruby simple examples &amp; String Class</a></li>
+<li><a href="http://tosumanthkrishna.googlepages.com/ActiveRecord-1.pdf">ActiveRecord-1</a></li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=LinkList&amp;widgetId=LinkList3&amp;action=editWidget&amp;sectionId=sidebar" onclick='return _WidgetManager._PopupConfig(document.getElementById("LinkList3"));' target="configLinkList3" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget LinkList" id="LinkList2">
+<h2>View Ruby Resources @ Scribd</h2>
+<div class="widget-content">
+<ul>
+<li><a href="http://www.scribd.com/doc/733856/Ruby-on-Rails-course-structure">RoR Course Structure</a></li>
+<li><a href="http://www.scribd.com/doc/830473/Ruby-on-Rails-Lesson1-What-is-Ruby">What is Ruby?</a></li>
+<li><a href="http://www.scribd.com/doc/883390/Ruby-on-Rails-Learning-ruby-through-examples">Learn through Examples</a></li>
+<li><a href="http://www.scribd.com/doc/887331/Ruby-on-Rails-Installing-Ruby">Installing Ruby</a></li>
+<li><a href="http://www.scribd.com/doc/918737/Ruby-on-Rails-simple-examples-strings">Ruby simple examples &amp; String Class</a></li>
+<li><a href="http://www.scribd.com/doc/2314860/ActiveRecord1">ActiveRecord-1</a></li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=LinkList&amp;widgetId=LinkList2&amp;action=editWidget&amp;sectionId=sidebar" onclick='return _WidgetManager._PopupConfig(document.getElementById("LinkList2"));' target="configLinkList2" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget Followers" id="Followers1">
+<h2 class="title">Followers</h2>
+<div class="widget-content">
+<div id="Followers1-wrapper">
+<div style="margin-right:2px;">
+<script type="text/javascript">
+        if (!window.google || !google.friendconnect) {
+          document.write('<script type="text/javascript"' +
+              'src="http://www.google.com/friendconnect/script/friendconnect.js">' +
+              '</scr' + 'ipt>');
+        }
+      </script><script type="text/javascript" src="ActiveRecord%20-%20Pluralization-Dateien/friendconnect.js"></script>
+<script type="text/javascript">
+      if (!window.registeredBloggerCallbacks) {
+        window.registeredBloggerCallbacks = true;
+
+        
+
+        
+        gadgets.rpc.register('requestReload', function() {
+          document.location.reload();
+        });
+
+        
+        gadgets.rpc.register('requestSignOut', function(siteId) {
+          
+          google.friendconnect.container.openSocialSiteId = siteId;
+          google.friendconnect.requestSignOut();
+        });
+      }
+    </script>
+<script type="text/javascript">
+    
+    function registerGetBlogUrls() {
+      gadgets.rpc.register('getBlogUrls', function() {
+        var holder = {};
+        
+          
+            
+            
+              holder.currentPost = "http://www.blogger.com/feeds/26844340/posts/default/5930258165158518544";
+            
+            
+            
+              holder.currentComments = "http://www.blogger.com/feeds/26844340/5930258165158518544/comments/default";
+            
+            holder.currentPostUrl = "";
+            holder.currentPostId = 5930258165158518544
+          
+          
+          
+            holder.postFeed = "http://www.blogger.com/feeds/26844340/posts/default";
+          
+          
+          
+            holder.commentFeed = "http://www.blogger.com/feeds/26844340/comments/default";
+          
+          holder.currentBlogUrl = "http://sumanthtechsavvy.blogspot.com/";
+          holder.currentBlogId = "26844340";
+        
+        return holder;
+      });
+    }
+  </script>
+<script type="text/javascript">
+  if (!window.registeredCommonBloggerCallbacks) {
+    window.registeredCommonBloggerCallbacks = true;
+
+    gadgets.rpc.register('resize_iframe', function(height) {
+      var el = document.getElementById(this['f']);
+      if (el) {
+        el.style.height = height + 'px';
+      }
+    });
+
+    
+    gadgets.rpc.register('set_pref', function() {});
+
+    registerGetBlogUrls();
+  }
+  </script>
+<div class="gadgets-gadget-container" id="div-1owffs7t5tej3" style="width: 100%; visibility: visible;"><div id="gfc_iframe_1391274883_0_body"><iframe id="gfc_iframe_1391274883_0" name="gfc_iframe_1391274883_0" style="width: 100%; height: 176px;" allowtransparency="true" frameborder="0" height="260" scrolling="no"></iframe></div></div>
+<script type="text/javascript">
+    var skin = {};
+    skin['FACE_SIZE'] = '32';
+    skin['HEIGHT'] = "260";
+    skin['TITLE'] = "Followers";
+    skin['BORDER_COLOR'] = "transparent";
+    skin['ENDCAP_BG_COLOR'] = "transparent";
+    skin['ENDCAP_TEXT_COLOR'] = "#999999";
+    skin['ENDCAP_LINK_COLOR'] = "#6699cc";
+    skin['ALTERNATE_BG_COLOR'] = "transparent";
+    
+    skin['CONTENT_BG_COLOR'] = "transparent";
+    skin['CONTENT_LINK_COLOR'] = "#6699cc";
+    skin['CONTENT_TEXT_COLOR'] = "#999999";
+    skin['CONTENT_SECONDARY_LINK_COLOR'] = "#6699cc";
+    skin['CONTENT_SECONDARY_TEXT_COLOR'] = "#000000";
+    skin['CONTENT_HEADLINE_COLOR'] = "#993333";
+    skin['FONT_FACE'] = "normal normal 100% Verdana, sans-serif";
+    google.friendconnect.container.setParentUrl("/");
+    google.friendconnect.container["renderMembersGadget"](
+    {id: "div-1owffs7t5tej3",
+     height: 260,
+     
+     
+     
+     site: "03959079030107972716",
+     
+     locale: 'en_US' },
+     skin);
+  </script>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=Followers&amp;widgetId=Followers1&amp;action=editWidget&amp;sectionId=sidebar" onclick='return _WidgetManager._PopupConfig(document.getElementById("Followers1"));' target="configFollowers1" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget HTML" id="HTML5">
+<h2 class="title">FriendFeed widget</h2>
+<div class="widget-content">
+<script src="ActiveRecord%20-%20Pluralization-Dateien/sumanthkrishna" type="text/javascript"></script>
+
+
+
+<style type="text/css">
+.friendfeed.widget .feed .entry .comment .quote {
+display: inline;
+float: left;
+margin-left: 12px;
+height: 13px;
+width: 14px;
+}
+</style>
+
+<link href="ActiveRecord%20-%20Pluralization-Dateien/widget2.css" rel="stylesheet" type="text/css">
+
+<div class="friendfeed widget" style="width:  100%">
+<div class="logo">
+
+<a href="http://friendfeed.com/"><img src="ActiveRecord%20-%20Pluralization-Dateien/widget-logo.png" alt="FriendFeed"></a>
+
+</div>
+<div class="feed">
+
+
+
+
+
+
+<div class="cluster" sid="acd184924c1c11ddaa83003048343a40" uid="acd184924c1c11ddaa83003048343a40">
+<div class="icon"><a href="http://friendfeed.com/sumanthkrishna?service=blog"><img src="ActiveRecord%20-%20Pluralization-Dateien/blog.png" alt="Blog" class="icon"></a></div>
+<div class="body">
+
+<div class="summary">
+
+
+<a rel="nofollow" href="http://sumanthtechsavvy.blogspot.com/">TechSavvy</a>
+</div>
+
+
+
+
+
+
+<div class="entry" eid="40f0e053-deb0-d1da-35a4-0a1458f98716" showhide="0">
+
+<div class="title"><a rel="nofollow" href="http://sumanthtechsavvy.blogspot.com/2013/06/jasmine-behavior-driven-development-for.html" class="main">Jasmine - Behavior Driven Development for JavaScript</a></div>
+
+
+
+<div class="info">
+
+
+<span class="published">16. Juni um 21:48</span>
+
+
+
+
+
+- <a href="http://friendfeed.com/e/40f0e053-deb0-d1da-35a4-0a1458f98716/Jasmine-Behavior-Driven-Development-for/?comment=40f0e053-deb0-d1da-35a4-0a1458f98716">Kommentar</a>
+
+</div>
+
+
+
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+
+<div class="cluster" sid="acd184924c1c11ddaa83003048343a40" uid="acd184924c1c11ddaa83003048343a40">
+<div class="icon"><a href="http://friendfeed.com/sumanthkrishna?service=blog"><img src="ActiveRecord%20-%20Pluralization-Dateien/blog.png" alt="Blog" class="icon"></a></div>
+<div class="body">
+
+<div class="summary">
+
+
+<a rel="nofollow" href="http://sumanthtechsavvy.blogspot.com/">TechSavvy</a>
+</div>
+
+
+
+
+
+
+<div class="entry" eid="3c280096-12a5-acac-fb3d-46ecc99317d3" showhide="0">
+
+<div class="title"><a rel="nofollow" href="http://sumanthtechsavvy.blogspot.com/2012/10/kaminari-pagination-gem-for-rails3.html" class="main">Kaminari - Pagination gem for Rails3</a></div>
+
+
+
+<div class="info">
+
+
+<span class="published">25. Oktober um 11:32</span>
+
+
+
+
+
+- <a href="http://friendfeed.com/e/3c280096-12a5-acac-fb3d-46ecc99317d3/Kaminari-Pagination-gem-for-Rails3/?comment=3c280096-12a5-acac-fb3d-46ecc99317d3">Kommentar</a>
+
+</div>
+
+
+
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+
+<div class="cluster" sid="acd184924c1c11ddaa83003048343a40" uid="acd184924c1c11ddaa83003048343a40">
+<div class="icon"><a href="http://friendfeed.com/sumanthkrishna?service=twitter"><img src="ActiveRecord%20-%20Pluralization-Dateien/twitter.png" alt="Twitter" class="icon"></a></div>
+<div class="body">
+
+<div class="summary">
+
+
+<a rel="nofollow" href="http://twitter.com/SumanthKrishna/statuses/238646608777060352">Twitter</a>
+</div>
+
+
+
+
+
+
+<div class="entry twitter" eid="139dee3a-511b-a96c-1b00-8fed3112e9d8" showhide="0" viewinlink="http://twitter.com/SumanthKrishna/statuses/238646608777060352">
+
+<div class="title">“RT @<a rel="nofollow" href="http://twitter.com/Arsenal">Arsenal</a>: Arsenal Football Club is delighted to announce that Pat Holland and Kwame Ampadu have joined the Club's academy - <a rel="nofollow" href="http://t.co/Rof2gNYZ" title="http://www.arsenal.com/news/news-archive/holland-and-ampadu-join-arsenal-s-academy">http://t.co/Rof2gNYZ</a>”</div>
+
+
+
+<div class="info">
+
+
+<span class="published">23. August um 7:39</span>
+
+
+
+
+- <a href="http://friendfeed.com/e/139dee3a-511b-a96c-1b00-8fed3112e9d8/RT-Arsenal-Arsenal-Football-Club-is-delighted-to/?comment=139dee3a-511b-a96c-1b00-8fed3112e9d8">Kommentar</a>
+
+</div>
+
+
+
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+
+<div class="cluster" sid="acd184924c1c11ddaa83003048343a40" uid="acd184924c1c11ddaa83003048343a40">
+<div class="icon"><a href="http://friendfeed.com/sumanthkrishna?service=slideshare"><img src="ActiveRecord%20-%20Pluralization-Dateien/slideshare.png" alt="SlideShare" class="icon"></a></div>
+<div class="body">
+
+<div class="summary">
+
+
+<a rel="nofollow" href="http://www.slideshare.net/sumanth">SlideShare</a>
+</div>
+
+
+
+
+
+
+<div class="entry" eid="3968f4d4-8287-a0c4-7d15-0b7dbfd5319e" showhide="0">
+
+<div class="title"><a rel="nofollow" href="http://www.slideshare.net/sumanth/ruby-on-rails-industry-trends" class="main">Ruby on Rails industry trends</a></div>
+
+
+<div class="media">
+<table>
+<tbody><tr>
+
+
+
+
+
+
+<td><div class="container"><a rel="nofollow" href="http://www.slideshare.net/sumanth/ruby-on-rails-industry-trends"><img src="ActiveRecord%20-%20Pluralization-Dateien/ror-industrytrends-111128120037-phpapp01-thumbnail-2.jpg" class="thumbnail" style="width:120px; height:90px" alt="Ruby on Rails industry trends" title="Ruby on Rails industry trends"></a></div></td>
+
+
+</tr>
+</tbody></table>
+</div>
+
+
+<div class="info">
+
+
+<span class="published">28. November 2011 um 11:00</span>
+
+
+
+
+
+- <a href="http://friendfeed.com/e/3968f4d4-8287-a0c4-7d15-0b7dbfd5319e/Ruby-on-Rails-industry-trends/?comment=3968f4d4-8287-a0c4-7d15-0b7dbfd5319e">Kommentar</a>
+
+</div>
+
+
+
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+
+<div class="cluster" sid="acd184924c1c11ddaa83003048343a40" uid="acd184924c1c11ddaa83003048343a40">
+<div class="icon"><a href="http://friendfeed.com/sumanthkrishna?service=blog"><img src="ActiveRecord%20-%20Pluralization-Dateien/blog.png" alt="Blog" class="icon"></a></div>
+<div class="body">
+
+<div class="summary">
+
+
+<a rel="nofollow" href="http://sumanthtechsavvy.blogspot.com/">TechSavvy</a>
+</div>
+
+
+
+
+
+
+<div class="entry" eid="9fc468cf-b5e5-7d8f-1862-9b336bbec841" showhide="0">
+
+<div class="title"><a rel="nofollow" href="http://sumanthtechsavvy.blogspot.com/2011/11/configuring-databases-in-case-of.html" class="main">Configuring databases in case of integer type password</a></div>
+
+
+
+<div class="info">
+
+
+<span class="published">28. November 2011 um 10:39</span>
+
+
+
+
+
+- <a href="http://friendfeed.com/e/9fc468cf-b5e5-7d8f-1862-9b336bbec841/Configuring-databases-in-case-of-integer-type/?comment=9fc468cf-b5e5-7d8f-1862-9b336bbec841">Kommentar</a>
+
+</div>
+
+
+
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+</div>
+
+<div class="bottom">
+
+<a href="http://friendfeed.com/sumanthkrishna">Meinen Feed ansehen</a> -
+<a href="http://friendfeed.com/sumanthkrishna?subscribe=1">Abonnier' mich</a>
+
+</div>
+
+</div>
+
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=HTML&amp;widgetId=HTML5&amp;action=editWidget&amp;sectionId=sidebar" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML5"));' target="configHTML5" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget AdSense" id="AdSense1">
+<div class="widget-content">
+<script type="text/javascript"><!--
+google_ad_client="pub-4164304796216478";
+google_ad_host="pub-1556223355139109";
+google_ad_host_channel="00000+00031+00005+00012";
+google_ad_width=180;
+google_ad_height=150;
+google_ad_format="180x150_as";
+google_ad_type="text_image";
+google_color_border="FFFFFF";
+google_color_bg="FFFFFF";
+google_color_link="333333";
+google_color_url="993333";
+google_color_text="999999";
+//--></script>
+<script type="text/javascript" src="ActiveRecord%20-%20Pluralization-Dateien/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:150px;margin:0;padding:0;position:relative;visibility:visible;width:180px"><ins id="aswift_1_anchor" style="display:block;border:none;height:150px;margin:0;padding:0;position:relative;visibility:visible;width:180px"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" frameborder="0" height="150" scrolling="no" width="180"></iframe></ins></ins>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=AdSense&amp;widgetId=AdSense1&amp;action=editWidget&amp;sectionId=sidebar" onclick='return _WidgetManager._PopupConfig(document.getElementById("AdSense1"));' target="configAdSense1" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget BlogArchive" id="BlogArchive1">
+<h2>Blog Archive</h2>
+<div class="widget-content">
+<div id="ArchiveList">
+<div id="BlogArchive1_ArchiveList">
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/search?updated-min=2013-01-01T00:00:00%2B05:30&amp;updated-max=2014-01-01T00:00:00%2B05:30&amp;max-results=1">2013</a>
+<span class="post-count" dir="ltr">(1)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2013_06_01_archive.html">June</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/search?updated-min=2012-01-01T00:00:00%2B05:30&amp;updated-max=2013-01-01T00:00:00%2B05:30&amp;max-results=1">2012</a>
+<span class="post-count" dir="ltr">(1)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2012_10_01_archive.html">October</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/search?updated-min=2011-01-01T00:00:00%2B05:30&amp;updated-max=2012-01-01T00:00:00%2B05:30&amp;max-results=3">2011</a>
+<span class="post-count" dir="ltr">(3)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2011_11_01_archive.html">November</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2011_05_01_archive.html">May</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/search?updated-min=2010-01-01T00:00:00%2B05:30&amp;updated-max=2011-01-01T00:00:00%2B05:30&amp;max-results=2">2010</a>
+<span class="post-count" dir="ltr">(2)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2010_09_01_archive.html">September</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2010_06_01_archive.html">June</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/search?updated-min=2009-01-01T00:00:00%2B05:30&amp;updated-max=2010-01-01T00:00:00%2B05:30&amp;max-results=7">2009</a>
+<span class="post-count" dir="ltr">(7)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2009_07_01_archive.html">July</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2009_06_01_archive.html">June</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2009_04_01_archive.html">April</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2009_03_01_archive.html">March</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2009_01_01_archive.html">January</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">▼&nbsp;</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/search?updated-min=2008-01-01T00:00:00%2B05:30&amp;updated-max=2009-01-01T00:00:00%2B05:30&amp;max-results=46">2008</a>
+<span class="post-count" dir="ltr">(46)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2008_12_01_archive.html">December</a>
+<span class="post-count" dir="ltr">(5)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2008_11_01_archive.html">November</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2008_10_01_archive.html">October</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2008_09_01_archive.html">September</a>
+<span class="post-count" dir="ltr">(4)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2008_08_01_archive.html">August</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2008_07_01_archive.html">July</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2008_06_01_archive.html">June</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2008_05_01_archive.html">May</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2008_04_01_archive.html">April</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2008_03_01_archive.html">March</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">▼&nbsp;</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2008_02_01_archive.html">February</a>
+<span class="post-count" dir="ltr">(4)</span>
+<ul class="posts">
+<li><a href="http://sumanthtechsavvy.blogspot.de/2008/02/ruby-on-rails-relevance-to-startups.html">Ruby on Rails relevance to Startups - @ BarCamp</a></li>
+<li><a href="http://sumanthtechsavvy.blogspot.de/2008/02/relationships-between-tables-how.html">Relationships between tables - How ActiveRecord ha...</a></li>
+<li><a href="http://sumanthtechsavvy.blogspot.de/2008/02/hyderabad-hosts-barcamp5.html">Hyderabad hosts BarCamp5</a></li>
+<li><a href="http://sumanthtechsavvy.blogspot.de/2008/02/activerecord-pluralization-convention.html">ActiveRecord - Pluralization convention</a></li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2008_01_01_archive.html">January</a>
+<span class="post-count" dir="ltr">(11)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/search?updated-min=2007-01-01T00:00:00%2B05:30&amp;updated-max=2008-01-01T00:00:00%2B05:30&amp;max-results=23">2007</a>
+<span class="post-count" dir="ltr">(23)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2007_12_01_archive.html">December</a>
+<span class="post-count" dir="ltr">(7)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2007_11_01_archive.html">November</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2007_10_01_archive.html">October</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2007_09_01_archive.html">September</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2007_06_01_archive.html">June</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2007_05_01_archive.html">May</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2007_02_01_archive.html">February</a>
+<span class="post-count" dir="ltr">(4)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2007_01_01_archive.html">January</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/search?updated-min=2006-01-01T00:00:00%2B05:30&amp;updated-max=2007-01-01T00:00:00%2B05:30&amp;max-results=50">2006</a>
+<span class="post-count" dir="ltr">(53)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2006_12_01_archive.html">December</a>
+<span class="post-count" dir="ltr">(7)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2006_11_01_archive.html">November</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2006_10_01_archive.html">October</a>
+<span class="post-count" dir="ltr">(4)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2006_09_01_archive.html">September</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2006_08_01_archive.html">August</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2006_07_01_archive.html">July</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2006_06_01_archive.html">June</a>
+<span class="post-count" dir="ltr">(21)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2006_05_01_archive.html">May</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+          ►&nbsp;
+        
+</span>
+</a>
+<a class="post-count-link" href="http://sumanthtechsavvy.blogspot.de/2006_04_01_archive.html">April</a>
+<span class="post-count" dir="ltr">(7)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=editWidget&amp;sectionId=sidebar" onclick='return _WidgetManager._PopupConfig(document.getElementById("BlogArchive1"));' target="configBlogArchive1" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget AdSense" id="AdSense2">
+<div class="widget-content">
+<script type="text/javascript"><!--
+google_ad_client="pub-4164304796216478";
+google_ad_host="pub-1556223355139109";
+google_ad_host_channel="00000+00031+00005+00012";
+google_ad_width=180;
+google_ad_height=150;
+google_ad_format="180x150_as";
+google_ad_type="text_image";
+google_color_border="FFFFFF";
+google_color_bg="FFFFFF";
+google_color_link="333333";
+google_color_url="993333";
+google_color_text="999999";
+//--></script>
+<script type="text/javascript" src="ActiveRecord%20-%20Pluralization-Dateien/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:150px;margin:0;padding:0;position:relative;visibility:visible;width:180px"><ins id="aswift_2_anchor" style="display:block;border:none;height:150px;margin:0;padding:0;position:relative;visibility:visible;width:180px"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;" frameborder="0" height="150" scrolling="no" width="180"></iframe></ins></ins>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=AdSense&amp;widgetId=AdSense2&amp;action=editWidget&amp;sectionId=sidebar" onclick='return _WidgetManager._PopupConfig(document.getElementById("AdSense2"));' target="configAdSense2" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget HTML" id="HTML2">
+<h2 class="title">Visitors</h2>
+<div class="widget-content">
+<a href="http://www.twospots.com/free-hit-counter/" target="_blank"><img alt="Visitors to TechSavvy" src="ActiveRecord%20-%20Pluralization-Dateien/a.htm" border="0" height="21" width="128"></a>
+<br>
+<noscript><a href="http://www.twospots.com">Free Hit Counter</a></noscript>
+<br>
+<a id="clustrMapsLink" href="http://www3.clustrmaps.com/counter/maps.php?url=http://sumanthtechsavvy.blogspot.com"><img id="clustrMapsImg" style="border:0px;" alt="Locations of visitors to this page" src="ActiveRecord%20-%20Pluralization-Dateien/index2.jpg" onerror="this.onError=null; this.src='http://www2.clustrmaps.com/images/clustrmaps-back-soon.jpg'; document.getElementById('clustrMapsLink').href='http://www2.clustrmaps.com'" title="Locations of visitors to this page"></a>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=HTML&amp;widgetId=HTML2&amp;action=editWidget&amp;sectionId=sidebar" onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML2"));' target="configHTML2" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class="clear">&nbsp;</div>
+</div>
+<!-- end content-wrapper -->
+<div id="footer-wrapper">
+<div class="footer section" id="footer"><div class="widget AdSense" id="AdSense3">
+<div class="widget-content">
+<script type="text/javascript"><!--
+google_ad_client="pub-4164304796216478";
+google_ad_host="pub-1556223355139109";
+google_ad_host_channel="00000+00031+00005+00012";
+google_ad_width=728;
+google_ad_height=90;
+google_ad_format="728x90_as";
+google_ad_type="text_image";
+google_color_border="FFFFFF";
+google_color_bg="FFFFFF";
+google_color_link="333333";
+google_color_url="993333";
+google_color_text="999999";
+//--></script>
+<script type="text/javascript" src="ActiveRecord%20-%20Pluralization-Dateien/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><ins id="aswift_3_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;" frameborder="0" height="90" scrolling="no" width="728"></iframe></ins></ins>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=26844340&amp;widgetType=AdSense&amp;widgetId=AdSense3&amp;action=editWidget&amp;sectionId=footer" onclick='return _WidgetManager._PopupConfig(document.getElementById("AdSense3"));' target="configAdSense3" title="Edit">
+<img alt="" src="ActiveRecord%20-%20Pluralization-Dateien/icon18_wrench_allbkg.png" height="18" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div></div>
+</div>
+</div></div><iframe src="ActiveRecord%20-%20Pluralization-Dateien/blank.htm" style="height: 0px; width: 0px; position: absolute;" name="google_top_static_frame" id="google_top_static_frame" frameborder="0"></iframe>
+<!-- end outer-wrapper -->
+<script type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('widgetJsBefore');
+</script><script type="text/javascript" src="ActiveRecord%20-%20Pluralization-Dateien/3768658763-widgets.js"></script>
+<script gapi_processed="true" type="text/javascript" src="navbar_data/plusone.js"></script>
+<script type="text/javascript">
+if (typeof(BLOG_attachCsiOnload) != 'undefined' && BLOG_attachCsiOnload != null) { window['blogger_templates_experiment_id'] = "templatesV1";window['blogger_blog_id'] = '26844340';BLOG_attachCsiOnload('item_'); }_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d26844340','//sumanthtechsavvy.blogspot.de/2008/02/activerecord-pluralization-convention.html','26844340');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '26844340', 'bloggerUrl': 'http://www.blogger.com', 'title': 'TechSavvy', 'pageType': 'item', 'url': 'http://sumanthtechsavvy.blogspot.de/2008/02/activerecord-pluralization-convention.html', 'canonicalUrl': 'http://sumanthtechsavvy.blogspot.com/2008/02/activerecord-pluralization-convention.html', 'canonicalHomepageUrl': 'http://sumanthtechsavvy.blogspot.com/', 'homepageUrl': 'http://sumanthtechsavvy.blogspot.de/', 'blogspotFaviconUrl': 'http://sumanthtechsavvy.blogspot.de/favicon.ico', 'enabledCommentProfileImages': true, 'adultContent': false, 'disableAdSenseWidget': false, 'analyticsAccountNumber': '', 'searchLabel': '', 'searchQuery': '', 'pageName': 'ActiveRecord - Pluralization convention', 'pageTitle': 'TechSavvy: ActiveRecord - Pluralization convention', 'encoding': 'UTF-8', 'locale': 'en', 'localeUnderscoreDelimited': 'en', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'languageDirection': 'ltr', 'feedLinks': '\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42TechSavvy - Atom\42 href\75\42http://sumanthtechsavvy.blogspot.com/feeds/posts/default\42 /\76\n\74link rel\75\42alternate\42 type\75\42application/rss+xml\42 title\75\42TechSavvy - RSS\42 href\75\42http://sumanthtechsavvy.blogspot.com/feeds/posts/default?alt\75rss\42 /\76\n\74link rel\75\42service.post\42 type\75\42application/atom+xml\42 title\75\42TechSavvy - Atom\42 href\75\42http://www.blogger.com/feeds/26844340/posts/default\42 /\76\n\n\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42TechSavvy - Atom\42 href\75\42http://sumanthtechsavvy.blogspot.com/feeds/5930258165158518544/comments/default\42 /\76\n', 'meTag': '', 'openIdOpTag': '', 'postImageThumbnailUrl': 'http://bp1.blogger.com/_weQz7cj2SZo/R6c0HOtAcSI/AAAAAAAAAWQ/hHy4YjGm718/s72-c/pluralisation.JPG', 'imageSrcTag': '\74link rel\75\42image_src\42 href\75\42http://bp1.blogger.com/_weQz7cj2SZo/R6c0HOtAcSI/AAAAAAAAAWQ/hHy4YjGm718/s72-c/pluralisation.JPG\42 /\76\n', 'latencyHeadScript': '\74script type\75\42text/javascript\42\76(function() { var b\75window,e\75\42jstiming\42,g\75\42tick\42;(function(){function d(a){this.t\75{};this.tick\75function(a,d,c){c\75void 0!\75c?c:(new Date).getTime();this.t[a]\75[c,d]};this[g](\42start\42,null,a)}var a\75new d;b.jstiming\75{Timer:d,load:a};if(b.performance\46\46b.performance.timing){var a\75b.performance.timing,c\75b[e].load,f\75a.navigationStart,a\75a.responseStart;0\74f\46\46a\76\75f\46\46(c[g](\42_wtsrt\42,void 0,f),c[g](\42wtsrt_\42,\42_wtsrt\42,a),c[g](\42tbsd_\42,\42wtsrt_\42))}try{a\75null,b.chrome\46\46b.chrome.csi\46\46(a\75Math.floor(b.chrome.csi().pageT),c\46\0460\74f\46\46(c[g](\42_tbnd\42,void 0,b.chrome.csi().startE),\nc[g](\42tbnd_\42,\42_tbnd\42,f))),null\75\75a\46\46b.gtbExternal\46\46(a\75b.gtbExternal.pageT()),null\75\75a\46\46b.external\46\46(a\75b.external.pageT,c\46\0460\74f\46\46(c[g](\42_tbnd\42,void 0,b.external.startE),c[g](\42tbnd_\42,\42_tbnd\42,f))),a\46\46(b[e].pt\75a)}catch(l){}})();b.tickAboveFold\75function(d){var a\0750;if(d.offsetParent){do a+\75d.offsetTop;while(d\75d.offsetParent)}d\75a;750\76\75d\46\46b[e].load[g](\42aft\42)};var h\75!1;function k(){h||(h\75!0,b[e].load[g](\42firstScrollTime\42))}b.addEventListener?b.addEventListener(\42scroll\42,k,!1):b.attachEvent(\42onscroll\42,k);\n })();\74/script\076', 'mobileHeadScript': '', 'adsenseClientId': 'pub-4164304796216478', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/15de8d1bfc9ff1d1', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'sf': 'n', 'tf': ''}}, {'name': 'skin', 'data': {'vars': {'sidebartextcolor': '#999999', 'linkcolor': '#6699cc', 'visitedlinkcolor': '#666699', 'textcolor': '#333333', 'pagetitlefont': 'normal normal 100% \47Lucida Grande\47,\47Trebuchet MS\047', 'titlefont': 'normal bold 130% \47Lucida Grande\47,\47Trebuchet MS\047', 'titlecolor': '#993333', 'datecolor': '#999999', 'pagetitlecolor': '#FFFFFF', 'bodyfont': 'normal normal 100% Verdana, sans-serif', 'endSide': 'right', 'startSide': 'left', 'sidebarcolor': '#666666', 'footercolor': '#999999', 'sidebarheaderfont': 'normal bold 130% \47Lucida Grande\47,\47Trebuchet MS\047'}, 'override': ''}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '/?view\75classic'}, 'flipcard': {'name': 'flipcard', 'url': '/?view\75flipcard'}, 'magazine': {'name': 'magazine', 'url': '/?view\75magazine'}, 'mosaic': {'name': 'mosaic', 'url': '/?view\75mosaic'}, 'sidebar': {'name': 'sidebar', 'url': '/?view\75sidebar'}, 'snapshot': {'name': 'snapshot', 'url': '/?view\75snapshot'}, 'timeslide': {'name': 'timeslide', 'url': '/?view\75timeslide'}}}]);
+_WidgetManager._RegisterWidget('_AdSenseView', new _WidgetInfo('AdSense3', 'footer', null, document.getElementById('AdSense3'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML3', 'sidebar', null, document.getElementById('HTML3'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogListView', new _WidgetInfo('BlogList1', 'sidebar', null, document.getElementById('BlogList1'), {'numItemsToShow': 0, 'totalItems': 3}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AdSenseView', new _WidgetInfo('AdSense4', 'sidebar', null, document.getElementById('AdSense4'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML1', 'sidebar', null, document.getElementById('HTML1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML4', 'sidebar', null, document.getElementById('HTML4'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList4', 'sidebar', null, document.getElementById('LinkList4'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList3', 'sidebar', null, document.getElementById('LinkList3'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList2', 'sidebar', null, document.getElementById('LinkList2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FollowersView', new _WidgetInfo('Followers1', 'sidebar', null, document.getElementById('Followers1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML5', 'sidebar', null, document.getElementById('HTML5'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AdSenseView', new _WidgetInfo('AdSense1', 'sidebar', null, document.getElementById('AdSense1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', null, document.getElementById('BlogArchive1'), {'languageDirection': 'ltr'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AdSenseView', new _WidgetInfo('AdSense2', 'sidebar', null, document.getElementById('AdSense2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML2', 'sidebar', null, document.getElementById('HTML2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', null, document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', null, document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', null, document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'showBacklinks': true, 'postId': '5930258165158518544', 'lightboxEnabled': true, 'lightboxModuleUrl': '//www.blogger.com/static/v1/jsbin/1606174444-lbx.js', 'lightboxCssUrl': '//www.blogger.com/static/v1/v-css/228702327-lightbox_bundle.css'}, 'displayModeFull'));
+</script>
+
+</body></html>

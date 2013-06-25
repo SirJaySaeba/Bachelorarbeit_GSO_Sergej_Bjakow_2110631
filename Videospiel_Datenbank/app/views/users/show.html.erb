@@ -1,0 +1,29 @@
+<% provide(:title, @user.name) %>
+
+ 
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+      <h2><%= @user.email %></h2>
+    </section>
+
+    <% if @user.reviews.any? %>
+      <h3>Current User has <%= pluralize(current_user.reviews.count, "review") %> </h3>
+      
+      <ol class="reviews">
+         <%= render partial: 'reviews/user_review', :collection => @reviews %>
+      </ol>
+      <%= will_paginate @reviews %>
+    <% else %>
+    	<i>@user.name hat noch keine Reviews verfasst</i>
+    <% end %>
+  
+  <% content_for :sidebar do %>
+  	  <section>
+        <%= render 'misc/user_games' %>
+      </section>
+  <% end %>
+  
+

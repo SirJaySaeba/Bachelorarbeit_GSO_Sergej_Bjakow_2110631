@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>#51 will_paginate - RailsCasts</title>
+    <meta name="description" content="Short Ruby on Rails screencasts containing tips, tricks and tutorials. Great for both novice and experienced web developers.">
+    <meta name="keywords" content="rails, ruby on rails, screencasts, railscast, railscasts, tips, tricks, tutorials, training, podcasts, programming">
+    <link rel="alternate" type="application/rss+xml" title="Episodes RSS" href="http://feeds.feedburner.com/railscasts">
+    <link href="Railscasts%20-%20will_paginate-Dateien/application-f33052609391fcb2333fb8c560544e00.css" media="screen" rel="stylesheet" type="text/css">
+    <script src="Railscasts%20-%20will_paginate-Dateien/ga.js" async="" type="text/javascript"></script><script src="Railscasts%20-%20will_paginate-Dateien/widgets.js" id="twitter-wjs"></script><script src="Railscasts%20-%20will_paginate-Dateien/3s7oes9q_002.js" type="text/javascript"></script>
+    <script src="Railscasts%20-%20will_paginate-Dateien/application-fe460ed6c034ee8c95a2a78f52d7a5d9.js" type="text/javascript"></script>
+    <meta content="authenticity_token" name="csrf-param">
+<meta content="XX/J4gmamqkNU0v7mBiK+sH8qv5lr9ZXwRcf5tY7eoo=" name="csrf-token">
+    
+  <script async="" src="Railscasts%20-%20will_paginate-Dateien/sa.js" type="text/javascript"></script><script async="" src="Railscasts%20-%20will_paginate-Dateien/3s7oes9q.js" type="text/javascript"></script></head>
+  <body data-twttr-rendered="true">
+    <div id="top">
+      <div class="logo"><a href="http://railscasts.com/"><img alt="RailsCasts - Ruby on Rails Screencasts" src="Railscasts%20-%20will_paginate-Dateien/railscasts_logo-7101a7cd0a48292a0c07276981855edb.png" height="56" width="423"></a></div>
+      <div class="user_nav">
+          <a href="http://railscasts.com/login?return_to=http%3A%2F%2Frailscasts.com%2Fepisodes%2F51-will-paginate">Sign in through GitHub</a>
+      </div>
+      <ul class="subscribe horizontal">
+        <li>
+          <a href="http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=218282043"><img alt="Itunes" src="Railscasts%20-%20will_paginate-Dateien/itunes-ea9253b9b183d9788bef2cdfe326f38e.png" height="34" width="34"></a>
+          <span class="name">watch on iTunes</span>
+        </li>
+        <li>
+          <a href="http://twitter.com/railscasts"><img alt="Twitter" src="Railscasts%20-%20will_paginate-Dateien/twitter-f0259ab802804e09139fb29f47678b2c.png" height="34" width="34"></a>
+          <span class="name">follow on Twitter</span>
+        </li>
+        <li>
+          <a href="http://www.facebook.com/pages/railscasts/197415140659"><img alt="Facebook" src="Railscasts%20-%20will_paginate-Dateien/facebook-0ab869e74b54d9c58f33c1c75264d869.png" height="34" width="34"></a>
+          <span class="name">follow on Facebook</span>
+        </li>
+        <li>
+          <a href="http://feeds.feedburner.com/railscasts"><img alt="Rss" src="Railscasts%20-%20will_paginate-Dateien/rss-04cb962054caa957a6fa3924c48594d8.png" height="34" width="34"></a>
+          <span class="name">subscribe to RSS feed</span>
+        </li>
+      </ul>
+    </div>
+
+    <div id="nav_bar">
+      <ul class="nav horizontal">
+        <li><a href="http://railscasts.com/">Browse Episodes</a></li>
+        <li><a href="http://railscasts.com/pro">RailsCasts Pro</a></li>
+        <li><a href="http://railscasts.com/notifications">Notifications</a></li>
+        <li><a href="http://railscasts.com/about">About</a></li>
+        <li><a href="http://railscasts.com/feedback">Feedback</a></li>
+      </ul>
+      <form accept-charset="UTF-8" action="http://railscasts.com/episodes" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"></div>
+        <input id="search" name="search" size="35" type="text">
+        <input value="Search Episodes" type="submit">
+</form>    </div>
+
+    
+
+
+    <div id="main">
+
+      
+  <div class="legacy" id="episode">
+    <script id="video_template" type="text/html"><video width="800" height="600" poster="/static/episodes/posters/loading800.png" controls="controls" preload="none" class="sv_force_fullscreen sv_force_flash"><source src="http://media.railscasts.com/assets/episodes/videos/051-will-paginate.mp4" type="video/mp4"/><source src="http://media.railscasts.com/assets/episodes/videos/051-will-paginate.m4v" type="video/mp4"/><source src="http://media.railscasts.com/assets/episodes/videos/051-will-paginate.webm" type="video/webm"/><source src="http://media.railscasts.com/assets/episodes/videos/051-will-paginate.ogv" type="video/ogg"/></video></script>
+    <div class="info">
+      <div class="screenshot"><a href="http://railscasts.com/episodes/51-will-paginate?autoplay=true" class="play_video"><img alt="will_paginate" src="Railscasts%20-%20will_paginate-Dateien/051-will-paginate.png" height="125" width="200"></a></div>
+      <h1><span class="position">#51</span> will_paginate</h1>
+      <div class="details">Jun 29, 2007 | 6 minutes | <a href="http://railscasts.com/?tag_id=13">Plugins</a></div>
+      <div class="description">In edge rails (soon to be Rails 2.0), the
+ built-in pagination has been moved into a plugin: classic_pagination. I
+ recommend jumping over to the will_paginate plugin as shown in this 
+episode.</div>
+      <div class="watch"><a href="http://railscasts.com/episodes/51-will-paginate?autoplay=true" class="play_video pretty_button">Click to Play Video ▶</a></div>
+      <div class="social"><iframe data-twttr-rendered="true" title="Twitter Tweet Button" style="width: 109px; height: 20px;" class="twitter-share-button twitter-count-horizontal" src="Railscasts%20-%20will_paginate-Dateien/tweet_button.htm" allowtransparency="true" frameborder="0" scrolling="no"></iframe><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
+        <ul class="downloads horizontal">
+          <li>Download:</li>
+          <li><a href="http://media.railscasts.com/assets/episodes/videos/051-will-paginate.mp4">mp4</a><span class="overlay">Full Size H.264 Video (12.9 MB)</span></li><li><a href="http://media.railscasts.com/assets/episodes/videos/051-will-paginate.m4v">m4v</a><span class="overlay">Smaller H.264 Video (7.79 MB)</span></li><li><a href="http://media.railscasts.com/assets/episodes/videos/051-will-paginate.webm">webm</a><span class="overlay">Full Size VP8 Video (23.1 MB)</span></li><li><a href="http://media.railscasts.com/assets/episodes/videos/051-will-paginate.ogv">ogv</a><span class="overlay">Full Size Theora Video (18.8 MB)</span></li>
+        </ul>
+      <div class="clear"></div>
+</div>    <ul class="nav horizontal"><li class="selected"><a href="http://railscasts.com/episodes/51-will-paginate" class="selected tab">Show Notes</a></li><li><a href="http://railscasts.com/episodes/51-will-paginate?view=comments" class="tab">83 Comments</a></li><li><a href="http://railscasts.com/episodes/51-will-paginate?view=similar" class="tab">Similar Episodes</a></li><li class="next"><a href="http://railscasts.com/episodes/52-update-through-checkboxes">Next Episode &gt;</a></li><li class="previous"><a href="http://railscasts.com/episodes/50-contributing-to-rails">&lt; Previous Episode</a></li></ul>
+    <div class="nav_section">
+      <div class="inner">
+  <div class="extra_nav">
+  </div>
+
+  <div class="show_notes">
+      <p><strong>There is a newer version of this episode, see the <a href="http://railscasts.com/episodes/51-will-paginate-revised">revised episode</a>.</strong></p>
+    <p><strong>Resources</strong></p>
+
+<ul>
+<li><a href="http://require.errtheblog.com/plugins/browser/will_paginate/">will_paginate</a> (svn://errtheblog.com/svn/plugins/will_paginate)</li>
+<li><a href="http://require.errtheblog.com/plugins/browser/classic_pagination/">classic_pagination</a> (svn://errtheblog.com/svn/plugins/classic_pagination)</li>
+</ul>
+
+      <div class="code_block">
+        <div class="code_header">
+          models/product.rb
+        </div>
+        <div class="CodeRay">
+  <div class="code"><pre><span class="r">def</span> <span class="pc">self</span>.<span class="fu">search</span>(search, page)
+  paginate <span class="sy">:per_page</span> =&gt; <span class="i">5</span>, <span class="sy">:page</span> =&gt; page,
+           <span class="sy">:conditions</span> =&gt; [<span class="s"><span class="dl">'</span><span class="k">name like ?</span><span class="dl">'</span></span>, <span class="s"><span class="dl">"</span><span class="k">%</span><span class="il"><span class="idl">#{</span>search<span class="idl">}</span></span><span class="k">%</span><span class="dl">"</span></span>],
+           <span class="sy">:order</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">name</span><span class="dl">'</span></span>
+<span class="r">end</span></pre></div>
+</div>
+
+      </div>
+
+
+      <div class="code_block">
+        <div class="code_header">
+          products_controller.rb
+        </div>
+        <div class="CodeRay">
+  <div class="code"><pre><span class="r">def</span> <span class="fu">index</span>
+  <span class="iv">@products</span> = <span class="co">Product</span>.search(params[<span class="sy">:search</span>], params[<span class="sy">:page</span>])
+<span class="r">end</span></pre></div>
+</div>
+
+      </div>
+
+
+      <div class="code_block">
+        <div class="code_header">
+          products/index.rhtml
+        </div>
+        <div class="CodeRay">
+  <div class="code"><pre><span class="il"><span class="idl">&lt;%=</span> will_paginate <span class="iv">@products</span> <span class="idl">%&gt;</span></span></pre></div>
+</div>
+
+      </div>
+
+
+  </div>
+</div>
+      <div class="progress" style="display: none"><img alt="loading" src="Railscasts%20-%20will_paginate-Dateien/progress_large-b0fa49d32dce1cea0e4f9c082c1fa5f5.gif"></div>
+    </div>
+</div>
+    </div>
+    <div id="footer">
+      <div class="inner">
+        ©2013 RailsCasts - <a href="http://railscasts.com/privacy">Privacy Policy</a> - Hosted by <a href="https://www.digitalocean.com/?utm_source=railscasts.com">Digital Ocean</a>
+      </div>
+    </div>
+
+      <!-- Google Analytics -->
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-7696481-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+  
+
+</body></html>

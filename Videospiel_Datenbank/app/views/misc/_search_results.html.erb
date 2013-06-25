@@ -1,0 +1,16 @@
+<% if(params[:search]) %>
+	<table>
+	<% @games.each do |game| %>
+	  <tr>
+	    <td><%= link_to game.title, game %> 
+	    	<span>(<%= game.release.strftime("%Y") %>)</span>
+	    </td>
+	    
+	    <td><%= link_to 'Löschen', game, method: :delete, data: { confirm: "Sicher?"} %></td>
+	    
+	  </tr>
+	<% end %>
+	</table>
+<% else %>
+	<i>Keine Einträge gefunden...</i>
+<% end %>

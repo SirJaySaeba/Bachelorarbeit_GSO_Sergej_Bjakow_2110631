@@ -1,0 +1,16 @@
+<li id="<%= game_review.id %>">
+	
+  <%= link_to gravatar_for(game_review.user), game_review.user %>
+
+  <span> <%= link_to game_review.user.name, game_review_path(@game, game_review) %> </span>
+  </br>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(game_review.created_at) %> ago.
+  </span>
+  
+    <% if current_user?(game_review.user) %>
+    <%= link_to "delete", game_review_path(@game, game_review), method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  	<% end %>
+  
+</li>
