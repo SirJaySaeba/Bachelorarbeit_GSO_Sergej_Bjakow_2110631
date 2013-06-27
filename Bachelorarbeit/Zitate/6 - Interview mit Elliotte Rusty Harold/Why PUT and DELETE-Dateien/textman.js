@@ -1,3 +1,0 @@
-var phpadsbanner = '';
-
-phpadsbanner += '<'+'div class="sponlink"><'+'a href=\'http://www.artima.com/zcr/adclick.php?bannerid=329&amp;zoneid=4&amp;source=&amp;dest=http%3A%2F%2Fwww.parleys.com%2Fdisplay%2FPARLEYS%2FHome%23title%3DThe%2520Feel%2520Of%2520Scala%3Btalk%3D27131945%3Bslide%3D1\' target=\'_top\'>Get "the feel" of Scala in this one-hour free video introduction to Scala at Parleys.com<'+'/a><'+'/div><'+'div id="beacon_329" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><'+'img src=\'http://www.artima.com/zcr/adlog.php?bannerid=329&amp;clientid=80&amp;zoneid=4&amp;source=&amp;block=0&amp;capping=0&amp;cb=0577e55e70f212f1d7cad10d96b116b3\' width=\'0\' height=\'0\' alt=\'\' style=\'width: 0px; height: 0px;\'><'+'/div>';
