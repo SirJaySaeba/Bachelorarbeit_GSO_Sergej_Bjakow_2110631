@@ -16,34 +16,38 @@
 		
 	</div>
 	
-	Durchschnittswert:
-	<span class="rating_avg">
-		<% if !@game.average_rating.present? %>
-			unbewertet
-		<% else %>
-			<%= @game.ratings.average(:value).round(2) %>
-		<% end %>
-	</span>
-	
-	<div>
-		Anzahl Wertungen: 
-		<span class="rating_amount"><%= @game.ratings.count %></span>
-	</div>
-	
-	<% if user_signed_in? %>
-	<p>
-		Ihre Wertung :
-		<span class="current_user_rating">
-			
-			<%= current_user_rating %>
+	<div class="rating_label">
+		<div>
+			Durchschnittswert:
+			<span class="rating_avg">
+				<% if !@game.average_rating.present? %>
+					unbewertet
+				<% else %>
+					<%= @game.ratings.average(:value).round(2) %>
+				<% end %>
+			</span>
+		</div>
 
-		</span>
-	</p>
-	<% end %>
+		<div>
+			Anzahl Wertungen: 
+			<span class="rating_amount"><%= @game.ratings.count %></span>
+		</div>
+
+		<div>
+			<% if user_signed_in? %>
+			Ihre Wertung :
+			<span class="current_user_rating">
+				
+				<%= current_user_rating %>
 	
-	<% if !user_signed_in? %>
-		Loggen sie sich ein um eine Bewertung abzugeben
-		<%= link_to "Login", signin_path, class: "btn" %>
-	<% end %>
+			</span>
+			<% end %>
+		</div>
+
+
+	
+		
+	</div>
+
 </div>
 

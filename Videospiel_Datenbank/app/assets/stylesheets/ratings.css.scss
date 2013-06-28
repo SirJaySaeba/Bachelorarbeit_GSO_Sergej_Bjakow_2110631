@@ -8,15 +8,18 @@ label{
   display: inline !important;
 }
 
+
+.rating_label{
+  font-size: 10px;
+}
+
 .rating_area{
   //background: #9a9a9a;
   @include backgroundRatingGradient;
   width: 500px;
-  padding: 10px;
+  padding: 20px 10px;
   .rating_form{
-    padding: 10px;
-    position: relative;
-    //bottom: 100px;
+    padding: 10px 0px;
     .create_rating input.rating_button { 
       display: none;
     }
@@ -36,27 +39,41 @@ label{
   bottom: 5px;
 
 }
-  .rating_filled{
-    
-    height: 18px;
-    margin-left: 7px;
-    @include ratingGradient;
-  }
+
+.rating_filled{
+  height: 18px;
+  margin-left: 7px;
+  @include ratingGradient;
+}
 
 .create_rating label.rating { 
   cursor: pointer; 
   display: block; 
-  height: 20px; 
-  width: 20px; 
+  height: 41px; 
+  width: 30px; 
   float: left; 
-  background-image: image-url("r_dim.png");
+  background-image: image-url("spock3.png");
+
 }
 
 .create_rating label.rating span { 
   display: none; 
+}
+
+.hovered_rating{
+  color: white;
+  font-size: 25px;
+  text-shadow: 2px 2px 2px #000000;
+  font-weight: bold;
+  text-align: right;
 
 }
 
-.create_rating label.rating.bright { background-image: image-url("r_bright.png"); }
-.create_rating label.rating.glow { background-image: image-url("r_glow.png"); }
+.create_rating label.rating.bright { 
+  background-image: image-url("spock2.png"); 
+}
+.create_rating label.rating.glow { 
+  background-image: image-url("spock1.png"); 
+
+  }
 

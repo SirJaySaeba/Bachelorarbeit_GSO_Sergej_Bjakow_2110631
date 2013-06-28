@@ -5,7 +5,7 @@
 <%= form_for(@review, :url => game_reviews_path) do |f| %>
   <%= render 'misc/error_messages', object: f.object %>
   
-  <div class="field">
+  <div class="field review_text_area">
     <%= f.text_area :content, placeholder: "Compose new review..." %>
   </div>
   

@@ -4,21 +4,23 @@ $(function () {
     $('.create_rating > label[for=' + checkedId + ']')
     .prevAll().andSelf()
     .addClass('bright');
-
+    
 });
 
 $(document).ready(function() {
+	
 
     // Makes stars glow on hover.
     $('.create_rating > label').hover(
         function() {    // mouseover
         	var hoveredId = $(this).attr('id');
-			$(this).prevAll().andSelf().addClass('glow');
-			$(this).html(hoveredId);
+        	//var hoveredId = $(this).find('span').html();
+			$(this).addClass('glow');
+			$(this).html(hoveredId).addClass('hovered_rating');
 			
         },function() {  // mouseout
         	$(this).html('');
-            $(this).siblings().andSelf().removeClass('glow');
+            $(this).removeClass('glow');
             
     });
 

@@ -1,8 +1,8 @@
-<p>  
+<p class="review_info">  
 	<b>Review</b> zu <%= link_to @review.game.title, @review.game %> </br>
 	von <%= link_to @review.user.name, @review.user %>
 	
 </p>
-<p>
+<p class="review_text">
   <%= @review.content %>
 </p>
