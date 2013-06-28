@@ -1,7 +1,7 @@
 class Game < ActiveRecord::Base
 
   #--------------Validations-----------#
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: true
   
   has_attached_file :cover, :styles => { :resize => "200x200>" }#,
                   #:url  => "/assets/games/:id/:style/:basename.:extension",

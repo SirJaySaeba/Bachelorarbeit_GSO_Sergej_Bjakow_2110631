@@ -9,29 +9,37 @@ label{
 }
 
 .rating_area{
-  background: #9a9a9a;
+  //background: #9a9a9a;
+  @include backgroundRatingGradient;
   width: 500px;
-  padding: 5px;
+  padding: 10px;
   .rating_form{
-    background: white;
     padding: 10px;
+    position: relative;
+    //bottom: 100px;
     .create_rating input.rating_button { 
       display: none;
     }
   }
 }
 
+
+.rating_graph{
+  padding-bottom: 12px;
+}
 .rating_bar{
   width: 500px;
-  background: image-url("energybar.png") no-repeat;
+  background: image-url("energy_bar.png") no-repeat;
   height: 46px;
   position: relative;
-  top: 40px;
+  left: -7px;
+  bottom: 5px;
+
 }
   .rating_filled{
     
-    height: 31px;
-    margin-left: 27px;
+    height: 18px;
+    margin-left: 7px;
     @include ratingGradient;
   }
 
@@ -46,7 +54,7 @@ label{
 
 .create_rating label.rating span { 
   display: none; 
-  padding-left: 5px;
+
 }
 
 .create_rating label.rating.bright { background-image: image-url("r_bright.png"); }

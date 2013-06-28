@@ -12,11 +12,7 @@ VideospielDatenbank::Application.routes.draw do
     end
     resources :reviews
   end
-  
-  #get "games/:game_id/reviews/:id" => "reviews#show", as: "review"
-  #delete "games/:game_id/reviews/:id" => "reviews#destroy" 
-  
-  #resources :ratings, only: [:show, :create, :update]
+
   get "ratings/:id" => "ratings#ding", as: "rating"
   post "ratings" => "ratings#create_and_update"   #match "ratings" => "ratings#create_and_update", :via => :post
   put "ratings/:id" => "ratings#create_and_update"   #match "ratings/:id" => "ratings#create_and_update", :via => :put
