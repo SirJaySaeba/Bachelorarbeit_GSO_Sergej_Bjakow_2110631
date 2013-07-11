@@ -49,10 +49,10 @@ label{
 .create_rating label.rating { 
   cursor: pointer; 
   display: block; 
-  height: 41px; 
-  width: 30px; 
+  width: 40px; 
+  height: 44px; 
   float: left; 
-  background-image: image-url("spock3.png");
+  background-image: image-url("ring3.png");
 
 }
 
@@ -70,10 +70,10 @@ label{
 }
 
 .create_rating label.rating.bright { 
-  background-image: image-url("spock2.png"); 
+  background-image: image-url("ring2.png"); 
 }
 .create_rating label.rating.glow { 
-  background-image: image-url("spock1.png"); 
+  background-image: image-url("ring1.png"); 
 
   }
 
